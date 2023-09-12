@@ -8,6 +8,6 @@ export const GET: RequestHandler = async ({ fetch }) => {
 	const res = await fetch(
 		`https://api.openweathermap.org/data/2.5/weather?units=metric&lang=pt_br&lat=${lat}&lon=${lon}&appid=${CLIMA_TEMPO}`
 	);
-	const data = await res.json() as OpenWeather;
+	const data = (await res.json()) as OpenWeather;
 	return json(data);
 };

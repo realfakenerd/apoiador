@@ -46,5 +46,5 @@ export default withMaterialColors({
   },
   plugins: [tmd]
 }, {
-  primary: '#f36e21'
+  primary: '#ff5e00'
 });

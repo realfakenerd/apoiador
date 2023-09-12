@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { handleScroll } from "$lib/handleScroll";
+	import handleScroll from "$lib/handleScroll";
 	import routes from "$lib/routes";
 	import Icon from "@iconify/svelte";
 
@@ -7,7 +7,7 @@
 </script>
 
 <header
-	class="bottom-0 md:w-[80px] z-[999] md:left-0 md:top-0"
+	class="bottom-0 md:min-w-[80px] z-[999] md:left-0 md:top-0"
 >
 
 <div class="hidden h-screen flex-col items-center justify-evenly md:flex">

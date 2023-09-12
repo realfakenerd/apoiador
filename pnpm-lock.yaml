@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@fontsource-variable/noto-sans-display':
+    specifier: ^5.0.13
+    version: 5.0.13
   '@iconify/svelte':
     specifier: ^3.1.4
     version: 3.1.4(svelte@4.2.0)
@@ -334,6 +337,10 @@ packages:
   /@eslint/js@8.48.0:
     resolution: {integrity: sha512-ZSjtmelB7IJfWD2Fvb7+Z+ChTIKWq6kjda95fLcQKNS5aheVHn4IkfgRQE3sIIzTcSLwLcLZUD9UBt+V7+h+Pw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@fontsource-variable/noto-sans-display@5.0.13:
+    resolution: {integrity: sha512-tEwiysLBjhK9jafufX3OdrOcM/syM6F9p5KrwBUbCJtkoi8drsuZgpLakiNRIPvth1/NfQJrx6TepXkRJ0SjLw==}
     dev: true
 
   /@humanwhocodes/config-array@0.11.11:

@@ -27,3 +27,5 @@ export function handleScroll(nav: HTMLElement) {
 
 	window.addEventListener('scroll', requestTick);
 }
+
+export default handleScroll
