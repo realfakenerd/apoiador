@@ -1,12 +1,18 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+// #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
+mod parser;
+mod reader;
 
 #[tauri::command]
-fn my_custom_command() {
-  println!("I was invoked from JS!");
+fn parse_markdown(path: &str) {
+    let content = reader::read(path);
+    parser::parse(content.unwrap().as_str());
 }
+
 fn main() {
-  tauri::Builder::default()
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![parse_markdown])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }

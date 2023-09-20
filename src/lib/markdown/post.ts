@@ -13,7 +13,7 @@ export async function fetchJSON<T>(url: string, fetchFn: Fetch = fetch) {
 async function parseMarkdownFiles() {
 	try {
 		const posts: Post[] = [];
-		const postsPath = resolve('src/procedimentos');
+		const postsPath = resolve('procedimentos');
 		
 		const folders = await readdir(postsPath, {
 			encoding: 'utf-8'

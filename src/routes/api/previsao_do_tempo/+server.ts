@@ -2,6 +2,7 @@ import { CLIMA_TEMPO } from '$env/static/private';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
+export const prerender = true;
 export const GET: RequestHandler = async ({ fetch }) => {
 	const lat = '-22.9039077';
 	const lon = '-43.1775533';
