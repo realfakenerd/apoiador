@@ -4,6 +4,7 @@ description: Como fazer 'Comunicação Interna'
 slug: ci
 published: '2023-04-28'
 updated: '2023-10-03'
+image: '/foto_de_papel.png'
 category: 
   - ci
   - tutorial

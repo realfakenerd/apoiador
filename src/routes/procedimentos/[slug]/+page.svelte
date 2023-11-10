@@ -4,4 +4,8 @@
     export let data: PageData;
 </script>
 
-{@html data.content}
+<section class="p-4">
+	<article class="card max-w-none bg-surface-variant prose prose-zinc">
+		{@html data.content}
+	</article>
+</section>

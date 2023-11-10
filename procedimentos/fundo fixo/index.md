@@ -1,22 +1,30 @@
 ---
-title: CI
-description: Como fazer 'Comunicação Interna' 
-slug: ci
+title: Fundo Fixo
+description: Como fazer requisição de pagamento para 'Fundo Fixo' 
+slug: fundo fixo
 published: '2023-04-28'
 updated: '2023-10-03'
 category: 
-  - ci
+  - fundo-fixo
   - tutorial
 ---
 
 ## Table of Contents
 
-## CI
+## Objetivo
 
-CI ou "Comunicação Interna" é um protocolo de comunicação de entrega de documentos entre setores da empresa.
-Usado para afirmar a entrega de tal documento. Como por exemplo, ao entregar um 'Registro de Funcionário' para
-a Implantação DP.
+Solicitar reembolso das despesas gastas do fundo fixo.
+
+## Recursos Necessários
+
+* Notas Fiscais.
+* Cupons Fiscais.
+* Planilha de passagens.
+* Recibos.
+* Sistema MXM - Manager.
 
 ## Como fazer
 
-Primeiro é necessário abrir o arquivo Word que está na pasta `APOIO/COMUNICAÇÃO INTERNA`
+### Passo 1
+
+Somar as notas / cupons fiscais de despesa Apsa e, separadamente, as referentes às despesas de condomínio.

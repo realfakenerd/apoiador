@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { PageServerData } from "./$types";
-
     export let data: PageServerData;
 
     const {procedimentos}=data;
+
+    console.log(procedimentos);
+    
 </script>
 
 <h1 class="text-headline-large">Procedimentos</h1>
