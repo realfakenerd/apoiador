@@ -1,10 +1,7 @@
 <script lang="ts">
-    import {invoke} from '@tauri-apps/api';
-	import { onMount } from 'svelte';
+	import type { PageData } from "./$types";
 
-    export let data;
-
-   onMount(() => {
-    invoke('parse_markdown', {path: data.post}).then(data => console.log(data));
-   })    
+    export let data: PageData;
 </script>
+
+{@html data.content}

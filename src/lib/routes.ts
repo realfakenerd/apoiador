@@ -16,5 +16,10 @@ export default [
 		name: 'Procedimentos',
 		path: '/procedimentos',
 		icon: 'mdi:cog'
+	},
+	{
+		name: 'CI',
+		path: '/ci',
+		icon: 'mdi:cog'
 	}
 ] as Route[];

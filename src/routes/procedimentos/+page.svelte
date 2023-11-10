@@ -2,14 +2,32 @@
 	import type { PageServerData } from "./$types";
 
     export let data: PageServerData;
-    
+
     const {procedimentos}=data;
 </script>
-<ul>
+
+<h1 class="text-headline-large">Procedimentos</h1>
+
+<ul class="grid gap-2">
     {#each procedimentos as procedimento}
-        <li class="card">
-            <span>{procedimento.title}</span>
-            <a href={`/procedimentos/${procedimento.slug}`}>{procedimento.slug}</a>
+        <li class="card card-filled">
+            <a href={`/procedimentos/${procedimento.slug}`}>
+                <h1 class="text-title-large">{procedimento.title}</h1>
+            </a>
+            <ul class="inline-flex gap-2 text-label-large">
+                {#each procedimento.category as cat}
+                    <li class="text-tertiary">
+                        #{cat}
+                    </li>
+                {/each}
+            </ul>
+            <p class="text-body-medium">{procedimento.description}</p>
         </li>
     {/each}
 </ul>
+
+<style>
+    ul.grid {
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    }
+</style>
