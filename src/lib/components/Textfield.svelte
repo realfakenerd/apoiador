@@ -24,6 +24,7 @@
 	const dispatch = createEventDispatcher();
 	export let extraWrapperOptions = {} satisfies HTMLAttributes<HTMLDivElement>;
 	export let extraInputOptions = {} satisfies HTMLInputAttributes & HTMLTextareaAttributes;
+	export let placeholder: string | null = null;
 
 	function resize() {
 		textarea.style.height = 'unset';
@@ -34,7 +35,7 @@
 	}
 </script>
 
-<fieldset>
+<fieldset class="{$$props.class??''}">
 	<div
 		class="text-field-container style-{style} {error ? 'error' : ''} {icon ? 'has-icon' : ''}"
 		bind:this={wrapper}
@@ -52,6 +53,7 @@
 				class:value
 				required
 				rows="1"
+				{placeholder}
 				on:input={resize}
 				{...extraInputOptions}
 				aria-label="Enter your input {label}"
@@ -66,6 +68,7 @@
 				required
 				type="text"
 				{id}
+				{placeholder}
 				class="text-field-input"
 				aria-label="Enter your input {label}"
 				aria-invalid={error ? 'true' : 'false'}
@@ -98,13 +101,16 @@
 
 <style lang="postcss">
 	.text-field-container {
-		@apply relative h-14 w-full min-w-[15rem] text-on-surface-variant;
+		min-width: 15rem;
+		widows: 100%;
+		position: relative;
+		@apply h-14 text-on-surface-variant;
 	}
 	.text-field-container :global(svg) {
 		@apply h-6 w-6;
 	}
 	.text-field-input {
-		@apply absolute inset-0 h-full w-full border-none bg-transparent px-4 text-on-surface outline-none;
+		@apply appearance-none absolute inset-0 h-full w-full border-none bg-transparent px-4 text-on-surface outline-none;
 	}
 	textarea {
 		@apply resize-none;
@@ -145,7 +151,7 @@
 	}
 
 	.style-outlined {
-		@apply rounded-lg;
+		border-radius: theme(borderRadius.lg);
 	}
 	.style-outlined > .text-field-layer {
 		color: rgb(var(--error, var(--color-outline)));

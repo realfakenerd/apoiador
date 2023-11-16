@@ -14,19 +14,19 @@ async function parseMarkdownFiles() {
 	try {
 		const posts: Post[] = [];
 		const postsPath = resolve('procedimentos');
-		
+
 		const folders = await readdir(postsPath, {
 			encoding: 'utf-8'
 		});
-		
+
 		for (const folder of folders) {
-			const markdownFilePath = join(postsPath, folder, `index.md`);	
+			const markdownFilePath = join(postsPath, folder, `index.md`);
 			const markdownContent = await readFile(markdownFilePath, 'utf-8');
 			const { data } = matter(markdownContent);
-			
+
 			posts.push(data as Post);
 		}
-		
+
 		return posts;
 	} catch (e) {
 		throw new Error('Could not parse Markdown files');
@@ -36,7 +36,7 @@ async function parseMarkdownFiles() {
 async function parseMarkdownFile(slug: string) {
 	try {
 		const postPath = resolve(`procedimentos/${slug}/index.md`);
-		const markdownContent = await readFile(postPath, 'utf-8');		
+		const markdownContent = await readFile(postPath, 'utf-8');
 		return markdownToHTML(markdownContent);
 	} catch (e) {
 		console.error(e);

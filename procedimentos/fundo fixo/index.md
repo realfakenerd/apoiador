@@ -1,10 +1,10 @@
 ---
 title: Fundo Fixo
-description: Como fazer requisição de pagamento para 'Fundo Fixo' 
+description: Como fazer requisição de pagamento para 'Fundo Fixo'
 slug: fundo fixo
 published: '2023-04-28'
 updated: '2023-10-03'
-category: 
+category:
   - fundo-fixo
   - tutorial
 ---
@@ -17,11 +17,11 @@ Solicitar reembolso das despesas gastas do fundo fixo.
 
 ## Recursos Necessários
 
-* Notas Fiscais.
-* Cupons Fiscais.
-* Planilha de passagens.
-* Recibos.
-* Sistema MXM - Manager.
+- Notas Fiscais.
+- Cupons Fiscais.
+- Planilha de passagens.
+- Recibos.
+- Sistema MXM - Manager.
 
 ## Como fazer
 

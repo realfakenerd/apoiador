@@ -1,9 +1,8 @@
-import { json } from "@sveltejs/kit";
-import type { RequestHandler } from "./$types";
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET = (async () => {
-    console.log('');
-    
+	console.log('');
 
-    return json({'ss': 'ss'})
+	return json({ ss: 'ss' });
 }) satisfies RequestHandler;
