@@ -1,6 +1,9 @@
 <script lang="ts">
-	export let group: string;
-	export let value: string;
+	import '@material/web/radio/radio';
+
+	export let id: string;
+	export let name = '';
+	export let value = '';
 </script>
 
-<input type="radio" bind:value bind:group on:change class="radio">
+<md-radio {name} {value} {id} />

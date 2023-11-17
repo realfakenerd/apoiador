@@ -14,8 +14,8 @@
 		}],
 		base: '',
 		main: {
-			temp: 0,
-			feels_like: 0,
+			temp: 0.0,
+			feels_like: 0.0,
 			temp_min: 0,
 			temp_max: 0,
 			pressure: 0,
@@ -66,6 +66,7 @@
 <div class="card max-w-xs interactive-bg-surface-variant flex-col items-center justify-center text-label-large">
 	<div class="inline-flex items-center">
 		<img
+			style="width: 100px; background-image: url(https://openweathermap.org/img/wn/{wheater?.weather[0].icon}.png);"
 			src="https://openweathermap.org/img/wn/{wheater?.weather[0].icon}@4x.png"
 			width="100"
 			height="100"

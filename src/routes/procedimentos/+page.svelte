@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { PageServerData } from "./$types";
+	import Card from "$lib/components/Card.svelte";
+import type { PageServerData } from "./$types";
     export let data: PageServerData;
 
     const {procedimentos}=data;
@@ -12,7 +13,7 @@
 
 <ul class="grid gap-2">
     {#each procedimentos as procedimento}
-        <li class="card card-filled">
+        <Card>
             <a href={`/procedimentos/${procedimento.slug}`}>
                 <h1 class="text-title-large">{procedimento.title}</h1>
             </a>
@@ -24,7 +25,7 @@
                 {/each}
             </ul>
             <p class="text-body-medium">{procedimento.description}</p>
-        </li>
+        </Card>
     {/each}
 </ul>
 

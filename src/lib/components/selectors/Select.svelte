@@ -1,4 +1,4 @@
-<script lang=ts>
+<script lang="ts">
 	import '@material/web/select/outlined-select';
 
 	export let label = '';
@@ -6,10 +6,11 @@
 </script>
 
 <md-outlined-select {label}>
-	
-		<md-select-option value='one'>
-			<span slot="headline">one</span>
+	{#each options as option}	
+		<md-select-option value={option}>
+			<span slot="headline">{option}</span>
 		</md-select-option>
+	{/each}
 </md-outlined-select>
 
 <style>
