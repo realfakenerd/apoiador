@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Card from '$lib/components/Card.svelte';
-	import {Textfield} from '$lib/components/textfield';
+	import {Outline} from '$lib/components/textfield';
 	import type { PageServerData } from './$types';
 	export let data: PageServerData;
 
 	const { procedimentos } = data;
 
-	console.log(procedimentos);
+	// console.log(procedimentos);
 </script>
 
 <h1 class="text-headline-large">Procedimentos</h1>
@@ -30,7 +30,7 @@
 </ul>
 
 {#each ['email', 'number', 'password', 'search', 'tel', 'text', 'url', 'textarea'] as type}
-	<Textfield {type} />
+	<Outline />
 {/each}
 
 <style>
