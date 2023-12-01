@@ -7,10 +7,14 @@
 	export let withStart = false;
 	export let disableTransition = false;
 
+	export let required = false;
+
 	let focused = false;
 	let populated = false;
 
 	export let label = '';
+
+	let labelText = `${label}${required ? '*' : ''}`;
 </script>
 
 <div
@@ -25,15 +29,17 @@
 	class:populated
 >
 	<div class="container-overflow">
-		<!-- ${this.renderBackground?.()} ${this.renderIndicator?.()} ${outline} -->
 		<div class="container">
 			<div class="start">
 				<slot name="start" />
 			</div>
 			<div class="middle">
 				<div class="label-wrapper">
-					{label}
-					<!-- ${restingLabel} ${outline ? nothing : floatingLabel} -->
+					{#if label}
+						<span class="label">
+							{labelText}
+						</span>
+					{/if}
 				</div>
 				<div class="content">
 					<slot />
@@ -48,6 +54,11 @@
 </div>
 
 <style lang="postcss">
+	:host {
+		display: inline-flex;
+		resize: both;
+	}
+
 	.field {
 		display: flex;
 		flex: 1;
@@ -92,17 +103,11 @@
 		position: relative;
 	}
 
-	.start {
-		color: red;
-	}
-	.end {
-		color: red;
-	}
-
 	.start,
 	.end {
 		align-items: center;
 		justify-content: center;
+		color: theme(colors.on-surface-variant);
 	}
 
 	.with-start .start,
@@ -140,13 +145,52 @@
 	}
 
 	.content * {
-		all:unset;
-		color:currentColor;
+		all: unset;
+		color: currentColor;
 		width: 100%;
 		white-space: pre-wrap;
 	}
 
 	.label {
-		color: red;
+		overflow: hidden;
+		max-width: 100%;
+		width: min-content;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		z-index: 1;
+		letter-spacing: 0.15px;
+		line-height: theme(lineHeight.6);
+		font-size: theme(fontSize.body-large);
+		color: theme(colors.on-surface-variant / 0.92);
+
+		&.resting {
+			position: absolute;
+			top: 16px;
+		}
+
+		&.floating {
+			font-size: .75rem;
+			line-height: 1rem;
+			transform-origin: top left;
+		}
+
+		&.hidden {
+			opacity: 0;
+		}
+	}
+
+	.no-label .label {
+		display: none;
+	}
+
+	.label-wrapper {
+		inset: 0;
+		pointer-events: none;
+		position: absolute;
+		text-align: initial;
+	}
+
+	:hover .label{
+		color: theme(textColor.on-surface-variant);
 	}
 </style>

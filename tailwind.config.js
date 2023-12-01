@@ -1,6 +1,5 @@
 import { withMaterialColors } from 'tailwind-material-colors';
 import tmd from 'tail-material-design';
-import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default withMaterialColors(
@@ -46,7 +45,7 @@ export default withMaterialColors(
 			},
 			extend: {}
 		},
-		plugins: [tmd, typography]
+		plugins: [tmd]
 	},
 	{
 		primary: '#ff5e00'

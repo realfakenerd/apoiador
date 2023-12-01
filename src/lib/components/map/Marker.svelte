@@ -1,27 +1,32 @@
 <script lang="ts">
-	import { createEventDispatcher, getContext } from "svelte";
-	import { key, type MapContext } from ".";
+	import { getContext } from 'svelte';
+	import { key, type MapContext } from '.';
 
-    export let lat: number;
-    export let lon: number;
-    export let label: string;
+	interface Props {
+		lat?: number;
+		lon?: number;
+		label?: string;
+		open?: () => void;
+		close?: () => void;
+	}
 
-    const {getLeaflet, getMap} = getContext<MapContext>(key);
+	let { lat, lon, label, open, close } = $props<Props>();
 
-    const leaflet = getLeaflet();
-    const map = getMap();
+	const { getLeaflet, getMap } = getContext<MapContext>(key);
 
-    const marker = leaflet.marker([lat, lon]).addTo(map);
-    marker.bindPopup(label);
+	const leaflet = getLeaflet();
+	const map = getMap();
 
-    const dispatch = createEventDispatcher();
+	const marker = leaflet.marker([lat, lon]).addTo(map);
+	marker.bindPopup(label);
 
-    marker.on('popupopen', () => dispatch('open'));
-    marker.on('popupclose', () => dispatch('close'));
+
+	marker.on('popupopen', () => open());
+	marker.on('popupclose', () => close());
 </script>
 
 <style>
-    :global(.leaflet-popup-content) {
-        @apply text-label-large;
-    }
+	:global(.leaflet-popup-content) {
+		@apply text-label-large;
+	}
 </style>

@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
-	let wheater: OpenWeather = {
+	
+	let wheater = $state<OpenWeather>({
 		coord: {
 			lon: 0,
 			lat: 0
@@ -41,7 +40,7 @@
 		id: 0,
 		name: '',
 		cod: 0
-	};
+	});
 
 	async function fetchWheater() {
 		const today = new Date().toLocaleDateString();
@@ -58,8 +57,8 @@
 		return data;
 	}
 
-	onMount(async () => {
-		wheater = await fetchWheater();
+	$effect(() => {
+		fetchWheater().then(val => wheater = val);
 	});
 </script>
 

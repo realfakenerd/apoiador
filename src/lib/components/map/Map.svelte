@@ -1,37 +1,40 @@
 <script lang="ts">
-    import {onDestroy, onMount, setContext} from 'svelte';
-    import 'leaflet/dist/leaflet.css';
-    import type Leafleft from 'leaflet';
-    import {key} from '$lib/components/map';
-    
-    export let lat: number;
-    export let lon: number;
-    export let zoom: number;
-    
-    let leaflet: typeof Leafleft | null;
-    let leafletMap: Leafleft.Map | null;
-    let mapEl: HTMLDivElement;
+	import { key } from '$lib/components/map';
+	import type Leafleft from 'leaflet';
+	import 'leaflet/dist/leaflet.css';
+	import { setContext } from 'svelte';
 
-    setContext(key, {
-        getLeaflet: () => leaflet,
-        getMap: () => leafletMap
-    })
-    
-    onMount(async () => {
-        leaflet = await import('leaflet');
-        leafletMap = leaflet.map(mapEl).setView([lat,lon], zoom);
-        leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(leafletMap);
-    })
+	interface Props {
+		lat: number;
+		lon: number;
+		zoom: number;
+	}
 
-    onDestroy(() => {
-        leafletMap = null;
-        leaflet = null;
-    })
+	let { lat, lon, zoom } = $props<Props>();
+
+	let leaflet = $state<typeof Leafleft | null>(null);
+	let leafletMap = $state<Leafleft.Map | null>(null);
+	let mapEl = $state<HTMLDivElement | null>(null);
+
+	setContext(key, {
+		getLeaflet: () => leaflet,
+		getMap: () => leafletMap
+	});
+
+	$effect(() => {
+		import('leaflet').then((mod) => (leaflet = mod));
+		leafletMap = leaflet?.map(mapEl as any).setView([lat, lon], zoom) as any;
+		leaflet?.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(leafletMap as any);
+
+		() => {
+			leafletMap = null;
+			leaflet = null as any;
+		};
+	});
 </script>
 
 <div bind:this={mapEl} class="card p-0 card-filled max-w-lg w-full h-96" />
 
 {#if leaflet && leafletMap}
-    <slot/>
+	<slot />
 {/if}
-

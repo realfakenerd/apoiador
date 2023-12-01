@@ -63,8 +63,8 @@
 	<Wheater />
     <Map lat={45.815399} lon={15.966568} zoom={6}>
         <Marker
-          on:open={() => console.log('open')}
-          on:close={() => console.log('close')}
+          open={() => console.log('open')}
+          close={() => console.log('close')}
           lat={45.815399}
           lon={15.966568}
           label="Zagreb"

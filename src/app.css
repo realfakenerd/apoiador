@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
 	font-family:
 		'Noto Sans Display Variable',
-		sans-serif swap;
+		sans-serif;
 }
 
 

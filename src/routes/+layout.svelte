@@ -4,7 +4,7 @@
 	import { enableCache } from '@iconify/svelte';
 	import '@fontsource-variable/noto-sans-display';
 	import '../app.css';
-	import '../styles/theme.css';
+	import '../post.css';
 
 	enableCache('local');
 	onNavigate((navigation) => {

@@ -1,11 +1,9 @@
 <script lang="ts">
-	export let filled = false;
-	export let outlined = false;
-	export let elevated = false;
+	let {filled = false, outlined = false, elevated = false, children} = $props()
 </script>
 
 <section class:filled class:outlined class:elevated>
-	<slot />
+	{@render children()}
 </section>
 
 <style lang="postcss">

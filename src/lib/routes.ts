@@ -1,6 +1,6 @@
 import type { IconifyIcon } from '@iconify/svelte';
 
-interface Route {
+export interface Route {
 	name: string;
 	path: string;
 	icon: IconifyIcon | string;

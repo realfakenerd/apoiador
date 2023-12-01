@@ -1,19 +1,16 @@
 <script lang="ts">
 	import Card from '$lib/components/Card.svelte';
-	import {Outline} from '$lib/components/textfield';
 	import type { PageServerData } from './$types';
 	export let data: PageServerData;
 
 	const { procedimentos } = data;
-
-	// console.log(procedimentos);
 </script>
 
 <h1 class="text-headline-large">Procedimentos</h1>
 
 <ul class="grid gap-2">
 	{#each procedimentos as procedimento}
-		<Card elevated>
+		<Card filled>
 			<a href={`/procedimentos/${procedimento.slug}`}>
 				<h1 class="text-title-large">{procedimento.title}</h1>
 			</a>
@@ -28,10 +25,6 @@
 		</Card>
 	{/each}
 </ul>
-
-{#each ['email', 'number', 'password', 'search', 'tel', 'text', 'url', 'textarea'] as type}
-	<Outline />
-{/each}
 
 <style>
 	ul.grid {
