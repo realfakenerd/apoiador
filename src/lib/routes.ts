@@ -18,8 +18,13 @@ export default [
 		icon: 'mdi:cog'
 	},
 	{
-		name: 'CI',
-		path: '/ci',
-		icon: 'mdi:cog'
+		name: 'Condomínios',
+		path: '/condominios',
+		icon: 'mdi:building'
 	}
+	// {
+	// 	name: 'CI',
+	// 	path: '/ci',
+	// 	icon: 'mdi:cog'
+	// }
 ] as Route[];

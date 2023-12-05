@@ -8,9 +8,10 @@
 		lat: number;
 		lon: number;
 		zoom: number;
+		children: any;
 	}
 
-	let { lat, lon, zoom } = $props<Props>();
+	let { lat, lon, zoom, children } = $props<Props>();
 
 	let leaflet = $state<typeof Leafleft | null>(null);
 	let leafletMap = $state<Leafleft.Map | null>(null);
@@ -36,5 +37,5 @@
 <div bind:this={mapEl} class="card p-0 card-filled max-w-lg w-full h-96" />
 
 {#if leaflet && leafletMap}
-	<slot />
+	{@render children()}
 {/if}

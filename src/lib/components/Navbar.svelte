@@ -3,7 +3,7 @@
 	import Icon from '@iconify/svelte';
 	import navdown from 'navdown';
 
-	let { currentRoute = '' } = $props();
+	export let currentRoute = '';
 </script>
 
 <header class="bottom-0 md:min-w-[80px] z-[999] md:left-0 md:top-0">
