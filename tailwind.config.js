@@ -1,43 +1,64 @@
-import daisyui from 'daisyui';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
-export default {
-	mode: 'jit',
+const config = {
+	darkMode: ['class'],
 	content: ['./src/**/*.{html,js,svelte,ts}'],
+	safelist: ['dark'],
 	theme: {
-		fontSize: {
-			'display-large': ['3.5rem', { lineHeight: '4rem' }],
-			'display-medium': ['2.8rem', { lineHeight: '3.25rem' }],
-			'display-small': ['2.25rem', { lineHeight: '2.75rem' }],
-
-			'headline-large': ['2rem', { lineHeight: '2.5rem' }],
-			'headline-medium': ['1.75rem', { lineHeight: '2.25rem' }],
-			'headline-small': ['1.5rem', { lineHeight: '2rem' }],
-
-			'title-large': ['1.375rem', { lineHeight: '1.75rem', fontWeight: '500' }],
-			'title-medium': [
-				'1rem',
-				{ lineHeight: '1.5rem', fontWeight: '500', letterSpacing: '0.15px' }
-			],
-			'title-small': [
-				'0.875rem',
-				{ lineHeight: '1.25rem', fontWeight: '500', letterSpacing: '0.1px' }
-			],
-
-			'body-large': ['1rem', { lineHeight: '1.5rem', letterSpacing: '0.15px' }],
-			'body-medium': ['0.875rem', { lineHeight: '1.25rem', letterSpacing: '0.25px' }],
-			'body-small': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.4px' }],
-
-			'label-large': [
-				'0.875rem',
-				{ lineHeight: '1.25rem', fontWeight: '500', letterSpacing: '0.1px' }
-			],
-			'label-medium': [
-				'0.65rem',
-				{ lineHeight: '1rem', fontWeight: '500', letterSpacing: '0.5px' }
-			],
-			'label-small': ['0.75rem', { lineHeight: '1rem', fontWeight: '500', letterSpacing: '0.5px' }]
+		container: {
+			center: true,
+			padding: '2rem',
+			screens: {
+				'2xl': '1400px'
+			}
 		},
-	},
-	plugins: [daisyui]
+		extend: {
+			colors: {
+				border: 'hsl(var(--border) / <alpha-value>)',
+				input: 'hsl(var(--input) / <alpha-value>)',
+				ring: 'hsl(var(--ring) / <alpha-value>)',
+				background: 'hsl(var(--background) / <alpha-value>)',
+				foreground: 'hsl(var(--foreground) / <alpha-value>)',
+				primary: {
+					DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
+					foreground: 'hsl(var(--primary-foreground) / <alpha-value>)'
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary) / <alpha-value>)',
+					foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)'
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
+					foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)'
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted) / <alpha-value>)',
+					foreground: 'hsl(var(--muted-foreground) / <alpha-value>)'
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent) / <alpha-value>)',
+					foreground: 'hsl(var(--accent-foreground) / <alpha-value>)'
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover) / <alpha-value>)',
+					foreground: 'hsl(var(--popover-foreground) / <alpha-value>)'
+				},
+				card: {
+					DEFAULT: 'hsl(var(--card) / <alpha-value>)',
+					foreground: 'hsl(var(--card-foreground) / <alpha-value>)'
+				}
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				sans: [...fontFamily.sans]
+			}
+		}
+	}
 };
+
+export default config;

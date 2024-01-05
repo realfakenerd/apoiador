@@ -5,7 +5,7 @@
 </script>
 
 <section class="p-4">
-	<article class="card bg-surface-variant prose">
+	<article class="card p-4 bg-surface-variant prose">
 		<div class="prose-container">
 			{@html data.content}
 		</div>

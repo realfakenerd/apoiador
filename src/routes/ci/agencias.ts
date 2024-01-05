@@ -1,8 +1,7 @@
 export default [
-	'',
-	'0 - Central de Atendimento',
-	'1 - Centro',
-	'10 - Recreio dos Bandeirantes',
-	'11 - Largo do Machado',
-	'12 - Apsa Prime'
+	{value: 0, label: '0 - Central de Atendimento'},
+	{value: 1, label: '0 - Centro'},
+	{value: 10, label: '0 - Recreio dos Bandeirantes'},
+	{value: 11, label: '0 - Largo do Machado'},
+	{value: 12, label: '0 - Apsa Prime'},
 ];

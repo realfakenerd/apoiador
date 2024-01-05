@@ -1,60 +1,46 @@
 <script lang="ts">
-	import TextInput from '$lib/components/TextInput.svelte';
-	import { db } from '$lib/db';
-	import type { HTMLInputAttributes } from 'svelte/elements';
+	import { Button } from '$lib/components/ui/button';
+	import * as Card from '$lib/components/ui/card';
+	import Icon from '@iconify/svelte';
 
-	interface Input {
-		type: HTMLInputAttributes['type'];
-		label: string;
-		value: any;
-	}
-
-	let nomeVal = '';
-	let endVal = '';
-	let bairVal = '';
-	const inputs: Input[] = [
-		{
-			type: 'text',
-			label: 'Nome',
-			value: nomeVal
-		},
-		{
-			type: 'text',
-			label: 'Endereço',
-			value: endVal
-		},
-		{
-			type: 'text',
-			label: 'Bairro',
-			value: bairVal
-		}
-	];
-
-	async function enviar() {
-		// const id = await db.condominio.add({
-		// 	nome:
-		// })
-
-		console.log(nomeVal);
-	}
+	// const condominios = collectionStore<{ nome: string }>(firestore, 'condominios', []);
 </script>
 
-<h1 class="text-display-large">Condomínios</h1>
+<section class="flex flex-col gap-6 p-8">
+	<h1 class="text-3xl font-bold tracking-tight">Condomínios</h1>
 
-<form class="card">
-	<section class="card-body">
-		{#each inputs as { value, label }}
-			<label class="form-control w-full max-w-xs">
-				<div class="label">
-					<span class="text-label-large">{label}</span>
-				</div>
-				<input type="text" bind:value class="input input-bordered w-full max-w-xs" />
-				<div class="label">
-					<span class="text-label-small">s {value}</span>
-				</div>
-			</label>
-		{/each}
+	<ul>
+		<li class="max-w-xs">
+			<Card.Root>
+				<Card.Header class="flex-row items-center justify-between">
+					<Card.Title tag="h1">Solarium</Card.Title>
+					<Icon icon="mdi:office-building" />
+				</Card.Header>
+				<Card.Content class="[&>div]:inline-flex [&>div]:gap-2 [&>div]:items-center">
+					<div>
+						<Icon class="text-primary" icon="mdi:map-marker" />
+						<p>Rua Abril, 19 - Botafogo</p>
+					</div>
+					<div>
+						<Icon class="text-primary" icon="mdi:account" />
+						<p>Sindico - José Silva</p>
+					</div>
+					<div>
+						<Icon class="text-primary" icon="mdi:briefcase" />
+						<p>Administradora - APSA</p>
+					</div>
+				</Card.Content>
+				<Card.Footer class="w-full">
+					<Button href="/condominios/Solarium" class="w-full">Acessar</Button>
+				</Card.Footer>
+			</Card.Root>
+		</li>
+	</ul>
 
-		<button on:click|preventDefault={enviar} class="btn btn-outline">enviar</button>
-	</section>
-</form>
+	<!-- <div>
+	{#each $condominios as condominio}
+	{condominio.nome}
+		{condominio.endereco.logradouro}
+	{/each}
+</div> -->
+</section>

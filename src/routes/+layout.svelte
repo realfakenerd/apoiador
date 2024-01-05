@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation';
-	import Navbar from '$lib/components/Navbar.svelte';
-	import { enableCache } from '@iconify/svelte';
 	import '@fontsource-variable/noto-sans-display';
+	import { enableCache } from '@iconify/svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 	import '../app.css';
 	import '../post.css';
 
@@ -16,7 +16,7 @@
 			});
 		});
 	});
-	export let data;
+	// export let data;
 </script>
 
 <svelte:head>
@@ -24,8 +24,8 @@
 	<meta name="description" content="Nosso Compromisso com o Talento e o Sucesso" />
 </svelte:head>
 
-<Navbar currentRoute={data.currentRoute} />
+<Navbar />
 
-<main class="flex-1 overflow-auto p-2 min-h-[100dvh]">
+<main class="p-2 min-h-[100dvh]">
 	<slot />
 </main>

@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Wheater from '$lib/components/Wheater.svelte';
 	import Icon from '@iconify/svelte';
-	import { Map } from '$lib/components/map';
-	import Marker from '$lib/components/map/Marker.svelte';
-	import Card from '$lib/components/Card.svelte';
+	import * as Card from '$lib/components/ui/card';
 
 	const links = [
 		{
@@ -50,17 +48,17 @@
 </script>
 
 <section class="flex flex-row flex-wrap gap-2">
-	<Card title="Links úteis">
-		<ul class="grid grid-cols-4 gap-2 place-items-center text-body-medium">
-			{#each links as l}
-				<a class="card card-compact bg-base-100 max-w-[10rem]" target="_blank" href={l.link}>
-					<span class="card-body items-center p-2">
-						<Icon width="24" icon={l.icon} />
-						<span>{l.text}</span>
-					</span>
-				</a>
-			{/each}
-		</ul>
-	</Card>
-	<Wheater />
+	{#each links as l}
+		<a target="_blank" href={l.link}>
+			<Card.Root class="min-w-[14rem]">
+				<Card.Header class="flex flex-row items-center justify-between">
+					<Card.Title>
+						<span class="text-title-small">{l.text}</span>
+					</Card.Title>
+					<Icon style="margin-top: 0;" width="24" icon={l.icon} />
+				</Card.Header>
+			</Card.Root>
+		</a>
+	{/each}
 </section>
+<Wheater />
