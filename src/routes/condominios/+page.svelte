@@ -31,7 +31,7 @@
 					</div>
 				</Card.Content>
 				<Card.Footer class="w-full">
-					<Button href="/condominios/Solarium" class="w-full">Acessar</Button>
+					<Button href="#" class="w-full">Acessar</Button>
 				</Card.Footer>
 			</Card.Root>
 		</li>
