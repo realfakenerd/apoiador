@@ -1,34 +1,17 @@
 import type { PageServerLoad } from './$types';
-import { error } from '@sveltejs/kit';
-
-function slugFromPath(path: string) {
-	return path.replace('/src/content/', '').replace('.md', '');
-}
 
 export const load: PageServerLoad = async () => {
-	// there's definitely a better way to do this for the index page
-	// but I'll sort this out later - works for now :)
-	const modules = import.meta.glob(`/src/content/**/index.md`);
+	let procedimentos: Post[] = [];
+	const paths = import.meta.glob(`/src/procedimentos/*.md`, { eager: true });
+	for (const path in paths) {
+		const file = paths[path];
+		const slug = path.split('/').at(-1)?.replace('.md', '');
 
-	console.log('lllll');
-
-	let match: { path?: string; resolver?: DocResolver } = {};
-
-	for (const [path, resolver] of Object.entries(modules)) {
-		if (slugFromPath(path) === 'index') {
-			match = { path, resolver: resolver as unknown as DocResolver };
-			break;
+		if (file && typeof file === 'object' && 'metadata' in file && slug) {
+			const metadata = file.metadata as Omit<Post, 'slug'>;
+			const post = { ...metadata, slug } satisfies Post;
+			post.published && procedimentos.push(post);
 		}
 	}
-
-	const doc = await match?.resolver?.();
-
-	if (!doc || !doc.metadata) {
-		throw error(404);
-	}
-	return {
-		component: doc.default,
-		metadata: doc.metadata,
-		title: doc.metadata.title
-	};
+	return { procedimentos };
 };

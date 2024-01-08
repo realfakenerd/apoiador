@@ -4,7 +4,7 @@
 	import { Circle, File, Laptop, Moon, Sun } from 'radix-icons-svelte';
 	import { onMount } from 'svelte';
 	import { cn } from '../utils';
-	import { docsConfig } from './nav/docs';
+	import { routes } from './nav/routes';
 	import { Button } from './ui/button';
 	import * as Command from './ui/command';
 
@@ -29,8 +29,8 @@
 		cmd();
 	}
 
-	const mainNav = docsConfig.mainNav.filter((item) => !item.external);
-	const sidebarNav = docsConfig.sidebarNav;
+	const mainNav = routes.mainNav.filter((item) => !item.external);
+	const sidebarNav = routes.sidebarNav;
 </script>
 
 <Button

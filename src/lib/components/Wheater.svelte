@@ -25,19 +25,24 @@
 </script>
 
 <Card.Root class="max-w-[16rem]">
-	<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-0">
-		<img
-			style="width: 56px; background-image: url(https://openweathermap.org/img/wn/{weather
-				?.weather[0].icon}.png);"
-			src="https://openweathermap.org/img/wn/{weather?.weather[0].icon ?? '01d'}@4x.png"
-			width="56px"
-			height="56px"
-			alt={weather?.weather[0].main}
-		/>
-		<Card.Title>
-			<span>{weather?.main.temp_min.toFixed(1)}</span>/
+	<Card.Header class="pb-0">
+		<div class="flex flex-row justify-center items-center">
+			<Card.Title class="text-5xl font-bold">
+				{weather?.main.temp}
+			</Card.Title>
+			<img
+				style="width: 56px; background-image: url(https://openweathermap.org/img/wn/{weather
+					?.weather[0].icon}.png);"
+				src="https://openweathermap.org/img/wn/{weather?.weather[0].icon ?? '01d'}@4x.png"
+				width="56px"
+				height="56px"
+				alt={weather?.weather[0].main}
+			/>
+		</div>
+		<div class="inline-flex justify-center text-muted-foreground">
+			<span class="font-medium">{weather?.main.temp_min.toFixed(1)}º</span>/
 			<span class="font-normal">{weather?.main.temp_max.toFixed(1)}° C</span>
-		</Card.Title>
+		</div>
 	</Card.Header>
 	<Card.Content class="flex flex-col items-center">
 		<span>Sensação termica {weather?.main.feels_like.toFixed(2)}° C</span>

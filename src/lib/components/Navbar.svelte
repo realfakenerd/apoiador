@@ -1,15 +1,11 @@
 <script lang="ts">
-	import { MainNav, MobileNav } from './nav';
-	import { buttonVariants } from './ui/button';
 	import CommandMenu from './CommandMenu.svelte';
 	import ModeToggle from './ModeToggle.svelte';
-	import Icon from '@iconify/svelte';
-	import { siteConfig } from './nav/site';
-	import { cn } from '$lib/utils';
-	// export let currentRoute = '';
+	import { MainNav, MobileNav } from './nav';
 </script>
 
 <header
+	style="view-timeline-name: navigation;"
 	class="supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm backdrop-blur"
 >
 	<div class="container flex h-14 items-center">
@@ -19,36 +15,6 @@
 			<div class="w-full flex-1 md:w-auto md:flex-none">
 				<CommandMenu />
 			</div>
-			<!-- <nav class="flex items-center">
-				<a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer">
-					<div
-						class={cn(
-							buttonVariants({
-								size: 'sm',
-								variant: 'ghost'
-							}),
-							'w-9 px-0'
-						)}
-					>
-						<Icon icon="mdi:github" class="h-4 w-4" />
-						<span class="sr-only">GitHub</span>
-					</div>
-				</a>
-				<a href={siteConfig.links.twitter} target="_blank" rel="noreferrer">
-					<div
-						class={cn(
-							buttonVariants({
-								size: 'sm',
-								variant: 'ghost'
-							}),
-							'w-9 px-0'
-						)}
-					>
-						<Icon icon="mdi:twitter" class="h-3 w-3 fill-current" />
-						<span class="sr-only">X (formerly known as Twitter)</span>
-					</div>
-				</a>
-			</nav> -->
 			<ModeToggle />
 		</div>
 	</div>

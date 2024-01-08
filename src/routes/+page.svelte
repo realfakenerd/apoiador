@@ -40,25 +40,27 @@
 			icon: 'mdi:account-group'
 		},
 		{
-			link: 'https://apsa.com.br/',
+			link: 'https://apsa-one.vercel.app/',
 			text: 'Site Apsa',
 			icon: 'mdi:web'
 		}
 	];
 </script>
 
-<section class="flex flex-row flex-wrap gap-2">
-	{#each links as l}
-		<a target="_blank" href={l.link}>
-			<Card.Root class="min-w-[14rem]">
-				<Card.Header class="flex flex-row items-center justify-between">
-					<Card.Title>
-						<span class="text-title-small">{l.text}</span>
-					</Card.Title>
-					<Icon style="margin-top: 0;" width="24" icon={l.icon} />
-				</Card.Header>
-			</Card.Root>
-		</a>
-	{/each}
+<section class="flex flex-col gap-6 p-8">
+	<div class="flex flex-row flex-wrap gap-2">
+		{#each links as l}
+			<a target="_blank" href={l.link}>
+				<Card.Root class="min-w-[14rem] hover:border-primary transition-colors">
+					<Card.Header class="flex flex-row items-center justify-between">
+						<Card.Title>
+							<span class="text-title-small">{l.text}</span>
+						</Card.Title>
+						<Icon style="margin-top: 0;" width="24" icon={l.icon} />
+					</Card.Header>
+				</Card.Root>
+			</a>
+		{/each}
+	</div>
+	<Wheater />
 </section>
-<Wheater />

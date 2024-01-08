@@ -20,12 +20,12 @@
 </script>
 
 <svelte:head>
-	<title>ABS Pinturas & Reformas</title>
+	<title>APSA Apoiador</title>
 	<meta name="description" content="Nosso Compromisso com o Talento e o Sucesso" />
 </svelte:head>
 
 <Navbar />
 
-<main class="p-2 min-h-[100dvh]">
+<main class="min-h-[100dvh]">
 	<slot />
 </main>

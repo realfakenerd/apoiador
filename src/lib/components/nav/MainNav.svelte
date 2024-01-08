@@ -1,13 +1,20 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { siteConfig } from './site';
 	import { cn } from '$lib/utils';
-	import Icons from '@iconify/svelte';
+	import { routes } from './routes';
+	import { siteConfig } from './site';
 </script>
 
 <div class="mr-4 hidden md:flex">
 	<a href="/" class="mr-6 flex items-center gap-x-2">
-		<svg class="h-6 w-6" width="51" height="28" viewBox="0 0 51 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			class="h-6 w-6"
+			width="51"
+			height="28"
+			viewBox="0 0 51 28"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<path
 				d="M38.3692 0.168948C37.8466 0.213423 37.2398 0.284583 37.0207 0.337954C36.7931 0.391324 36.2368 0.515855 35.7733 0.604805C34.6439 0.836076 33.4555 1.12961 33.2448 1.23635C33.1521 1.28083 32.9076 1.36088 32.6969 1.41425C32.0901 1.57436 28.7103 2.80188 28.2721 3.01536C28.1794 3.05983 27.9012 3.18437 27.6652 3.28221C26.4853 3.76254 26.3167 3.8337 26.0807 3.94934C25.9459 4.0205 25.5076 4.22508 25.1115 4.40299C23.6787 5.05232 20.4759 6.7068 19.0852 7.50735C18.7649 7.69415 18.2677 7.96989 17.9895 8.13C17.054 8.65481 16.7337 8.8505 15.5706 9.58879C14.9301 9.98907 14.4075 10.336 14.4075 10.3538C14.4075 10.4071 14.8374 10.2292 14.9554 10.1403C14.9975 10.0958 15.4021 9.90012 15.8403 9.68664C16.6157 9.32194 17.7114 8.78824 18.411 8.44133C19.0599 8.11221 19.7089 7.81868 19.7679 7.81868C19.7932 7.81868 20.164 7.64967 20.5939 7.44509C21.0153 7.2494 21.6306 6.97365 21.9508 6.84022C22.2796 6.7068 22.8274 6.47553 23.173 6.32431C23.5185 6.1731 24.1675 5.90625 24.6058 5.72835C25.044 5.55044 25.4823 5.37254 25.575 5.32807C25.6677 5.2747 26.0133 5.15017 26.3336 5.03453C26.6623 4.9189 27.5472 4.60757 28.3142 4.33182C30.042 3.71807 30.986 3.40674 31.6603 3.24663C31.9468 3.17547 32.2165 3.09541 32.2587 3.06873C32.4357 2.95309 35.0231 2.4016 36.7425 2.10807C37.0881 2.0547 38.209 2.00133 39.2289 2.00133C40.9145 2.00133 41.1505 2.01912 41.8416 2.20591C42.9963 2.52613 43.9824 3.05094 44.5134 3.63801L44.7663 3.92265L44.7073 3.45122C44.5724 2.38381 43.8644 1.37867 42.8868 0.862761C41.7237 0.240108 40.3498 0.0355225 38.3692 0.168948Z"
 				fill="#F4701E"
@@ -31,41 +38,16 @@
 		</span>
 	</a>
 	<nav class="flex items-center space-x-6 text-sm font-medium">
-		<a
-			href="/procedimentos"
-			class={cn(
-				'transition-colors hover:text-foreground/80',
-				$page.url.pathname === '/procedimentos' ? 'text-foreground' : 'text-foreground/60'
-			)}
-		>
-			Procedimentos
-		</a>
-		<!-- <a
-			href="/docs/components"
-			class={cn(
-				'transition-colors hover:text-foreground/80',
-				$page.url.pathname.startsWith('/docs/components') ? 'text-foreground' : 'text-foreground/60'
-			)}
-		>
-			Components
-		</a> -->
-		<a
-			href="/condominios"
-			class={cn(
-				'transition-colors hover:text-foreground/80',
-				$page.url.pathname.startsWith('/condominios') ? 'text-foreground' : 'text-foreground/60'
-			)}
-		>
-			Condomínios
-		</a>
-		<a
-			href="/ci"
-			class={cn(
-				'transition-colors hover:text-foreground/80',
-				$page.url.pathname.startsWith('/ci') ? 'text-foreground' : 'text-foreground/60'
-			)}
-		>
-			CI
-		</a>
+		{#each routes.mainNav as { href, title }}
+			<a
+				{href}
+				class={cn(
+					'transition-colors hover:text-foreground/80',
+					$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
+				)}
+			>
+				{title}
+			</a>
+		{/each}
 	</nav>
 </div>
