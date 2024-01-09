@@ -4,7 +4,6 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Sheet from '$lib/components/ui/sheet';
 	import { ViewVertical } from 'radix-icons-svelte';
-	import Icons from '@iconify/svelte';
 	import MobileLink from './MobileLink.svelte';
 
 	let open = false;
@@ -22,7 +21,7 @@
 		</Button>
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
-		<MobileLink href="/" class="flex items-center" bind:open>
+		<MobileLink href="/" class="flex items-center gap-2" bind:open>
 			<svg
 			class="h-6 w-6"
 			width="51"
@@ -48,11 +47,11 @@
 				fill="#F4701E"
 			/>
 		</svg>
-			<span class="font-bold">{siteConfig.name}</span>
+		<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
 		<div class="my-4 h-[calc(100vh-8rem)] pb-10 pl-6 overflow-auto">
 			<div class="flex flex-col space-y-3">
-				{#each routes.mainNav as { href, title }, index (index)}
+				{#each routes.mainNav as { href, title, items }, index (index)}
 					{#if href}
 						<MobileLink {href} bind:open>
 							{title}
@@ -60,7 +59,7 @@
 					{/if}
 				{/each}
 			</div>
-			<div class="flex flex-col space-y-2">
+			<div class="flex flex-col gap-y-2">
 				{#each routes.sidebarNav as { items, title }, index (index)}
 					<div class="flex flex-col space-y-3 pt-6">
 						<h4 class="font-medium">{title}</h4>

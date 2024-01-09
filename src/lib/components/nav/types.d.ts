@@ -1,15 +1,15 @@
 interface NavItem {
-	title?: string;
+	title: string;
 	href?: string;
 	disabled?: boolean;
 	external?: boolean;
 	label?: string;
 }
 
-interface SidebarNavItem extends NavItem {
-	items: NavItem[];
+interface NavItemWithChildren extends NavItem {
+	items?: NavItemWithChildren[];
 }
 
-interface NavItemWithChildren extends NavItem {
+interface SidebarNavItem extends NavItem {
 	items: NavItemWithChildren[];
 }

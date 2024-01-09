@@ -1,5 +1,4 @@
 <script lang="ts">
-	import InputGroup from '$lib/components/InputGroup.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Calendar } from '$lib/components/ui/calendar';
 	import * as Card from '$lib/components/ui/card';
@@ -287,27 +286,5 @@
 				</div>
 			</Card.Content>
 		</Card.Root>
-	</form>
-
-	<form class="card flex flex-col gap-6 p-4" method="post">
-		<section class="card rounded-lg p-2 gap-2">
-			<h2 class="card-header text-title-large">Dados do sindico</h2>
-			<Input label="Valor" />
-			<Input label="Síndico" />
-			<Input label="Endereço" />
-			<Input label="Gerente da Conta" />
-			<Input label="Parcial" />
-			<Input label="CPF" />
-			<Input label="Mandato até" />
-			<Input type="tel" label="Telefone" />
-			<Input label="Captador" />
-			<Input label="Outras instruções" />
-			<Input label="Outras instruções" />
-			<Input label="Outras instruções" />
-		</section>
-
-		<div class="card-footer">
-			<button class="btn w-full variant-filled">Enviar</button>
-		</div>
 	</form>
 </section>

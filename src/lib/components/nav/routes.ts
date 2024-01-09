@@ -1,14 +1,10 @@
 interface DocsConfig {
-	mainNav: NavItem[];
+	mainNav: NavItemWithChildren[];
 	sidebarNav: SidebarNavItem[];
 }
 
 export const routes: DocsConfig = {
 	mainNav: [
-		{
-			title: 'Inicio',
-			href: '/'
-		},
 		{
 			title: 'Procedimentos',
 			href: '/procedimentos'
@@ -16,6 +12,19 @@ export const routes: DocsConfig = {
 		{
 			title: 'Condomínios',
 			href: '/condominios'
+		},
+		{
+			title: 'Comunicação',
+			items: [
+				{
+					title: 'Entrada',
+					href: '/comunicacao'
+				},
+				{
+					title: 'Interna',
+					href: '/comunicacao/interna'
+				}
+			]
 		}
 	],
 	sidebarNav: [

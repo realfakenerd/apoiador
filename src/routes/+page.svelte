@@ -61,8 +61,8 @@
 				</Card.Root>
 			</a>
 		{/each}
-		<Wheater />
 	</div>
+	<Wheater />
 </section>
 
 <style>

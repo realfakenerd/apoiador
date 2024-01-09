@@ -3,12 +3,14 @@
 	import { cn } from '$lib/utils';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
+	import * as DropdownMenu from '../ui/dropdown-menu';
+	import { Button } from '../ui/button';
 </script>
 
 <div class="mr-4 hidden md:flex">
 	<a href="/" class="mr-6 flex items-center gap-x-2">
 		<svg
-			class="h-6 w-6"
+			class="h-8 w-8"
 			width="51"
 			height="28"
 			viewBox="0 0 51 28"
@@ -37,17 +39,36 @@
 			{siteConfig.name}
 		</span>
 	</a>
-	<nav class="flex items-center space-x-6 text-sm font-medium">
-		{#each routes.mainNav as { href, title }}
-			<a
-				{href}
-				class={cn(
-					'transition-colors hover:text-foreground/80',
-					$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
-				)}
-			>
-				{title}
-			</a>
+	<nav class="flex items-center gap-x-6 text-sm font-medium">
+		{#each routes.mainNav as { href, title, items }}
+			{#if items}
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger asChild let:builder>
+						<Button builders={[builder]} variant="ghost">
+							{title}
+						</Button>
+					</DropdownMenu.Trigger>
+					<DropdownMenu.Content align="end">
+						{#each items as {title, href}}
+							<a {href}>
+								<DropdownMenu.Item class="cursor-pointer">
+									{title}
+								</DropdownMenu.Item>
+							</a>
+						{/each}
+					</DropdownMenu.Content>
+				</DropdownMenu.Root>														
+			{:else}
+				<a
+					{href}
+					class={cn(
+						'transition-colors hover:text-foreground/80',
+						$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
+					)}
+				>
+					{title}
+				</a>
+			{/if}
 		{/each}
 	</nav>
 </div>
