@@ -52,8 +52,6 @@ export const codeBlockPrettierConfig = {
 };
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
-console.log(__dirname);
-console.log(resolve(__dirname, './src/lib/components/mdsvex/mdsvex.svelte'));
 /** @type {import('mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
 	extensions: ['.md'],
