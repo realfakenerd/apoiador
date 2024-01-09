@@ -35,7 +35,7 @@
 	}
 </script>
 
-<fieldset class="{$$props.class??''}">
+<fieldset class={$$props.class ?? ''}>
 	<div
 		class="text-field-container style-{style} {error ? 'error' : ''} {icon ? 'has-icon' : ''}"
 		bind:this={wrapper}

@@ -18,4 +18,3 @@ const firestore = getFirestore(app);
 const auth = getAuth(app);
 
 export { app, auth, firestore };
-

@@ -2,25 +2,25 @@
 	@apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
 }
 
-[data-theme="default"] {
+[data-theme='default'] {
 	display: flex;
 }
 
-[data-style="new-york"] [data-style="default"] {
+[data-style='new-york'] [data-style='default'] {
 	display: none;
 }
 
-[data-style="default"] [data-style="default"] {
+[data-style='default'] [data-style='default'] {
 	display: flex;
 	flex-direction: column;
 }
 
-[data-style="new-york"] [data-style="new-york"] {
+[data-style='new-york'] [data-style='new-york'] {
 	display: flex;
 	flex-direction: column;
 }
 
-[data-style="default"] [data-style="new-york"] {
+[data-style='default'] [data-style='new-york'] {
 	display: none;
 }
 

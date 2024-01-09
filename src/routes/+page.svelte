@@ -48,10 +48,10 @@
 </script>
 
 <section class="flex flex-col gap-6 p-8">
-	<div class="flex flex-row flex-wrap gap-2">
+	<div class="grid w-full gap-2">
 		{#each links as l}
 			<a target="_blank" href={l.link}>
-				<Card.Root class="min-w-[14rem] hover:border-primary transition-colors">
+				<Card.Root class="min-w-[14rem] w-full hover:border-primary transition-colors">
 					<Card.Header class="flex flex-row items-center justify-between">
 						<Card.Title>
 							<span class="text-title-small">{l.text}</span>
@@ -64,3 +64,9 @@
 	</div>
 	<Wheater />
 </section>
+
+<style>
+	div.grid {
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	}
+</style>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation';
-	import '@fontsource-variable/noto-sans-display';
 	import { enableCache } from '@iconify/svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import '../app.css';

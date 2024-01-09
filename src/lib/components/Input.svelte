@@ -4,7 +4,7 @@
 	export let placeholder = '';
 </script>
 
-<label class="label {$$props.class??''}">
+<label class="label {$$props.class ?? ''}">
 	<span class="text-label-large">{label}</span>
 	<input class="input" {type} {placeholder} />
 </label>

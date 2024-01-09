@@ -2,15 +2,11 @@
 	import { getContext } from 'svelte';
 	import { key, type MapContext } from '.';
 
-	interface Props {
-		lat?: number;
-		lon?: number;
-		label?: string;
-		open?: () => void;
-		close?: () => void;
-	}
-
-	let { lat, lon, label, open, close } = $props<Props>();
+	export let lat = 0;
+	export let lon = 0;
+	export let label = '';
+	export let open: () => void;
+	export let close: () => void;
 
 	const { getLeaflet, getMap } = getContext<MapContext>(key);
 
@@ -19,7 +15,6 @@
 
 	const marker = leaflet.marker([lat, lon]).addTo(map);
 	marker.bindPopup(label);
-
 
 	marker.on('popupopen', () => open());
 	marker.on('popupclose', () => close());

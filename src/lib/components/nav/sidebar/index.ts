@@ -1,1 +1,1 @@
-export {default as SidebarNav} from './DocSidebarNav.svelte';
+export { default as SidebarNav } from './DocSidebarNav.svelte';
