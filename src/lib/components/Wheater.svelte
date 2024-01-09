@@ -24,7 +24,7 @@
 	});
 </script>
 
-<Card.Root class="max-w-[16rem]">
+<Card.Root class="w-full">
 	<Card.Header class="pb-0">
 		<div class="flex flex-row justify-center items-center">
 			<Card.Title class="text-5xl font-bold">
