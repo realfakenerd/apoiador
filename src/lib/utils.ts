@@ -7,6 +7,13 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
+type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
+export function formatDate(date: Date, dateStyle: DateStyle = 'medium', locales = 'en') {
+	// Safari is mad about dashes in the date
+	const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle });
+	return dateFormatter.format(date);
+}
+
 type FlyAndScaleParams = {
 	y?: number;
 	x?: number;

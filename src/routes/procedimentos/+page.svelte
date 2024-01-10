@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as Section from '$lib/components/section';
 	import * as Card from '$lib/components/ui/card';
 	import type { PageServerData } from './$types';
 	export let data: PageServerData;
@@ -6,10 +7,10 @@
 	const { procedimentos } = data;
 </script>
 
-<section class="flex flex-col gap-6 p-8">
-	<h1 class="text-3xl font-bold tracking-tight">Procedimentos</h1>
+<Section.Root>
+	<Section.Heading>Procedimentos</Section.Heading>
 
-	<ul class="grid gap-2">
+	<ul class="grid w-full gap-2">
 		{#each procedimentos as procedimento}
 			<a href="/procedimentos/{procedimento.slug}">
 				<Card.Root>
@@ -32,10 +33,10 @@
 			</a>
 		{/each}
 	</ul>
-</section>
+</Section.Root>
 
 <style>
 	ul.grid {
-		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 	}
 </style>

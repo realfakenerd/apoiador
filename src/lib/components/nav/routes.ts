@@ -18,7 +18,7 @@ export const routes: DocsConfig = {
 			items: [
 				{
 					title: 'Entrada',
-					href: '/comunicacao'
+					href: '/comunicacao/entrada'
 				},
 				{
 					title: 'Interna',

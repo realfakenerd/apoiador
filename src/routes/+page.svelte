@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Wheater from '$lib/components/Wheater.svelte';
-	import Icon from '@iconify/svelte';
 	import * as Card from '$lib/components/ui/card';
+	import Icon from '@iconify/svelte';
+	import * as Section from '$lib/components/section';
 
 	const links = [
 		{
@@ -47,7 +48,8 @@
 	];
 </script>
 
-<section class="flex flex-col gap-6 p-8">
+<Section.Root>
+	<Section.Heading>Dashboard</Section.Heading>
 	<div class="grid w-full gap-2">
 		{#each links as l}
 			<a target="_blank" href={l.link}>
@@ -63,7 +65,7 @@
 		{/each}
 	</div>
 	<Wheater />
-</section>
+</Section.Root>
 
 <style>
 	div.grid {

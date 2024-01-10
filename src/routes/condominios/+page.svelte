@@ -2,13 +2,13 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import Icon from '@iconify/svelte';
+	import * as Section from '$lib/components/section';
 
 	// const condominios = collectionStore<{ nome: string }>(firestore, 'condominios', []);
 </script>
 
-<section class="flex flex-col gap-6 p-8">
-	<h1 class="text-3xl font-bold tracking-tight">Condomínios</h1>
-
+<Section.Root>
+	<Section.Heading>Condomínio</Section.Heading>
 	<ul>
 		<li class="max-w-xs">
 			<Card.Root>
@@ -36,11 +36,4 @@
 			</Card.Root>
 		</li>
 	</ul>
-
-	<!-- <div>
-	{#each $condominios as condominio}
-	{condominio.nome}
-		{condominio.endereco.logradouro}
-	{/each}
-</div> -->
-</section>
+</Section.Root>

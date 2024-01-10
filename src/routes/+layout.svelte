@@ -26,7 +26,6 @@
 <ModeWatcher/>
 
 <Navbar />
-
-<main class="min-h-[100dvh]">
+<main class="flex-1">
 	<slot />
 </main>

@@ -43,12 +43,13 @@
 		{#each routes.mainNav as { href, title, items }}
 			{#if items}
 				<DropdownMenu.Root>
-					<DropdownMenu.Trigger asChild let:builder>
-						<Button builders={[builder]} variant="ghost">
+					<DropdownMenu.Trigger class={cn(
+						'transition-colors hover:text-foreground/80',
+						$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
+					)}>
 							{title}
-						</Button>
 					</DropdownMenu.Trigger>
-					<DropdownMenu.Content align="end">
+					<DropdownMenu.Content>
 						{#each items as {title, href}}
 							<a {href}>
 								<DropdownMenu.Item class="cursor-pointer">

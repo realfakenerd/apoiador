@@ -10,7 +10,9 @@
 	import { cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 	import { DateFormatter, getLocalTimeZone, type DateValue } from '@internationalized/date';
-	import agencias from './agencias';
+	import agencias from '../agencias';
+	import * as Section from '$lib/components/section';
+	// import printjs from 'print-js';
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
@@ -18,17 +20,17 @@
 	let value: DateValue | undefined = undefined;
 </script>
 
-<section class="flex flex-col gap-6 p-8">
-	<h1 class="text-3xl font-bold tracking-tight">Comunicação de Entrada de Clientes</h1>
-	<form class="space-y-6">
+<Section.Root>
+	<Section.Heading>Comunicação de Entrada de Clientes</Section.Heading>
+	<form id="printJs" class="flex flex-col gap-y-6">
 		<Card.Root class="w-full">
 			<Card.Header>
 				<Card.Title tag="h2">Dados do Condomínio</Card.Title>
 			</Card.Header>
 
-			<Card.Content class="grid grid-cols-4 place-items-center gap-4">
+			<Card.Content class="grid sm:grid-cols-2 md:grid-cols-4 place-items-center gap-4">
 				<Select.Root>
-					<Select.Trigger class="w-full col-span-1">
+					<Select.Trigger class="w-full">
 						<Select.Value placeholder="Selecione a âgencia" />
 					</Select.Trigger>
 					<Select.Content>
@@ -41,7 +43,7 @@
 					</Select.Content>
 					<Select.Input name="agencia-escolhida" />
 				</Select.Root>
-				<RadioGroup.Root class="col-span-3 grid w-full items-center gap-1.5" value="pool">
+				<RadioGroup.Root class="md:col-span-3 grid w-full items-center gap-1.5" value="pool">
 					<h2 class="text-sm font-medium leading-none">Tipo de conta</h2>
 
 					<div class="inline-flex items-center gap-4 h-9 py-1">
@@ -160,7 +162,7 @@
 			<Card.Header>
 				<Card.Title tag="h2">Dados do Contrato</Card.Title>
 			</Card.Header>
-			<Card.Content class="grid grid-cols-4 place-items-center gap-4">
+			<Card.Content class="grid sm:grid-cols-2 md:grid-cols-4 place-items-center gap-4">
 				<Popover.Root openFocus>
 					<Popover.Trigger asChild let:builder>
 						<div class="flex flex-col gap-1.5 w-full">
@@ -279,12 +281,13 @@
 			<Card.Header>
 				<Card.Title tag="h2">Dados do sindico</Card.Title>
 			</Card.Header>
-			<Card.Content class="grid grid-cols-4 place-items-center gap-4">
+			<Card.Content class="grid sm:grid-cols-2 md:grid-cols-4 place-items-center gap-4">
 				<div class="grid w-full items-center gap-1.5">
 					<Label for="sindico">Sindico</Label>
 					<Input type="text" id="sindico" placeholder="José Silva Sauro" />
 				</div>
 			</Card.Content>
 		</Card.Root>
+		<!-- <Button on:click={() => printjs('printJs', 'html')}>Imprimir</Button> -->
 	</form>
-</section>
+</Section.Root>
