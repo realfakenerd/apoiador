@@ -8,4 +8,6 @@
 	export let alt: HTMLImgAttributes['alt'] = undefined;
 </script>
 
-<img {src} {alt} class={cn('rounded-md', className)} {...$$restProps} />
+<figure class="py-2">
+	<img {src} {alt} class={cn('rounded-md', className)}/>
+</figure>

@@ -16,7 +16,7 @@
 			<h2 class="text-lg font-medium text-muted-foreground">{meta.description}</h2>
 			<h1 class="text-4xl font-bold tracking-tight">{meta.title}</h1>
 		</header>
-		<hr class="my-2" />
+		<hr class="my-2 border-primary" />
 		<article class="pt-8 mdsvex" id="mdsvex">
 			<svelte:component this={component} />
 		</article>

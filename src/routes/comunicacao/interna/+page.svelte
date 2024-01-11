@@ -19,7 +19,7 @@
 </script>
 
 <Section.Root class="print:hidden">
-	<form on:submit|preventDefault={() => print()}>
+	<form class="flex flex-col gap-6" on:submit|preventDefault={() => print()}>
 		<header>
 			<Section.Description>
 				Documento que serve para protocolar a movimentação dos documentos nos setores da empresa

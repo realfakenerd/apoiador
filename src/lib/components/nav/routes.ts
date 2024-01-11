@@ -38,11 +38,15 @@ export const routes: DocsConfig = {
 			]
 		},
 		{
-			title: 'MXM',
+			title: 'Requisição de Pagamento',
 			items: [
 				{
 					title: 'Fundo Fixo',
 					href: '/procedimentos/fundo-fixo'
+				},
+				{
+					title: 'Pedidos de compra',
+					href: '/procedimentos/como-pagar-pedido-de-compra'
 				}
 			]
 		}
