@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
-export function formatDate(date: Date, dateStyle: DateStyle = 'medium', locales = 'en') {
+export function formatDate(date: Date, dateStyle: DateStyle = 'medium', locales = 'pt-br') {
 	// Safari is mad about dashes in the date
 	const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle });
 	return dateFormatter.format(date);
