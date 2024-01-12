@@ -5,6 +5,9 @@
 	export { className as class };
 </script>
 
-<blockquote class={cn('mt-6 border-l-2 border-primary pl-6 italic', className)} {...$$restProps}>
+<blockquote
+	class={cn('mt-6 border-l-2 border-primary bg-muted/40 pl-6 pr-4 py-1 italic', className)}
+	{...$$restProps}
+>
 	<slot />
 </blockquote>

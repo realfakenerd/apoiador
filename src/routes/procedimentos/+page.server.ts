@@ -1,5 +1,6 @@
 import type { PageServerLoad } from './$types';
 
+export const prerender = true;
 export const load: PageServerLoad = async () => {
 	let procedimentos: Post[] = [];
 	const paths = import.meta.glob(`/src/procedimentos/*.md`, { eager: true });

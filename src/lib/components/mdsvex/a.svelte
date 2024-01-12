@@ -14,7 +14,7 @@
 	{href}
 	{target}
 	{rel}
-	class={cn('font-medium underline underline-offset-4', className)}
+	class={cn('font-medium decoration-wavy underline decoration-primary', className)}
 	{...$$restProps}
 >
 	<slot />

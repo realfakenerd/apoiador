@@ -11,11 +11,11 @@ category:
   - tutorial
 ---
 
-## Como fazer
-
 Para fazer a requisição e gerar o titulo para pagamento, primeiramente deve-se
 receber a DANFE e o boleto para contabilizado e pago pela APSA. Após receber
 esse documento siga o passo a passo abaixo para gerar o titulo de pagamento.
+
+## Como fazer
 
 ### Passo 1
 
