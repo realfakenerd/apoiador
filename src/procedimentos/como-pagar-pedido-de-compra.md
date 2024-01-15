@@ -1,8 +1,8 @@
 ---
-title: RP - Pedido de compras
+title: Pedido de compras
 description: Como fazer a requisição dos pedidos de compra
 published: '11-01-2023'
-updated: '11-01-2023'
+updated: '12-01-2023'
 image: '/foto_de_papel.png'
 category:
   - rp

@@ -2,6 +2,8 @@
 	import CommandMenu from './CommandMenu.svelte';
 	import ModeToggle from './ModeToggle.svelte';
 	import { MainNav, MobileNav } from './nav';
+	import * as Avatar from './ui/avatar';
+	import * as DropdownMenu from './ui/dropdown-menu';
 </script>
 
 <header
@@ -16,6 +18,24 @@
 				<CommandMenu />
 			</div>
 			<ModeToggle />
+			<DropdownMenu.Root>
+				<DropdownMenu.Trigger>
+					<Avatar.Root>
+						<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+						<Avatar.Fallback>LI</Avatar.Fallback>
+					</Avatar.Root>
+				</DropdownMenu.Trigger>
+				<DropdownMenu.Content>
+					<DropdownMenu.Group>
+						<DropdownMenu.Label>Minha Conta</DropdownMenu.Label>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Profile</DropdownMenu.Item>
+						<DropdownMenu.Item>Billing</DropdownMenu.Item>
+						<DropdownMenu.Item>Team</DropdownMenu.Item>
+						<DropdownMenu.Item>Subscription</DropdownMenu.Item>
+					</DropdownMenu.Group>
+				</DropdownMenu.Content>
+			</DropdownMenu.Root>
 		</div>
 	</div>
 </header>

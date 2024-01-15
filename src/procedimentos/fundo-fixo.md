@@ -1,8 +1,8 @@
 ---
 title: Fundo Fixo
 description: Como fazer requisição de pagamento para 'Fundo Fixo'
-published: '2023-04-28'
-updated: '2023-10-03'
+published: '12-01-2024'
+updated: '12-01-2024'
 category:
   - fundo-fixo
   - tutorial

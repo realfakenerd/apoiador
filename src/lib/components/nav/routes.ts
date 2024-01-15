@@ -38,6 +38,15 @@ export const routes: DocsConfig = {
 			]
 		},
 		{
+			title: 'Procedimentos do MXM',
+			items: [
+				{
+					title: 'Cadastrar Proposta',
+					href: '/procedimentos/cadastrar-proposta'
+				}
+			]
+		},
+		{
 			title: 'Requisição de Pagamento',
 			items: [
 				{

@@ -70,8 +70,10 @@ interface Post {
 	slug: string;
 	/** blog post publish date */
 	published: string;
+	/** blog post update date */
+	updated: string;
 	/** blog post categories */
-	category: string | string[];
+	category: string[];
 	/** series of posts */
 	series?: string;
 	/** is published or not */
