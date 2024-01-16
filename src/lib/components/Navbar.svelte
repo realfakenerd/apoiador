@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { auth } from '$lib/firebase';
+	import Icon from '@iconify/svelte';
 	import CommandMenu from './CommandMenu.svelte';
 	import ModeToggle from './ModeToggle.svelte';
 	import { MainNav, MobileNav } from './nav';
 	import * as Avatar from './ui/avatar';
+	import Button from './ui/button/button.svelte';
 	import * as DropdownMenu from './ui/dropdown-menu';
+	import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 </script>
 
 <header
@@ -29,10 +33,7 @@
 					<DropdownMenu.Group>
 						<DropdownMenu.Label>Minha Conta</DropdownMenu.Label>
 						<DropdownMenu.Separator />
-						<DropdownMenu.Item>Profile</DropdownMenu.Item>
-						<DropdownMenu.Item>Billing</DropdownMenu.Item>
-						<DropdownMenu.Item>Team</DropdownMenu.Item>
-						<DropdownMenu.Item>Subscription</DropdownMenu.Item>
+						<DropdownMenu.Item class="cursor-pointer inline-flex justify-between w-full" on:click={() => signInWithPopup(auth,new GoogleAuthProvider())}><span>Entrar com</span> <Icon icon="devicon:google" /></DropdownMenu.Item>
 					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
