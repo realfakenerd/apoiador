@@ -54,6 +54,8 @@ p {
 	@apply leading-7;
 }
 
+
+
 @layer base {
 	* {
 		@apply border-border;

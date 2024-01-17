@@ -5,16 +5,25 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Button } from '$lib/components/ui/button';
 	import { formatDate } from '$lib/utils';
+	import { user } from '$lib/firebase';
+	import Icon from '@iconify/svelte';
 
-	let seuNome = '',
+	let seuNome = $user?.displayName,
 		ref = '',
 		paraQuem = '',
 		documento = '',
 		documentos: string[] = [];
 
+	const hoje = formatDate(new Date(), 'short');
+
 	function addDocumento() {
 		documentos = [documento, ...documentos];
 		documento = '';
+	}
+
+	function removeDocumento(index: number){
+		documentos.splice(documentos.indexOf(String(index)));
+		documentos = [...documentos];
 	}
 </script>
 
@@ -72,9 +81,12 @@
 
 					<div>
 						<p>Segue:</p>
-						<ul class="my-6 ml-6 [&>li]:mt-2">
-							{#each documentos as documento}
-								<li>{documento}</li>
+						<ul class="my-6 ml-6 [&>li]:mt-2 flex flex-col w-full">
+							{#each documentos as documento, i (i)}
+								<li class="border-l-2 border-primary pl-6 inline-flex items-center gap-x-4 w-full">
+									{documento}
+									<Button variant="destructive" on:click={() => removeDocumento(i)}><Icon icon="mdi:delete" /></Button>
+								</li>
 							{:else}
 								<li>Lista está vazia</li>
 							{/each}
@@ -122,7 +134,7 @@
 			<div class="w-4 border rotate-90" />
 			<span class="inline-flex gap-1">
 				<p>Data:</p>
-				<p>{formatDate(new Date(), 'short')}</p>
+				<p>{hoje}</p>
 			</span>
 		</header>
 
@@ -190,7 +202,7 @@
 			<div class="w-4 border rotate-90" />
 			<span class="inline-flex gap-1">
 				<p>Data:</p>
-				<p>{formatDate(new Date(), 'short')}</p>
+				<p>{hoje}</p>
 			</span>
 		</header>
 
@@ -213,21 +225,12 @@
 					{/each}
 				</ul>
 			</div>
-			<div class="inline-flex gap-3 items-center self-stretch">
-				<p>
-					Ass:
-					__________________________________________________________________________________________
-				</p>
-			</div>
 		</div>
 	</div>
 </Section.Root>
 
 <style>
-	ul li::before {
-		content: '\2022';
-		padding-right: 0.75rem;
-	}
+	
 
 	.ph1 {
 		font-size: 14px;

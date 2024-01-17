@@ -3,6 +3,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import Icon from '@iconify/svelte';
 	import * as Section from '$lib/components/section';
+	import { Title } from '$lib/components/ui/sheet';
 
 	const links = [
 		{
@@ -50,25 +51,29 @@
 
 <Section.Root>
 	<Section.Heading>Dashboard</Section.Heading>
-	<div class="grid w-full gap-2">
-		{#each links as l}
-			<a target="_blank" href={l.link}>
-				<Card.Root class="min-w-[14rem] w-full hover:border-primary transition-colors">
-					<Card.Header class="flex flex-row items-center justify-between">
-						<Card.Title>
-							<span class="text-title-small">{l.text}</span>
-						</Card.Title>
-						<Icon style="margin-top: 0;" width="24" icon={l.icon} />
-					</Card.Header>
-				</Card.Root>
-			</a>
-		{/each}
-	</div>
+	<Card.Root class="border-none">
+		<Card.Header><Card.Title>Acesso Rápido</Card.Title></Card.Header>
+		<Card.Content class="grid w-full gap-2">
+			{#each links as l}
+				<a target="_blank" href={l.link}>
+					<Card.Root class="min-w-[14rem] w-full hover:border-primary transition-colors">
+						<Card.Header class="flex flex-row items-center justify-between">
+							<Card.Title>
+								<span class="text-title-small">{l.text}</span>
+							</Card.Title>
+							<Icon style="margin-top: 0;" width="24" icon={l.icon} />
+						</Card.Header>
+					</Card.Root>
+				</a>
+			{/each}
+		</Card.Content>
+	</Card.Root>
+
 	<Wheater />
 </Section.Root>
 
 <style>
-	div.grid {
+	:global(div.grid) {
 		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 	}
 </style>
