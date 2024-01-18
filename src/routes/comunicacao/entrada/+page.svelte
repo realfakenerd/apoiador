@@ -12,7 +12,6 @@
 	import { DateFormatter, getLocalTimeZone, type DateValue } from '@internationalized/date';
 	import agencias from '../agencias';
 	import * as Section from '$lib/components/section';
-	// import printjs from 'print-js';
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'

@@ -3,12 +3,16 @@
 	import * as Card from '$lib/components/ui/card';
 	import Icon from '@iconify/svelte';
 	import * as Section from '$lib/components/section';
+	import CondominioDialog from '$lib/components/CondominioDialog.svelte';
 
 	// const condominios = collectionStore<{ nome: string }>(firestore, 'condominios', []);
 </script>
 
 <Section.Root>
-	<Section.Heading>Condomínios</Section.Heading>
+	<header class="flex flex-row justify-between">
+		<Section.Heading>Condomínios</Section.Heading>
+		<CondominioDialog/>
+	</header>
 	
 	<ul class="flex flex-wrap gap-4">
 		<li class="max-w-xs">
@@ -57,7 +61,7 @@
 					</div>
 				</Card.Content>
 				<Card.Footer class="w-full">
-					<Button href="#" class="w-full">Acessar</Button>
+					<Button href="/condominios/maraba" class="w-full">Acessar</Button>
 				</Card.Footer>
 			</Card.Root>
 		</li>
