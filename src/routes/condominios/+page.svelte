@@ -1,17 +1,19 @@
 <script lang="ts">
+	import * as Section from '$lib/components/section';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import Icon from '@iconify/svelte';
-	import * as Section from '$lib/components/section';
-	import CondominioDialog from '$lib/components/CondominioDialog.svelte';
 
 	// const condominios = collectionStore<{ nome: string }>(firestore, 'condominios', []);
 </script>
 
 <Section.Root>
-	<header class="flex flex-row justify-between">
+	<header class="flex flex-row justify-between items-center">
 		<Section.Heading>Condomínios</Section.Heading>
-		<CondominioDialog/>
+		<Button href="/condominios/novo" class="flex gap-2">
+			<Icon icon="mdi:plus" />
+			<span>Empresa</span>
+		</Button>
 	</header>
 	
 	<ul class="flex flex-wrap gap-4">

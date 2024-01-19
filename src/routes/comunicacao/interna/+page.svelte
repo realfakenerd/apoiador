@@ -21,7 +21,7 @@
 		documento = '';
 	}
 
-	function removeDocumento(index: number){
+	function removeDocumento(index: number) {
 		documentos.splice(documentos.indexOf(String(index)));
 		documentos = [...documentos];
 	}
@@ -85,7 +85,9 @@
 							{#each documentos as documento, i (i)}
 								<li class="border-l-2 border-primary pl-6 inline-flex items-center gap-x-4 w-full">
 									{documento}
-									<Button variant="destructive" on:click={() => removeDocumento(i)}><Icon icon="mdi:delete" /></Button>
+									<Button variant="destructive" on:click={() => removeDocumento(i)}
+										><Icon icon="mdi:delete" /></Button
+									>
 								</li>
 							{:else}
 								<li>Lista está vazia</li>
@@ -93,7 +95,9 @@
 						</ul>
 					</div>
 				</div>
-				<Button type="submit" class="w-full md:col-span-3">Imprimir</Button>
+				<Card.Footer class="md:col-span-3 w-full">
+					<Button type="submit" class="w-full">Imprimir</Button>
+				</Card.Footer>
 			</Card.Content>
 		</Card.Root>
 	</form>
@@ -230,8 +234,6 @@
 </Section.Root>
 
 <style>
-	
-
 	.ph1 {
 		font-size: 14px;
 		font-style: normal;

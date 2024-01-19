@@ -21,7 +21,7 @@
 
 <Section.Root>
 	<Section.Heading>Comunicação de Entrada de Clientes</Section.Heading>
-	<form id="printJs" class="flex flex-col gap-y-6">
+	<form  class="flex flex-col gap-y-6">
 		<Card.Root class="w-full">
 			<Card.Header>
 				<Card.Title tag="h2">Dados do Condomínio</Card.Title>
