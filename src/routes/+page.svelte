@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Wheater from '$lib/components/Wheater.svelte';
-	import * as Card from '$lib/components/ui/card';
-	import Icon from '@iconify/svelte';
 	import * as Section from '$lib/components/section';
-	import { Title } from '$lib/components/ui/sheet';
+	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
+	import Icon from '@iconify/svelte';
 
 	const links = [
 		{
@@ -51,23 +50,23 @@
 
 <Section.Root>
 	<Section.Heading>Dashboard</Section.Heading>
-	<Card.Root class="border-none">
-		<Card.Header><Card.Title>Acesso Rápido</Card.Title></Card.Header>
-		<Card.Content class="grid w-full gap-2">
+	<Card class="border-none">
+		<CardHeader><CardTitle>Acesso Rápido</CardTitle></CardHeader>
+		<CardContent class="grid w-full gap-2">
 			{#each links as l}
 				<a target="_blank" href={l.link}>
-					<Card.Root class="min-w-[14rem] w-full hover:border-primary transition-colors">
-						<Card.Header class="flex flex-row items-center justify-between">
-							<Card.Title>
+					<Card class="min-w-[14rem] w-full hover:border-primary transition-colors">
+						<CardHeader class="flex flex-row items-center justify-between">
+							<CardTitle>
 								<span class="text-title-small">{l.text}</span>
-							</Card.Title>
+							</CardTitle>
 							<Icon style="margin-top: 0;" width="24" icon={l.icon} />
-						</Card.Header>
-					</Card.Root>
+						</CardHeader>
+					</Card>
 				</a>
 			{/each}
-		</Card.Content>
-	</Card.Root>
+		</CardContent>
+	</Card>
 
 	<Wheater />
 </Section.Root>

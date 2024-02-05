@@ -1,55 +1,65 @@
 <script lang="ts">
-	import * as Section from '$lib/components/section';
+	import { Section, SectionHeading } from '$lib/components/section';
 	import { Badge } from '$lib/components/ui/badge';
-	import * as Card from '$lib/components/ui/card';
-	import * as ToggleGroup from '$lib/components/ui/toggle-group';
-	import type { PageServerData } from './$types';
+	import {
+		Card,
+		CardContent,
+		CardDescription,
+		CardHeader,
+		CardTitle
+	} from '$lib/components/ui/card';
+	import { ToggleGroup, ToggleGroupItem } from '$lib/components/ui/toggle-group';
 
-	export let data: PageServerData;
+	let { data } = $props();
+	const { procedimentos } = data;
 
 	const categories = Array.from(
-		new Set(data.procedimentos.flatMap((procedimento) => procedimento.category))
+		new Set(procedimentos.flatMap((procedimento) => procedimento.category))
 	);
 	let selectedFilters = 'todos';
-	$: filteredProcedimentos = data.procedimentos;
+	let filteredProcedimentos = $state(procedimentos);
 
 	function changeFilter(val?: string | string[]) {
 		if (val === 'todos') {
-			filteredProcedimentos = data.procedimentos;
+			filteredProcedimentos = procedimentos;
 			return;
 		}
-		filteredProcedimentos = data.procedimentos;
+		filteredProcedimentos = procedimentos;
 		filteredProcedimentos = filteredProcedimentos.filter(({ category }) =>
 			category.includes(val as string)
 		);
 	}
 </script>
 
-<Section.Root>
-	<Section.Heading>Procedimentos</Section.Heading>
-	<ToggleGroup.Root value={selectedFilters} class="self-start flex-wrap" onValueChange={changeFilter}>
-		<ToggleGroup.Item class="capitalize" value="todos">Todos</ToggleGroup.Item>
+<Section>
+	<SectionHeading>Procedimentos</SectionHeading>
+	<ToggleGroup
+		value={selectedFilters}
+		class="self-start flex-wrap border rounded-lg p-1"
+		onValueChange={changeFilter}
+	>
+		<ToggleGroupItem class="capitalize" value="todos">Todos</ToggleGroupItem>
 		{#each categories as cat}
-			<ToggleGroup.Item class="capitalize" value={cat}>{cat}</ToggleGroup.Item>
+			<ToggleGroupItem class="capitalize" value={cat}>{cat}</ToggleGroupItem>
 		{/each}
-	</ToggleGroup.Root>
+	</ToggleGroup>
 	<hr />
 	<ul class="grid w-full gap-2">
 		{#each filteredProcedimentos as procedimento, i (i)}
 			{@const published = new Date(procedimento.published)}
 			{@const updated = new Date(procedimento.updated)}
-			<Card.Root>
-				<Card.Header>
+			<Card>
+				<CardHeader>
 					<a
 						class="inline-flex items-center justify-between"
 						href="/procedimentos/{procedimento.slug}"
 					>
-						<Card.Title class="hover:underline">{procedimento.title}</Card.Title>
+						<CardTitle class="hover:underline">{procedimento.title}</CardTitle>
 						{#if updated > published}
 							<Badge>atualizado</Badge>
 						{/if}
 					</a>
-					<Card.Description>
+					<CardDescription>
 						<ul class="inline-flex flex-wrap gap-2 text-label-large">
 							{#each procedimento.category as cat}
 								<li class="text-tertiary">
@@ -57,17 +67,17 @@
 								</li>
 							{/each}
 						</ul>
-					</Card.Description>
-				</Card.Header>
-				<Card.Content>
+					</CardDescription>
+				</CardHeader>
+				<CardContent>
 					<p>{procedimento.description}</p>
-				</Card.Content>
-			</Card.Root>
+				</CardContent>
+			</Card>
 		{:else}
 			não achamos o que queria...
 		{/each}
 	</ul>
-</Section.Root>
+</Section>
 
 <style>
 	ul.grid {

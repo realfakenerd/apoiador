@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { routes } from './routes';
-	import { siteConfig } from './site';
 	import { Button } from '$lib/components/ui/button';
-	import * as Sheet from '$lib/components/ui/sheet';
+	import { Sheet, SheetContent, SheetTrigger } from '$lib/components/ui/sheet';
 	import { ViewVertical } from 'radix-icons-svelte';
 	import MobileLink from './MobileLink.svelte';
+	import { routes } from './routes';
+	import { siteConfig } from './site';
 
 	let open = false;
 </script>
 
-<Sheet.Root bind:open>
-	<Sheet.Trigger asChild let:builder>
+<Sheet bind:open>
+	<SheetTrigger asChild let:builder>
 		<Button
 			builders={[builder]}
 			variant="ghost"
@@ -19,8 +19,8 @@
 			<ViewVertical class="h-5 w-5" />
 			<span class="sr-only">Toggle Menu</span>
 		</Button>
-	</Sheet.Trigger>
-	<Sheet.Content side="left" class="pr-0">
+	</SheetTrigger>
+	<SheetContent side="left" class="pr-0">
 		<MobileLink href="/" class="flex items-center gap-2" bind:open>
 			<svg
 				class="h-6 w-6"
@@ -93,5 +93,5 @@
 				{/each}
 			</div>
 		</div>
-	</Sheet.Content>
-</Sheet.Root>
+	</SheetContent>
+</Sheet>

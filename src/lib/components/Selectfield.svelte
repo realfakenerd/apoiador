@@ -1,23 +1,37 @@
 <script lang="ts">
-	import * as Select from './ui/select';
+	import {
+		Select,
+		SelectContent,
+		SelectGroup,
+		SelectItem,
+		SelectLabel,
+		SelectTrigger,
+		SelectValue
+	} from './ui/select';
 
-	export let items: string[] = [];
-	export let placeholder = '';
-	export let label = '';
+	let {
+		items = [],
+		placeholder = '',
+		label = ''
+	} = $props<{
+		items: string[];
+		placeholder: string;
+		label: string;
+	}>();
 </script>
 
-<Select.Root>
-	<Select.Trigger class="w-full self-end">
-		<Select.Value {placeholder} />
-	</Select.Trigger>
-	<Select.Content>
-		<Select.Group>
+<Select>
+	<SelectTrigger class="w-full self-end">
+		<SelectValue {placeholder} />
+	</SelectTrigger>
+	<SelectContent>
+		<SelectGroup>
 			{#if label}
-				<Select.Label>{label}</Select.Label>
+				<SelectLabel>{label}</SelectLabel>
 			{/if}
 			{#each items as item (item)}
-				<Select.Item class="w-full capitalize" bind:value={item}>{item}</Select.Item>
+				<SelectItem class="w-full capitalize" bind:value={item}>{item}</SelectItem>
 			{/each}
-		</Select.Group>
-	</Select.Content>
-</Select.Root>
+		</SelectGroup>
+	</SelectContent>
+</Select>

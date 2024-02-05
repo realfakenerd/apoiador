@@ -17,13 +17,13 @@ esse documento siga o passo a passo abaixo para gerar o titulo de pagamento.
 
 ## Como fazer
 
-### Passo 1
+### Passo 1 - Localizar a tela
 
 Primeiro deve achar o caminho para a tela correta:
 ![tela de compras](/rp-pedido-de-compra/tela-1.png)
 `MXM > COMPRAS > PROCESSOS > ATENDIMENTO DOS PEDIDOS DE COMPRA`
 
-### Passo 2
+### Passo 2 - Preencher dados
 
 Após clicar na opção de 'Atendimento dos pedidos de compra' é nescessário
 preencher os campos da seguinte forma.
@@ -38,7 +38,7 @@ e Papelex para produtos de escritório.
 
 Depois de preenchidas essas informações, deverá clicar em `Abrir Pedidos`.
 
-### Passo 3
+### Passo 3 - Localizar pedido
 
 Uma nova tela abrirá, onde deverá preencher a informação do número de pedido
 que foi gerado no campo `pedido`.
@@ -54,7 +54,7 @@ Clique no botão `Marcar Todos` e após isso clique em `OK`.
 
 > Caso algum produto do pedido não tenha sido enviado, não marque este produto na lista.
 
-### Passo 4
+### Passo 4 - Concertar valores errados
 
 Todos os items marcados na tela anterior deverão aparecer numa lista.
 

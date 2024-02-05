@@ -1,3 +1,13 @@
-export {default as Root} from './Section.svelte';
-export {default as Heading} from './Heading.svelte';
-export {default as Description} from './Description.svelte';
+import Root from './Section.svelte';
+import Heading from './Heading.svelte';
+import Description from './Description.svelte';
+
+export {
+	Root,
+	Heading,
+	Description,
+
+	Root as Section,
+	Heading as SectionHeading,
+	Description as SectionDescription
+}

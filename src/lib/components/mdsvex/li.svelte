@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className = undefined, restProps } = $props<{ class?: string; restProps: any[] }>();
 </script>
 
-<li class={cn('mt-2', className)} {...$$restProps}>
+<li class={cn('mt-2', className)} {...restProps}>
 	<slot />
 </li>

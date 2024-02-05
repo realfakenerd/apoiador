@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
+	import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
-	import * as DropdownMenu from '../ui/dropdown-menu';
-	import { Button } from '../ui/button';
 </script>
 
 <div class="mr-4 hidden md:flex">
@@ -42,23 +41,23 @@
 	<nav class="flex items-center gap-x-6 text-sm font-medium">
 		{#each routes.mainNav as { href, title, items }}
 			{#if items}
-				<DropdownMenu.Root>
-					<DropdownMenu.Trigger class={cn(
+				<DropdownMenu>
+					<DropdownMenuTrigger class={cn(
 						'transition-colors hover:text-foreground/80',
 						$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
 					)}>
 							{title}
-					</DropdownMenu.Trigger>
-					<DropdownMenu.Content>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent>
 						{#each items as {title, href}}
 							<a {href}>
-								<DropdownMenu.Item class="cursor-pointer">
+								<DropdownMenuItem class="cursor-pointer">
 									{title}
-								</DropdownMenu.Item>
+								</DropdownMenuItem>
 							</a>
 						{/each}
-					</DropdownMenu.Content>
-				</DropdownMenu.Root>														
+					</DropdownMenuContent>
+				</DropdownMenu>														
 			{:else}
 				<a
 					{href}

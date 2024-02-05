@@ -1,18 +1,25 @@
 <script lang="ts">
-	import { Avatar as AvatarPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils";
+	import { cn } from '$lib/utils';
+	import { Avatar as AvatarPrimitive } from 'bits-ui';
 
-	type $$Props = AvatarPrimitive.ImageProps;
+	type ImageProps = AvatarPrimitive.ImageProps;
 
-	let className: $$Props["class"] = undefined;
-	export let src: $$Props["src"] = undefined;
-	export let alt: $$Props["alt"] = undefined;
-	export { className as class };
+	let {
+		class: className = undefined,
+		src,
+		alt,
+		restProps
+	} = $props<{
+		class?: ImageProps['class'];
+		src?: ImageProps['src'];
+		alt?: ImageProps['alt'];
+		restProps: ImageProps;
+	}>();
 </script>
 
 <AvatarPrimitive.Image
 	{src}
 	{alt}
-	class={cn("aspect-square h-full w-full", className)}
-	{...$$restProps}
+	class={cn('aspect-square h-full w-full', className)}
+	{...restProps}
 />

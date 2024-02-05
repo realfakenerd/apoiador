@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let href: string;
-	$: internal = href.startsWith('/') || href.startsWith('#');
+	let {
+		class: className = undefined,
+		href,
+		restProps
+	} = $props<{ class?: string; href: string; restProps: any[] }>();
 
-	$: rel = !internal ? 'noopener noreferrer' : undefined;
-	$: target = !internal ? '_blank' : undefined;
+	let internal = $derived(href.startsWith('/') || href.startsWith('#'));
+	let rel = $derived(!internal ? 'noopener noreferrer' : undefined);
+	let target = $derived(!internal ? '_blank' : undefined);
 </script>
 
 <a
@@ -15,7 +17,7 @@
 	{target}
 	{rel}
 	class={cn('font-medium decoration-wavy underline decoration-primary', className)}
-	{...$$restProps}
+	{...restProps}
 >
 	<slot />
 </a>

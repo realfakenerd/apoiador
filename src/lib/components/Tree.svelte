@@ -2,10 +2,7 @@
 	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
 
-	export let tree: TableOfContents = {
-		items: []
-	};
-	export let level = 1;
+	let { level = 1, tree = { items: [] } } = $props<{ level?: number; tree?: TableOfContents }>();
 </script>
 
 <ul class={cn('m-0 list-none', { 'pl-4': level !== 1 })}>

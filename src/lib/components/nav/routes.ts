@@ -25,7 +25,16 @@ export const routes: DocsConfig = {
 					href: '/comunicacao/interna'
 				}
 			]
-		}
+		},
+		{
+			title: 'Documentos',
+			items: [
+				{
+					title: 'Contratos',
+					href: '/documentos/contrato'
+				}
+			]
+		},
 	],
 	sidebarNav: [
 		{

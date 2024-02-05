@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { HTMLImgAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils';
+	import type { HTMLImgAttributes } from 'svelte/elements';
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let src: HTMLImgAttributes['src'] = undefined;
-	export let alt: HTMLImgAttributes['alt'] = undefined;
+	let {
+		class: className = undefined,
+		src = undefined,
+		alt = undefined
+	} = $props<{ class?: string; src: HTMLImgAttributes['src']; alt: HTMLImgAttributes['alt'] }>();
 </script>
 
 <figure class="py-2">
-	<img {src} {alt} class={cn('rounded-md', className)}/>
+	<img {src} {alt} class={cn('rounded-md', className)} />
 </figure>

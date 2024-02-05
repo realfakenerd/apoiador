@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Tree from './Tree.svelte';
 
-	let filteredHeadingsList: TableOfContents;
+	let filteredHeadingsList = $state<TableOfContents>();
 
 	function getHeadingsWithHierarchy(divId: string) {
 		const div = document.getElementById(divId);
@@ -48,7 +47,7 @@
 	}
 
 	// Lifecycle
-	onMount(() => {
+	$effect(() => {
 		getHeadingsWithHierarchy('mdsvex');
 	});
 </script>

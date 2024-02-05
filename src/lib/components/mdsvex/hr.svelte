@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className = undefined, restProps } = $props<{ class?: string; restProps: any[] }>();
 </script>
 
-<hr class={cn('my-4 md:my-8 border-primary', className)} {...$$restProps} />
+<hr class={cn('my-4 md:my-8 border-primary', className)} {...restProps} />

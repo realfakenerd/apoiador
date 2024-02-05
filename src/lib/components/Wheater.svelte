@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import * as Card from '$lib/components/ui/card';
+	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 
-	let weather: OpenWeather = {
+	let weather = $state<OpenWeather>({
 		coord: {
 			lon: 0,
 			lat: 0
@@ -37,7 +36,7 @@
 		id: 0,
 		name: '',
 		cod: 0
-	};
+	});
 
 	async function fetchWheater() {
 		const today = new Date().toLocaleDateString();
@@ -54,17 +53,17 @@
 		return data;
 	}
 
-	onMount(() => {
+	$effect(() => {
 		fetchWheater().then((res) => (weather = res));
 	});
 </script>
 
-<Card.Root class="w-full sm:max-w-[14rem] md:max-w-[16rem]">
-	<Card.Header class="pb-0">
+<Card class="w-full sm:max-w-[14rem] md:max-w-[16rem]">
+	<CardHeader class="pb-0">
 		<div class="flex flex-row justify-center items-center">
-			<Card.Title class="text-5xl font-bold">
+			<CardTitle class="text-5xl font-bold">
 				{weather?.main.temp}
-			</Card.Title>
+			</CardTitle>
 			<img
 				style="width: 56px; background-image: url(https://openweathermap.org/img/wn/{weather
 					?.weather[0].icon}.png);"
@@ -78,9 +77,9 @@
 			<span class="font-medium">{weather?.main.temp_min.toFixed(1)}º</span>/
 			<span class="font-normal">{weather?.main.temp_max.toFixed(1)}° C</span>
 		</div>
-	</Card.Header>
-	<Card.Content class="flex flex-col items-center">
+	</CardHeader>
+	<CardContent class="flex flex-col items-center">
 		<span>Sensação termica {weather?.main.feels_like.toFixed(2)}° C</span>
 		<span>{weather?.weather[0].description}</span>
-	</Card.Content>
-</Card.Root>
+	</CardContent>
+</Card>

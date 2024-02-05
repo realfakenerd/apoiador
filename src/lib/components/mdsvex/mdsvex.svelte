@@ -25,11 +25,7 @@
 </script>
 
 <script lang="ts">
-	export let title = '';
-	export let description = '';
-	export let source = '';
-	export let component = '';
-	export let radix = '';
+	let {title = '', description = '', source = '', component = '', radix = ''} = $props()
 </script>
 
 <slot {title} {description} {source} {component} {radix} />
