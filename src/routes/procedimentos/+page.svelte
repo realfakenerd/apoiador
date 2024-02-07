@@ -40,13 +40,13 @@
 		class="self-start flex-wrap border rounded-lg p-1"
 		onValueChange={changeFilter}
 	>
-		<ToggleGroupItem class="capitalize" value="todos">Todos</ToggleGroupItem>
+		<ToggleGroupItem  class="capitalize" value="todos">Todos</ToggleGroupItem>
 		{#each categories as cat}
 			<ToggleGroupItem class="capitalize" value={cat}>{cat}</ToggleGroupItem>
 		{/each}
 	</ToggleGroup>
 	<hr />
-	<ul class="grid w-full gap-2">
+	<ul class="grid w-full gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
 		{#each filteredProcedimentos as procedimento, i (i)}
 			{@const published = new Date(procedimento.published)}
 			{@const updated = new Date(procedimento.updated)}
@@ -80,9 +80,3 @@
 		{/each}
 	</ul>
 </Section>
-
-<style>
-	ul.grid {
-		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-	}
-</style>

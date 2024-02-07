@@ -3,9 +3,9 @@
 	import Textfield from '$lib/components/Textfield.svelte';
 	import Section from '$lib/components/section/Section.svelte';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import { read, utils } from 'xlsx';
+	import { read, utils, writeFile } from 'xlsx';
 	let files = $state<FileList>();
-	let pre = $state<Excel[]>([]);
+	// let pre = $state<Excel[]>([]);
 
 	interface Excel {
 		AC: string;
@@ -19,10 +19,23 @@
 		if (file) {
 			const fileArrayBuffer = await file.arrayBuffer();
 			const xlsx = read(fileArrayBuffer);
-			pre = utils.sheet_to_json<Excel>(xlsx.Sheets[xlsx.SheetNames[0]]);
-
-			console.log(pre[0]);
+			console.log(utils.sheet_to_formulae(xlsx.Sheets[xlsx.SheetNames[0]]));
+			
 		}
+	}
+
+	function createXLSX() {
+		const ws = utils.json_to_sheet([
+			{ Name: 'Bill Clinton', Index: 42 },
+			{ Name: 'GeorgeW Bush', Index: 43 },
+			{ Name: 'Barack Obama', Index: 44 },
+			{ Name: 'Donald Trump', Index: 45 },
+			{ Name: 'Joseph Biden', Index: 46 }
+		]);
+		const wb = utils.book_new();
+		utils.book_append_sheet(wb, ws, 'Sheet1');
+		writeFile(wb, 'test.xlsx');
+		console.log(wb);
 	}
 
 	$effect(() => {
@@ -30,6 +43,8 @@
 	});
 </script>
 
+<input type="file" bind:files>
+<button onclick={createXLSX}>create</button>
 <Section>
 	<Card>
 		<CardHeader>
@@ -113,8 +128,6 @@
 		<CardHeader>
 			<CardTitle>Documentos entregues</CardTitle>
 		</CardHeader>
-		<CardContent>
-			sss
-		</CardContent>
+		<CardContent>sss</CardContent>
 	</Card>
 </Section>
