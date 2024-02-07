@@ -1,14 +1,8 @@
 <script lang="ts">
+	import Radiofield from '$lib/components/Radiofield.svelte';
+	import Textfield from '$lib/components/Textfield.svelte';
 	import Section from '$lib/components/section/Section.svelte';
-	import {
-		Table,
-		TableBody,
-		TableCaption,
-		TableCell,
-		TableHead,
-		TableHeader,
-		TableRow
-	} from '$lib/components/ui/table';
+	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { read, utils } from 'xlsx';
 	let files = $state<FileList>();
 	let pre = $state<Excel[]>([]);
@@ -37,27 +31,90 @@
 </script>
 
 <Section>
-	<input type="file" id="Excel" bind:files />
+	<Card>
+		<CardHeader>
+			<CardTitle>Alguma coisa</CardTitle>
+		</CardHeader>
+		<CardContent>
+			<Textfield label="Agência" />
+			<Textfield label="Conta" />
+			<Radiofield
+				label="Tipo de conta"
+				value="pool"
+				items={[
+					{ value: 'pool', label: 'Conta POOL', id: 'pool' },
+					{ value: 'propria', label: 'Conta PRÓPRIA', id: 'propria' }
+				]}
+			/>
+			<Textfield label="Consultor do condomínio" />
+			<Textfield label="Captador" />
+			<Radiofield
+				label="Tipo de captação"
+				value="ativa"
+				items={[
+					{ value: 'ativa', label: 'ativa' },
+					{ value: 'receptiva', label: 'receptiva' }
+				]}
+			/>
+			<Textfield label="Cliente Potencial" />
+			<Textfield label="Negociação" />
+			<Textfield label="Proposta" />
+		</CardContent>
+	</Card>
 
-	<Table>
-		<TableCaption>Uma lista de etiquetas.</TableCaption>
-		<TableHeader>
-			<TableRow>
-				<TableHead>Condomínio</TableHead>
-				<TableHead>Endereço</TableHead>
-				<TableHead>Bairro</TableHead>
-				<TableHead class="text-right">A/C</TableHead>
-			</TableRow>
-		</TableHeader>
-		<TableBody>
-			{#each pre as p}
-				<TableRow>
-					<TableCell class="w-fit">{p.CONDOMÍNIO}</TableCell>
-					<TableCell>{p.ENDEREÇO}</TableCell>
-					<TableCell>{p.Bairro}</TableCell>
-					<TableCell>{p.AC}</TableCell>
-				</TableRow>
-			{/each}
-		</TableBody>
-	</Table>
+	<Card>
+		<CardHeader>
+			<CardTitle>Dados do condomínio</CardTitle>
+		</CardHeader>
+		<CardContent>
+			<Textfield label="Nome do condomínio" />
+			<Radiofield
+				label="Ex-cliente"
+				value="nao"
+				items={[
+					{ value: 'sim', label: 'sim' },
+					{ value: 'nao', label: 'não' }
+				]}
+			/>
+			<Textfield label="Endereço" />
+			<Textfield label="Numero" />
+			<Textfield label="Complemento" />
+			<Textfield label="Bairro" />
+			<Textfield label="Município" />
+			<Textfield label="CEP" />
+			<Textfield label="UF" />
+			<Textfield label="CNPJ" />
+			<Radiofield
+				label="Característica"
+				value="edificio"
+				items={[
+					{ value: 'edificio', label: 'edifício' },
+					{ value: 'casas', label: 'Casas/Terreno' },
+					{ value: 'lojas', label: 'Lojas' }
+				]}
+			/>
+			<Radiofield
+				label="Tipo"
+				value="residencial"
+				items={[
+					{ value: 'residencial', label: 'residencial' },
+					{ value: 'comercial', label: 'comercial' },
+					{ value: 'misto', label: 'misto' }
+				]}
+			/>
+			<Textfield label="Unidades" />
+			<Textfield label="blocos" />
+			<Textfield label="elevadores" />
+			<Textfield label="empregados" />
+		</CardContent>
+	</Card>
+
+	<Card>
+		<CardHeader>
+			<CardTitle>Documentos entregues</CardTitle>
+		</CardHeader>
+		<CardContent>
+			sss
+		</CardContent>
+	</Card>
 </Section>

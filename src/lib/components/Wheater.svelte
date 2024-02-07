@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
-
 	let weather = $state<OpenWeather>({
 		coord: {
 			lon: 0,
 			lat: 0
 		},
-		weather: [{description: '', icon: '', id: 0, main: ''}],
+		weather: [{ description: '', icon: '01d', id: 0, main: '' }],
 		base: '',
 		main: {
 			temp: 0,
@@ -58,28 +56,28 @@
 	});
 </script>
 
-<Card class="w-full sm:max-w-[14rem] md:max-w-[16rem]">
-	<CardHeader class="pb-0">
-		<div class="flex flex-row justify-center items-center">
-			<CardTitle class="text-5xl font-bold">
-				{weather?.main.temp}
-			</CardTitle>
-			<img
-				style="width: 56px; background-image: url(https://openweathermap.org/img/wn/{weather
-					?.weather[0].icon}.png);"
-				src="https://openweathermap.org/img/wn/{weather?.weather[0].icon ?? '01d'}@4x.png"
-				width="56px"
-				height="56px"
-				alt={weather?.weather[0].main}
-			/>
-		</div>
-		<div class="inline-flex justify-center text-muted-foreground">
-			<span class="font-medium">{weather?.main.temp_min.toFixed(1)}º</span>/
-			<span class="font-normal">{weather?.main.temp_max.toFixed(1)}° C</span>
-		</div>
-	</CardHeader>
-	<CardContent class="flex flex-col items-center">
-		<span>Sensação termica {weather?.main.feels_like.toFixed(2)}° C</span>
-		<span>{weather?.weather[0].description}</span>
-	</CardContent>
-</Card>
+<div class="inline-flex">
+	<header class="flex flex-row justify-center items-center">
+		<img
+			style="width: 96px; background-image: url(https://openweathermap.org/img/wn/{weather
+				?.weather[0].icon}@2x.png);"
+			src="https://openweathermap.org/img/wn/{weather?.weather[0].icon}@2x.png"
+			width="96px"
+			height="96px"
+			alt={weather?.weather[0].main}
+		/>
+		<span class="flex flex-col">
+			<h1 class="text-2xl font-bold">
+				{weather?.main.temp} ºC
+			</h1>
+			<a
+				class="text-xs text-blue-600 underline"
+				href="https://openweather.org"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				openweather.com
+			</a>
+		</span>
+	</header>
+</div>

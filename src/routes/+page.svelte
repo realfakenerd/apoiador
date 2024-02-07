@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Wheater from '$lib/components/Wheater.svelte';
-	import * as Section from '$lib/components/section';
+	import { Section, SectionHeading, SectionTitle } from '$lib/components/section';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
+	import { cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 
 	const links = [
@@ -48,31 +49,61 @@
 	];
 </script>
 
-<Section.Root>
-	<Section.Heading>Dashboard</Section.Heading>
+<Section>
+	<SectionHeading class="justify-between items-center">
+		<SectionTitle>Dashboard</SectionTitle>
+		<Wheater />
+	</SectionHeading>
 	<Card class="border-none">
 		<CardHeader><CardTitle>Acesso Rápido</CardTitle></CardHeader>
-		<CardContent class="grid w-full gap-2">
+		<CardContent class="grid w-full gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
 			{#each links as l}
-				<a target="_blank" href={l.link}>
-					<Card class="min-w-[14rem] w-full hover:border-primary transition-colors">
-						<CardHeader class="flex flex-row items-center justify-between">
-							<CardTitle>
-								<span class="text-title-small">{l.text}</span>
-							</CardTitle>
-							<Icon style="margin-top: 0;" width="24" icon={l.icon} />
-						</CardHeader>
-					</Card>
-				</a>
+				<Card
+					isRoute={false}
+					href={l.link}
+					class={cn(
+						`min-w-[14rem] rounded-[.25rem] hover:rounded-xl transition-all first:rounded-tl-xl last:rounded-br-xl min-h-[72px] w-full hover:border-primary`
+					)}
+				>
+					<CardHeader class="flex flex-row items-center justify-between">
+						<CardTitle>
+							<span class="text-title-small">{l.text}</span>
+						</CardTitle>
+						<Icon style="margin-top: 0;" width="24" icon={l.icon} />
+					</CardHeader>
+				</Card>
 			{/each}
 		</CardContent>
 	</Card>
-
-	<Wheater />
-</Section.Root>
+</Section>
 
 <style>
-	:global(div.grid) {
-		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	@media screen and (max-width: 639px) {
+		.grid a:nth-child(1) {
+			border-top-right-radius: 0.75rem;
+		}
+
+		.grid a:nth-child(8) {
+			border-bottom-left-radius: 0.75rem;
+		}
+	}
+	@media screen and (min-width: 640px) {
+		.grid a:nth-child(2) {
+			border-top-right-radius: 0.75rem;
+		}
+
+		.grid a:nth-child(7) {
+			border-bottom-left-radius: 0.75rem;
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		.grid a:nth-child(4) {
+			border-top-right-radius: 0.75rem;
+		}
+
+		.grid a:nth-child(5) {
+			border-bottom-left-radius: 0.75rem;
+		}
 	}
 </style>

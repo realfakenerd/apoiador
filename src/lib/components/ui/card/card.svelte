@@ -1,22 +1,46 @@
 <script lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	type $$Props = HTMLAttributes<HTMLDivElement>;
+	type Props = HTMLAttributes<HTMLElement>;
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
+	interface CardProp {
+		href?: string;
+		isRoute?: boolean;
+		restProps?: Props;
+		children: Snippet;
+		class?: Props['class'];
+		tag?: 'div' | 'section' | 'a';
+	}
+
+	let {
+		href = '',
+		tag = href ? 'a' : 'section',
+		isRoute = true,
+		class: className,
+		children,
+		...restProps
+	} = $props<CardProp>();
+
+	const a = {
+		href,
+		rel: 'noreferer',
+		target: isRoute ? '_self' : '_blank'
+	};
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
+<svelte:element
+	this={tag}
+	{...a}
 	class={cn('rounded-xl border bg-card text-card-foreground shadow', className)}
-	{...$$restProps}
+	{...restProps}
 	on:click
 	on:focusin
 	on:focusout
 	on:mouseenter
 	on:mouseleave
 >
-	<slot />
-</div>
+	{@render children()}
+</svelte:element>

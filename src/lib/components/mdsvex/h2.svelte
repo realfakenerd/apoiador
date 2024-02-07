@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
+	import { cn } from '$lib/utils'
 	let { class: className = undefined, restProps } = $props<{ class?: string; restProps: any[] }>();
 
 </script>

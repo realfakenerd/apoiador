@@ -2,22 +2,30 @@
 	import key from './key';
 	import type Leafleft from 'leaflet';
 	import 'leaflet/dist/leaflet.css';
-	import { onMount, setContext } from 'svelte';
+	import { onMount, setContext, type Snippet } from 'svelte';
 
-	export let lat = 0;
-	export let lon = 0;
-	export let zoom = 0;
+	let {
+		lat = 0,
+		lon = 0,
+		zoom = 0,
+		children
+	} = $props<{
+		lat: number;
+		lon: number;
+		zoom: number;
+		children: Snippet;
+	}>();
 
-	let leaflet: typeof Leafleft | null = null;
-	let leafletMap: Leafleft.Map | null = null;
-	let mapEl: HTMLDivElement | null = null;
+	let leaflet = $state<typeof Leafleft | null>(null);
+	let leafletMap = $state<Leafleft.Map | null>(null);
+	let mapEl = $state<HTMLDivElement | null>(null);
 
 	setContext(key, {
 		getLeaflet: () => leaflet,
 		getMap: () => leafletMap
 	});
 
-	onMount(() => {
+	$effect(() => {
 		import('leaflet').then((mod) => (leaflet = mod));
 		leafletMap = leaflet?.map(mapEl as any).setView([lat, lon], zoom) as any;
 		leaflet?.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(leafletMap as any);
@@ -32,5 +40,5 @@
 <div bind:this={mapEl} class="card p-0 card-filled max-w-lg w-full h-96" />
 
 {#if leaflet && leafletMap}
-	<slot />
+	{@render children()}
 {/if}

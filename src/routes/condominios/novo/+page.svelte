@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Selectfield from '$lib/components/Selectfield.svelte';
 	import Textfield from '$lib/components/Textfield.svelte';
-	import * as Section from '$lib/components/section';
-	import * as Card from '$lib/components/ui/card';
+	import {Section, SectionDescription, SectionHeading} from '$lib/components/section';
+	import {Card, CardHeader, CardContent, CardTitle} from '$lib/components/ui/card';
 
 	const tipoDeLogradouro = [
 		'Rua',
@@ -22,17 +22,17 @@
 	];
 </script>
 
-<Section.Root>
+<Section>
 	<header>
-		<Section.Description>Adicione um novo condomínio para a lista</Section.Description>
-		<Section.Heading>Novo Condomínio</Section.Heading>
+		<SectionDescription>Adicione um novo condomínio para a lista</SectionDescription>
+		<SectionHeading>Novo Condomínio</SectionHeading>
 	</header>
 	<form class="flex flex-col gap-y-6">
-		<Card.Root>
-			<Card.Header>
-				<Card.Title>Dados do condomínio</Card.Title>
-			</Card.Header>
-			<Card.Content class="grid md:grid-cols-4 place-items-center gap-4 w-full">
+		<Card>
+			<CardHeader>
+				<CardTitle>Dados do condomínio</CardTitle>
+			</CardHeader>
+			<CardContent class="grid md:grid-cols-4 place-items-center gap-4 w-full">
 				<Textfield label="Nome" />
 				<Textfield label="Numero de Unidades" id="numUnidades" type="number" />
 				<Textfield label="Numero de Funcionários" id="numFuncionarios" type="number" />
@@ -40,13 +40,13 @@
 				<Textfield label="Email" type="email" />
 				<Textfield label="CNPJ" id="cnpj" />
 				<Textfield label="Administradora Anterior" id="admAnterior" />
-			</Card.Content>
-		</Card.Root>
-		<Card.Root>
-			<Card.Header>
-				<Card.Title>Dados do sindico</Card.Title>
-			</Card.Header>
-			<Card.Content class="flex flex-col gap-4">
+			</CardContent>
+		</Card>
+		<Card>
+			<CardHeader>
+				<CardTitle>Dados do sindico</CardTitle>
+			</CardHeader>
+			<CardContent class="flex flex-col gap-4">
 				<div class="grid md:grid-cols-4 place-items-center gap-4 w-full">
 					<Textfield label="Nome" id="nomeSindico" />
 					<Textfield label="CPF" id="cpf" />
@@ -64,7 +64,7 @@
 					<Textfield label="cidade" id="cidadeSindico" />
 					<Textfield label="complemento" id="complementoSindico" />
 				</div>
-			</Card.Content>
-		</Card.Root>
+			</CardContent>
+		</Card>
 	</form>
-</Section.Root>
+</Section>

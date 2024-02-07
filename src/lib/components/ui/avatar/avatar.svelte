@@ -1,27 +1,18 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
-	import { Avatar as AvatarPrimitive } from 'bits-ui';
-	import type { Snippet } from 'svelte';
+	import { Avatar as AvatarPrimitive } from "bits-ui";
+	import { cn } from "$lib/utils";
 
-	type Props = AvatarPrimitive.Props;
+	type $$Props = AvatarPrimitive.Props;
 
-	let {
-		class: className,
-		delayMs,
-		children,
-		restProps
-	} = $props<{
-		class: Props['class'];
-		delayMs: Props['delayMs'];
-		children: Snippet;
-		restProps: Props;
-	}>();
+	let className: $$Props["class"] = undefined;
+	export let delayMs: $$Props["delayMs"] = undefined;
+	export { className as class };
 </script>
 
 <AvatarPrimitive.Root
 	{delayMs}
-	class={cn('relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full', className)}
-	{...restProps}
+	class={cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className)}
+	{...$$restProps}
 >
-	{@render children()}
+	<slot />
 </AvatarPrimitive.Root>

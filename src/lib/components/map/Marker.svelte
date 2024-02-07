@@ -2,11 +2,19 @@
 	import { getContext } from 'svelte';
 	import { key, type MapContext } from '.';
 
-	export let lat = 0;
-	export let lon = 0;
-	export let label = '';
-	export let open: () => void;
-	export let close: () => void;
+	let {
+		lat = 0,
+		lon = 0,
+		label = '',
+		open,
+		close
+	} = $props<{
+		lat: number;
+		lon: number;
+		label: string;
+		open: () => void;
+		close: () => void;
+	}>();
 
 	const { getLeaflet, getMap } = getContext<MapContext>(key);
 
@@ -19,9 +27,3 @@
 	marker.on('popupopen', () => open());
 	marker.on('popupclose', () => close());
 </script>
-
-<style>
-	:global(.leaflet-popup-content) {
-		@apply text-label-large;
-	}
-</style>

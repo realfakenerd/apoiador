@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Section, SectionHeading } from '$lib/components/section';
+	import { Section, SectionHeading, SectionTitle } from '$lib/components/section';
 	import { Badge } from '$lib/components/ui/badge';
 	import {
 		Card,
@@ -32,7 +32,9 @@
 </script>
 
 <Section>
-	<SectionHeading>Procedimentos</SectionHeading>
+	<SectionHeading>
+		<SectionTitle>Procedimentos</SectionTitle>
+	</SectionHeading>
 	<ToggleGroup
 		value={selectedFilters}
 		class="self-start flex-wrap border rounded-lg p-1"

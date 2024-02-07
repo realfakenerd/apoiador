@@ -4,15 +4,15 @@
 	import { Label } from './ui/label';
 
 	interface Props {
+		id?: string;
+		type?: HTMLInputTypeAttribute;
 		label: string;
-		type: HTMLInputTypeAttribute;
-		id: string;
-		placeholder: string;
-		value: HTMLInputElement['value'];
-		errorMessage: string | null;
-		oninput: HTMLInputElement['oninput'];
-		onkeyup: HTMLInputElement['onkeyup'];
-		restProps: any[];
+		value?: HTMLInputElement['value'];
+		oninput?: HTMLInputElement['oninput'];
+		onkeyup?: HTMLInputElement['onkeyup'];
+		placeholder?: string;
+		errorMessage?: string | null;
+		restProps?: any[];
 	}
 
 	let {

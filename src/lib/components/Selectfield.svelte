@@ -14,9 +14,9 @@
 		placeholder = '',
 		label = ''
 	} = $props<{
-		items: string[];
-		placeholder: string;
-		label: string;
+		items?: string[];
+		placeholder?: string;
+		label?: string;
 	}>();
 </script>
 
