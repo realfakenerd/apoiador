@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CommandMenu from './CommandMenu.svelte';
 	import ModeToggle from './ModeToggle.svelte';
-	import { MainNav, MobileNav, UserMenu } from './nav';
+	import { MainNav, MobileNav } from './nav';
 </script>
 
 <header
@@ -16,7 +16,7 @@
 				<CommandMenu />
 			</div>
 			<ModeToggle />
-			<UserMenu/>
+			<!-- <UserMenu/> -->
 		</div>
 	</div>
 </header>

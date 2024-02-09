@@ -52,6 +52,12 @@ devDependencies:
   '@internationalized/date':
     specifier: ^3.5.1
     version: 3.5.1
+  '@melt-ui/pp':
+    specifier: ^0.3.0
+    version: 0.3.0(@melt-ui/svelte@0.73.0)(svelte@5.0.0-next.45)
+  '@melt-ui/svelte':
+    specifier: ^0.73.0
+    version: 0.73.0(svelte@5.0.0-next.45)
   '@playwright/test':
     specifier: ^1.41.2
     version: 1.41.2
@@ -142,15 +148,15 @@ devDependencies:
   leaflet:
     specifier: ^1.9.4
     version: 1.9.4
-  lucide-svelte:
-    specifier: ^0.305.0
-    version: 0.305.0(svelte@5.0.0-next.45)
   mdsvex:
     specifier: ^0.11.0
     version: 0.11.0(svelte@5.0.0-next.45)
   mode-watcher:
     specifier: ^0.1.2
     version: 0.1.2(svelte@5.0.0-next.45)
+  motion:
+    specifier: ^10.17.0
+    version: 10.17.0
   postcss:
     specifier: ^8.4.34
     version: 8.4.34
@@ -1434,6 +1440,19 @@ packages:
       - supports-color
     dev: true
 
+  /@melt-ui/pp@0.3.0(@melt-ui/svelte@0.73.0)(svelte@5.0.0-next.45):
+    resolution: {integrity: sha512-b07Bdh8l2KcwKVCXOY+SoBw1dk9eWvQfMSi6SoacpRVyVmmfpi0kV4oGt3HYF0tUCB3sEmVicxse50ZzZxEzEA==}
+    engines: {pnpm: '>=8.6.3'}
+    peerDependencies:
+      '@melt-ui/svelte': '>= 0.29.0'
+      svelte: ^3.55.0 || ^4.0.0 || ^5.0.0-next.1
+    dependencies:
+      '@melt-ui/svelte': 0.73.0(svelte@5.0.0-next.45)
+      estree-walker: 3.0.3
+      magic-string: 0.30.7
+      svelte: 5.0.0-next.45
+    dev: true
+
   /@melt-ui/svelte@0.61.2(svelte@5.0.0-next.45):
     resolution: {integrity: sha512-BHkD9G31zQBToA4euDRBgTQRvWxT9scufOVCXgDO6HKTvyxFspbWT2bgiSFqAK4BbAGDn9Ao36Q8F9O71KN4OQ==}
     peerDependencies:
@@ -1461,6 +1480,67 @@ packages:
       nanoid: 4.0.2
       svelte: 5.0.0-next.45
     dev: false
+
+  /@melt-ui/svelte@0.73.0(svelte@5.0.0-next.45):
+    resolution: {integrity: sha512-KD9Z+5DDhnZmDUZv1GQ0+LGeXjxl1zwrB8JAwmGeMN6EigTvXMsTPtrFRUYC+TtEjVq82eTlJzuf4C/a88MkjA==}
+    peerDependencies:
+      svelte: '>=3 <5'
+    dependencies:
+      '@floating-ui/core': 1.6.0
+      '@floating-ui/dom': 1.6.1
+      '@internationalized/date': 3.5.1
+      dequal: 2.0.3
+      focus-trap: 7.5.4
+      nanoid: 5.0.5
+      svelte: 5.0.0-next.45
+    dev: true
+
+  /@motionone/animation@10.17.0:
+    resolution: {integrity: sha512-ANfIN9+iq1kGgsZxs+Nz96uiNcPLGTXwfNo2Xz/fcJXniPYpaz/Uyrfa+7I5BPLxCP82sh7quVDudf1GABqHbg==}
+    dependencies:
+      '@motionone/easing': 10.17.0
+      '@motionone/types': 10.17.0
+      '@motionone/utils': 10.17.0
+      tslib: 2.6.2
+    dev: true
+
+  /@motionone/dom@10.17.0:
+    resolution: {integrity: sha512-cMm33swRlCX/qOPHWGbIlCl0K9Uwi6X5RiL8Ma6OrlJ/TP7Q+Np5GE4xcZkFptysFjMTi4zcZzpnNQGQ5D6M0Q==}
+    dependencies:
+      '@motionone/animation': 10.17.0
+      '@motionone/generators': 10.17.0
+      '@motionone/types': 10.17.0
+      '@motionone/utils': 10.17.0
+      hey-listen: 1.0.8
+      tslib: 2.6.2
+    dev: true
+
+  /@motionone/easing@10.17.0:
+    resolution: {integrity: sha512-Bxe2wSuLu/qxqW4rBFS5m9tMLOw+QBh8v5A7Z5k4Ul4sTj5jAOfZG5R0bn5ywmk+Fs92Ij1feZ5pmC4TeXA8Tg==}
+    dependencies:
+      '@motionone/utils': 10.17.0
+      tslib: 2.6.2
+    dev: true
+
+  /@motionone/generators@10.17.0:
+    resolution: {integrity: sha512-T6Uo5bDHrZWhIfxG/2Aut7qyWQyJIWehk6OB4qNvr/jwA/SRmixwbd7SOrxZi1z5rH3LIeFFBKK1xHnSbGPZSQ==}
+    dependencies:
+      '@motionone/types': 10.17.0
+      '@motionone/utils': 10.17.0
+      tslib: 2.6.2
+    dev: true
+
+  /@motionone/types@10.17.0:
+    resolution: {integrity: sha512-EgeeqOZVdRUTEHq95Z3t8Rsirc7chN5xFAPMYFobx8TPubkEfRSm5xihmMUkbaR2ErKJTUw3347QDPTHIW12IA==}
+    dev: true
+
+  /@motionone/utils@10.17.0:
+    resolution: {integrity: sha512-bGwrki4896apMWIj9yp5rAS2m0xyhxblg6gTB/leWDPt+pb410W8lYWsxyurX+DH+gO1zsQsfx2su/c1/LtTpg==}
+    dependencies:
+      '@motionone/types': 10.17.0
+      hey-listen: 1.0.8
+      tslib: 2.6.2
+    dev: true
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3599,7 +3679,6 @@ packages:
     resolution: {integrity: sha512-N7kHdlgsO/v+iD/dMoJKtsSqs5Dz/dXZVebRgJw23LDk+jMi/974zyiOYDziY2JPp8xivq9BmUGwIJMiuSBi7w==}
     dependencies:
       tabbable: 6.2.0
-    dev: false
 
   /foreground-child@3.1.1:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
@@ -4054,6 +4133,10 @@ packages:
       hast-util-parse-selector: 4.0.0
       property-information: 6.4.1
       space-separated-tokens: 2.0.2
+    dev: true
+
+  /hey-listen@1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
     dev: true
 
   /html-void-elements@2.0.1:
@@ -4552,14 +4635,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-    dev: true
-
-  /lucide-svelte@0.305.0(svelte@5.0.0-next.45):
-    resolution: {integrity: sha512-8YIPW4nVxGl9xUWNd/u4UScswJkZ9OuAqT+8e2fwyVYCRDDXanGPzjJSarFNbLDhT6UZJxJQ7dsqzPsK4tDX4A==}
-    peerDependencies:
-      svelte: '>=3 <5'
-    dependencies:
-      svelte: 5.0.0-next.45
     dev: true
 
   /magic-string@0.27.0:
@@ -5141,6 +5216,15 @@ packages:
       svelte: ^4.0.0
     dependencies:
       svelte: 5.0.0-next.45
+    dev: true
+
+  /motion@10.17.0:
+    resolution: {integrity: sha512-yBHYkrnJRiomuo88YQzG/v+nzFXKNlKw/Hh7uy8AV7nrYHnE07O6PEECShGbFmZvLrAOGc9qKzEDYmspDYjNWw==}
+    dependencies:
+      '@motionone/animation': 10.17.0
+      '@motionone/dom': 10.17.0
+      '@motionone/types': 10.17.0
+      '@motionone/utils': 10.17.0
     dev: true
 
   /mri@1.2.0:
@@ -6969,7 +7053,6 @@ packages:
 
   /tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
-    dev: false
 
   /tailwind-merge@1.14.0:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}

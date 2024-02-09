@@ -3,10 +3,11 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { enableCache } from '@iconify/svelte';
 	import { ModeWatcher } from 'mode-watcher';
-	import { FirebaseApp } from 'sveltefire';
 	import '../app.css';
 	import '../post.css';
-	import { auth, firestore } from '$lib/firebase';
+	import { userStore } from '$lib/firebase/store/auth.svelte';
+	import { auth, firestore } from '$lib/firebase/index';
+	import FirebaseApp from '$lib/firebase/components/FirebaseApp.svelte';
 
 	enableCache('local');
 	onNavigate((navigation) => {
@@ -17,7 +18,7 @@
 				await navigation.complete;
 			});
 		});
-	});
+	});	
 </script>
 
 <svelte:head>
@@ -27,7 +28,7 @@
 
 <ModeWatcher />
 
-<FirebaseApp {auth} {firestore}>
+<FirebaseApp {firestore} {auth}>
 	<Navbar />
 	<main class="flex-1">
 		<slot />

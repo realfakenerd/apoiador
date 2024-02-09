@@ -5,13 +5,13 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import * as Popover from '$lib/components/ui/popover';
-	import * as RadioGroup from '$lib/components/ui/radio-group';
+	import { RadioGroup, RadioGroupItem } from '$lib/components/ui/radio-group';
 	import * as Select from '$lib/components/ui/select';
 	import { cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 	import { DateFormatter, getLocalTimeZone, type DateValue } from '@internationalized/date';
 	import agencias from '../agencias';
-	import * as Section from '$lib/components/section';
+	import {Section, SectionHeading, SectionTitle} from '$lib/components/section';
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
@@ -19,9 +19,11 @@
 	let value: DateValue | undefined = undefined;
 </script>
 
-<Section.Root>
-	<Section.Heading>Comunicação de Entrada de Clientes</Section.Heading>
-	<form  class="flex flex-col gap-y-6">
+<Section>
+	<SectionHeading>
+		<SectionTitle>Comunicação de Entrada de Clientes</SectionTitle>
+	</SectionHeading>
+	<form class="flex flex-col gap-y-6">
 		<Card.Root class="w-full">
 			<Card.Header>
 				<Card.Title tag="h2">Dados do Condomínio</Card.Title>
@@ -42,24 +44,21 @@
 					</Select.Content>
 					<Select.Input name="agencia-escolhida" />
 				</Select.Root>
-				<RadioGroup.Root class="md:col-span-3 grid w-full items-center gap-1.5" value="pool">
+				<RadioGroup class="md:col-span-3 grid w-full items-center gap-1.5" defaultValue="pool">
 					<h2 class="text-sm font-medium leading-none">Tipo de conta</h2>
 
 					<div class="inline-flex items-center gap-4 h-9 py-1">
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="pool" id="pool" />
-							<Label for="pool">Pool</Label>
+							<RadioGroupItem value="pool" />
 						</div>
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="basico" id="basico" />
-							<Label for="basico">Básico</Label>
+							<RadioGroupItem value="basico" />
 						</div>
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="propria" id="propria" />
-							<Label for="propria">Própria</Label>
+							<RadioGroupItem value="propria" />
 						</div>
 					</div>
-				</RadioGroup.Root>
+				</RadioGroup>
 
 				<div class="grid w-full items-center gap-1.5">
 					<Label for="conta">Conta</Label>
@@ -141,20 +140,18 @@
 					<Label for="pagamento-salario">Dia do pagamento de salario</Label>
 					<Input type="number" id="pagamento-salario" placeholder="05" />
 				</div>
-				<RadioGroup.Root class="grid w-full items-center gap-1.5" value="nao">
+				<RadioGroup class="grid w-full items-center gap-1.5" defaultValue="nao">
 					<h2 class="text-sm font-medium leading-none">Ex-cliente</h2>
 
 					<div class="inline-flex items-center h-9 py-1 gap-4">
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="nao" id="nao" />
-							<Label for="nao">Não</Label>
+							<RadioGroupItem value="nao" />
 						</div>
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="sim" id="sim" />
-							<Label for="sim">Sim</Label>
+							<RadioGroupItem value="sim" />
 						</div>
 					</div>
-				</RadioGroup.Root>
+				</RadioGroup>
 			</Card.Content>
 		</Card.Root>
 		<Card.Root class="w-full">
@@ -187,38 +184,34 @@
 					<Label for="duracao-contrato">Duração do contrato</Label>
 					<Input type="number" id="duracao-contrato" placeholder="12" />
 				</div>
-				<RadioGroup.Root class="grid w-full items-center gap-1.5" value="pacote-fechado">
+				<RadioGroup class="grid w-full items-center gap-1.5" defaultValue="pacote-fechado">
 					<h2 class="text-sm font-medium leading-none">Tipo de contrato</h2>
 
 					<div class="inline-flex gap-4 py-1 h-9">
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="caonvencional" id="caonvencional" />
-							<Label for="caonvencional">Convencional</Label>
+							<RadioGroupItem value="caonvencional" />
 						</div>
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="pacote-fechado" id="pacote-fechado" />
-							<Label for="pacote-fechado">Pacote fechado</Label>
+							<RadioGroupItem value="pacote-fechado" />
 						</div>
 					</div>
-				</RadioGroup.Root>
+				</RadioGroup>
 				<div class="grid w-full items-center gap-1.5">
 					<Label for="taxa-adm">Taxa de administração</Label>
 					<Input type="number" id="taxa-adm" placeholder="350" />
 				</div>
-				<RadioGroup.Root class="grid  w-full items-center gap-1.5" value="apsa">
+				<RadioGroup class="grid  w-full items-center gap-1.5" defaultValue="apsa">
 					<h2 class="text-sm font-medium leading-none">Indice Reajuste</h2>
 
 					<div class="inline-flex gap-4 py-1 h-9">
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="apsa" id="apsa" />
-							<Label for="apsa">APSA</Label>
+							<RadioGroupItem value="apsa" />
 						</div>
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="ipca" id="ipca" />
-							<Label for="ipca">IPCA</Label>
+							<RadioGroupItem value="ipca" />
 						</div>
 					</div>
-				</RadioGroup.Root>
+				</RadioGroup>
 				<div class="grid w-full items-center gap-1.5">
 					<Label for="bonificacao">Bonificação</Label>
 					<Input type="number" id="bonificacao" placeholder="100" />
@@ -235,20 +228,18 @@
 					<Label for="medio-cota">Valor médio da cota</Label>
 					<Input type="number" id="medio-cota" placeholder="400" />
 				</div>
-				<RadioGroup.Root class="grid  w-full items-center gap-1.5">
+				<RadioGroup class="grid  w-full items-center gap-1.5">
 					<h2 class="text-sm font-medium leading-none">Roteiro transapsa</h2>
 
 					<div class="inline-flex gap-4 py-1 h-9">
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="01" id="01" />
-							<Label for="01">01</Label>
+							<RadioGroupItem value="01" />
 						</div>
 						<div class="flex items-center gap-x-2">
-							<RadioGroup.Item value="02" id="02" />
-							<Label for="02">02</Label>
+							<RadioGroupItem value="02" />
 						</div>
 					</div>
-				</RadioGroup.Root>
+				</RadioGroup>
 				<div class="grid w-full items-center gap-1.5">
 					<Label for="instrucoe-cobranca">Instruções de cobrança</Label>
 					<Input type="text" id="instrucoe-cobranca" placeholder="2% de multa e 1% de juros" />
@@ -289,4 +280,4 @@
 		</Card.Root>
 		<!-- <Button on:click={() => printjs('printJs', 'html')}>Imprimir</Button> -->
 	</form>
-</Section.Root>
+</Section>

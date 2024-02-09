@@ -2,6 +2,8 @@
 	import Wheater from '$lib/components/Wheater.svelte';
 	import { Section, SectionHeading, SectionTitle } from '$lib/components/section';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
+	import RadioGroupItem from '$lib/components/ui/radio-group/radio-group-item.svelte';
+	import RadioGroup from '$lib/components/ui/radio-group/radio-group.svelte';
 	import { cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 
@@ -50,7 +52,7 @@
 </script>
 
 <Section>
-	<SectionHeading class="justify-between items-center">
+	<SectionHeading class="justify-between items-center flex-col md:flex-row">
 		<SectionTitle>Dashboard</SectionTitle>
 		<Wheater />
 	</SectionHeading>
@@ -87,7 +89,7 @@
 			border-bottom-left-radius: 0.75rem;
 		}
 	}
-	@media screen and (min-width: 640px) {
+	@media screen and (max-width: 640px) {
 		.grid a:nth-child(2) {
 			border-top-right-radius: 0.75rem;
 		}

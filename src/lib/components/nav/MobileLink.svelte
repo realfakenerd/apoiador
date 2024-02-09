@@ -11,11 +11,11 @@
 		children,
 		restProps
 	} = $props<{
-		class: string;
-		href: string;
-		open: boolean;
+		class?: string;
+		href?: string;
+		open?: boolean;
 		children: Snippet;
-		restProps: HTMLAnchorAttributes;
+		restProps?: HTMLAnchorAttributes;
 	}>();
 </script>
 

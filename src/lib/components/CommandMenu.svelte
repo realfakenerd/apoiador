@@ -1,11 +1,20 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resetMode, setMode } from 'mode-watcher';
-	import { Circle, File, Laptop, Moon, Sun } from 'radix-icons-svelte';
+	// import { Circle, File, Laptop, Moon, Sun } from 'radix-icons-svelte';
+	import Icon from '@iconify/svelte';
 	import { cn } from '../utils';
 	import { routes } from './nav/routes';
 	import { Button } from './ui/button';
-	import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from './ui/command';
+	import {
+		CommandDialog,
+		CommandEmpty,
+		CommandGroup,
+		CommandInput,
+		CommandItem,
+		CommandList,
+		CommandSeparator
+	} from './ui/command';
 
 	let open = $state(false);
 
@@ -31,7 +40,7 @@
 	const mainNav = routes.mainNav.filter((item) => !item.external);
 	const sidebarNav = routes.sidebarNav;
 
-	let {...restProps} = $props<{restProps?: HTMLButtonElement}>();
+	let { ...restProps } = $props<{ restProps?: HTMLButtonElement }>();
 </script>
 
 <Button
@@ -60,7 +69,7 @@
 							navItem.href && goto(navItem.href);
 						})}
 				>
-					<File class="mr-2 h-4 w-4" />
+					<Icon class="mr-2 h-4 w-4" icon="mdi:file" />
 					{navItem.title}
 				</CommandItem>
 			{/each}
@@ -76,7 +85,7 @@
 							})}
 					>
 						<div class="mr-2 flex h-4 w-4 items-center justify-center">
-							<Circle class="h-3 w-3" />
+							<Icon class="h-3 w-3" icon="mdi:circle-outline" />
 						</div>
 						{navItem.title}
 					</CommandItem>
@@ -86,15 +95,15 @@
 		<CommandSeparator />
 		<CommandGroup heading="Theme">
 			<CommandItem value="light" onSelect={() => runCommand(() => setMode('light'))}>
-				<Sun class="mr-2 h-4 w-4" />
+				<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-on" />
 				Light
 			</CommandItem>
 			<CommandItem value="dark" onSelect={() => runCommand(() => setMode('dark'))}>
-				<Moon class="mr-2 h-4 w-4" />
+				<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-outline" />
 				Dark
 			</CommandItem>
 			<CommandItem value="system" onSelect={() => runCommand(() => resetMode())}>
-				<Laptop class="mr-2 h-4 w-4" />
+				<Icon class="mr-2 h-4 w-4" icon="mdi:laptop" />
 				System
 			</CommandItem>
 		</CommandGroup>
