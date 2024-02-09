@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Section, SectionHeading, SectionTitle } from '$lib/components/section';
 	import { Button } from '$lib/components/ui/button';
 	import { Calendar } from '$lib/components/ui/calendar';
 	import * as Card from '$lib/components/ui/card';
@@ -6,12 +7,18 @@
 	import { Label } from '$lib/components/ui/label';
 	import * as Popover from '$lib/components/ui/popover';
 	import { RadioGroup, RadioGroupItem } from '$lib/components/ui/radio-group';
-	import * as Select from '$lib/components/ui/select';
+	import {
+		Select,
+		SelectContent,
+		SelectGroup,
+		SelectItem,
+		SelectLabel,
+		SelectTrigger
+	} from '$lib/components/ui/select';
 	import { cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 	import { DateFormatter, getLocalTimeZone, type DateValue } from '@internationalized/date';
 	import agencias from '../agencias';
-	import {Section, SectionHeading, SectionTitle} from '$lib/components/section';
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
@@ -30,20 +37,17 @@
 			</Card.Header>
 
 			<Card.Content class="grid sm:grid-cols-2 md:grid-cols-4 place-items-center gap-4">
-				<Select.Root>
-					<Select.Trigger class="w-full">
-						<Select.Value placeholder="Selecione a âgencia" />
-					</Select.Trigger>
-					<Select.Content>
-						<Select.Group>
-							<Select.Label>Agencia</Select.Label>
+				<Select>
+					<SelectTrigger class="w-full">Selectione uma agência</SelectTrigger>
+					<SelectContent>
+						<SelectGroup>
+							<SelectLabel>Agencia</SelectLabel>
 							{#each agencias as { value, label } (value)}
-								<Select.Item class="w-full" {value} {label}>{label}</Select.Item>
+								<SelectItem class="w-full" item={value} {label} />
 							{/each}
-						</Select.Group>
-					</Select.Content>
-					<Select.Input name="agencia-escolhida" />
-				</Select.Root>
+						</SelectGroup>
+					</SelectContent>
+				</Select>
 				<RadioGroup class="md:col-span-3 grid w-full items-center gap-1.5" defaultValue="pool">
 					<h2 class="text-sm font-medium leading-none">Tipo de conta</h2>
 
@@ -80,42 +84,32 @@
 					<Label for="municipio">Município</Label>
 					<Input type="text" id="municipio" placeholder="Flamengo" />
 				</div>
-				<Select.Root>
-					<Select.Trigger class="w-full self-end col-span-1">
-						<Select.Value placeholder="Selecione o estado" />
-					</Select.Trigger>
-					<Select.Content>
-						<Select.Group>
-							<Select.Label>Estado</Select.Label>
-							{#each ['rio-de-janeiro', 'são-paulo'] as estado (estado)}
-								<Select.Item class="capitalize w-full" value={estado} label={estado}
-									>{estado.split('-').join(' ')}</Select.Item
-								>
+				<Select>
+					<SelectTrigger class="w-full self-end col-span-1">Selecione o estado</SelectTrigger>
+					<SelectContent>
+						<SelectGroup>
+							<SelectLabel>Estado</SelectLabel>
+							{#each ['rio de janeiro', 'são paulo'] as estado (estado)}
+								<SelectItem class="capitalize w-full" item={estado} label={estado} />
 							{/each}
-						</Select.Group>
-					</Select.Content>
-					<Select.Input name="estado-escolhido" />
-				</Select.Root>
+						</SelectGroup>
+					</SelectContent>
+				</Select>
 				<div class="grid w-full items-center gap-1.5">
 					<Label for="cep">CEP</Label>
 					<Input type="number" id="cep" placeholder="10200-30" />
 				</div>
-				<Select.Root>
-					<Select.Trigger class="w-full self-end col-span-1">
-						<Select.Value placeholder="Selecione o tipo" />
-					</Select.Trigger>
-					<Select.Content>
-						<Select.Group>
-							<Select.Label>Tipo</Select.Label>
+				<Select>
+					<SelectTrigger class="w-full self-end col-span-1">Selecione o tipo</SelectTrigger>
+					<SelectContent>
+						<SelectGroup>
+							<SelectLabel>Tipo</SelectLabel>
 							{#each ['misto', 'residencial', 'comercial'] as estado (estado)}
-								<Select.Item class="capitalize w-full" value={estado} label={estado}
-									>{estado.split('-').join(' ')}</Select.Item
-								>
+								<SelectItem class="capitalize w-full" item={estado} label={estado} />
 							{/each}
-						</Select.Group>
-					</Select.Content>
-					<Select.Input name="estado-escolhido" />
-				</Select.Root>
+						</SelectGroup>
+					</SelectContent>
+				</Select>
 				<div class="grid w-full items-center gap-1.5">
 					<Label for="cnpj">CNPJ</Label>
 					<Input type="number" id="cnpj" placeholder="102003000001-40" />

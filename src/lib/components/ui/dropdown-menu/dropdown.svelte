@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { createSelect } from '@melt-ui/svelte';
-	import { key } from './index';
+	import { createDropdownMenu, melt } from '@melt-ui/svelte';
 	import { setContext, type Snippet } from 'svelte';
+	import { key } from './index';
 
-	const ctx = createSelect({
-		forceVisible: true
-	});
+	const ctx = createDropdownMenu();
 
 	setContext(key, ctx);
 

@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils";
+	import { cn } from '$lib/utils';
+	import { melt, type DropdownMenu } from '@melt-ui/svelte';
+	import { getContext } from 'svelte';
+	import { key } from '.';
 
-	type $$Props = DropdownMenuPrimitive.SeparatorProps;
-
-	let className: $$Props["class"] = undefined;
+	let className: string | undefined = undefined;
 	export { className as class };
+
+	const {
+		elements: { separator }
+	} = getContext<DropdownMenu>(key);
 </script>
 
-<DropdownMenuPrimitive.Separator
-	class={cn("-mx-1 my-1 h-px bg-muted", className)}
-	{...$$restProps}
-/>
+<div use:melt={$separator} class={cn('-mx-1 my-1 h-px bg-muted', className)} {...$$restProps} />

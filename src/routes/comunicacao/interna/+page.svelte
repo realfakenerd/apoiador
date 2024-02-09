@@ -10,10 +10,9 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Button } from '$lib/components/ui/button';
 	import { formatDate } from '$lib/utils';
-	import { user } from '$lib/firebase';
 	import Icon from '@iconify/svelte';
 
-	let seuNome = $state($user?.displayName),
+	let seuNome = $state(''),
 		ref = $state(),
 		paraQuem = $state(''),
 		documento = $state(''),

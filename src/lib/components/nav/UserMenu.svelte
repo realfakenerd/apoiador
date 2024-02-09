@@ -4,15 +4,15 @@
 
 	import { auth } from '$lib/firebase/index';
 	import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar';
-	import * as DropdownMenu from '../ui/dropdown-menu';
+	import {DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,DropdownMenuGroup, DropdownMenuSeparator, DropdownMenuLabel, DropdownMenuItem} from '../ui/dropdown-menu';
 	import { userStore } from '$lib/firebase/store/auth.svelte';
 
 	const { user } = userStore(auth);
 
 </script>
 
-<DropdownMenu.Root>
-	<DropdownMenu.Trigger>
+<DropdownMenu>
+	<DropdownMenuTrigger>
 		<Avatar>
 			<AvatarImage src={user?.photoURL} alt="user profile photo" />
 			<AvatarFallback>
@@ -23,40 +23,40 @@
 				{/if}
 			</AvatarFallback>
 		</Avatar>
-	</DropdownMenu.Trigger>
+	</DropdownMenuTrigger>
 
-	<DropdownMenu.Content>
-		<DropdownMenu.Group class="flex flex-col gap-2">
-			<DropdownMenu.Label class="self-center pb-0">Minha Conta</DropdownMenu.Label>
-			<DropdownMenu.Separator />
+	<DropdownMenuContent>
+		<DropdownMenuGroup class="flex flex-col gap-2">
+			<DropdownMenuLabel class="self-center pb-0">Minha Conta</DropdownMenuLabel>
+			<DropdownMenuSeparator />
 			{#if user}
 				<a href="/perfil">
-					<DropdownMenu.Item class="gap-x-4">
+					<DropdownMenuItem class="gap-x-4">
 						<Icon icon="mdi:account-circle" />
 						Perfil
-					</DropdownMenu.Item>
+					</DropdownMenuItem>
 				</a>
 
-				<DropdownMenu.Item
+				<DropdownMenuItem
 					class="justify-center bg-destructive hover:bg-destructive/60"
-					onclick={() => signOut(auth)}>Sair</DropdownMenu.Item
+					onclick={() => signOut(auth)}>Sair</DropdownMenuItem
 				>
 			{:else}
-				<DropdownMenu.Item
+				<DropdownMenuItem
 					class="cursor-pointer inline-flex gap-x-3"
 					on:click={() => signInWithPopup(auth, new GoogleAuthProvider())}
 				>
 					<span>Entrar com</span>
 					<Icon icon="logos:google-icon" />
-				</DropdownMenu.Item>
-				<DropdownMenu.Item
+				</DropdownMenuItem>
+				<DropdownMenuItem
 					class="cursor-pointer inline-flex gap-x-3"
 					on:click={() => signInWithPopup(auth, new GoogleAuthProvider())}
 				>
 					<span>Entrar com</span>
 					<Icon icon="logos:microsoft-icon" />
-				</DropdownMenu.Item>
+				</DropdownMenuItem>
 			{/if}
-		</DropdownMenu.Group>
-	</DropdownMenu.Content>
-</DropdownMenu.Root>
+		</DropdownMenuGroup>
+	</DropdownMenuContent>
+</DropdownMenu>

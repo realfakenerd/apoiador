@@ -4,6 +4,7 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import RadioGroupItem from '$lib/components/ui/radio-group/radio-group-item.svelte';
 	import RadioGroup from '$lib/components/ui/radio-group/radio-group.svelte';
+	import { Separator } from '$lib/components/ui/separator';
 	import { cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 

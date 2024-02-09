@@ -3,6 +3,7 @@
 	import Textfield from '$lib/components/Textfield.svelte';
 	import {Section, SectionDescription, SectionHeading} from '$lib/components/section';
 	import {Card, CardHeader, CardContent, CardTitle} from '$lib/components/ui/card';
+	import { Separator } from '$lib/components/ui/separator';
 
 	const tipoDeLogradouro = [
 		'Rua',
@@ -54,7 +55,7 @@
 					<Textfield label="Email" type="email" id="emailSindico" />
 					<Textfield label="Pro Labore" type="number" id="prolabore" />
 				</div>
-				<hr class="border border-primary my-4" />
+				<Separator class="bg-primary my-4"/>
 				<div class="grid md:grid-cols-4 place-items-center gap-4 w-full">
 					<Textfield label="CEP" type="text" id="cep" />
 					<Selectfield placeholder="Tipo de Logradouro" items={tipoDeLogradouro} />

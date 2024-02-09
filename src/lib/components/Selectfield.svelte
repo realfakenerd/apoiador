@@ -5,8 +5,7 @@
 		SelectGroup,
 		SelectItem,
 		SelectLabel,
-		SelectTrigger,
-		SelectValue
+		SelectTrigger
 	} from './ui/select';
 
 	let {
@@ -22,7 +21,7 @@
 
 <Select>
 	<SelectTrigger class="w-full self-end">
-		<SelectValue {placeholder} />
+		{placeholder}
 	</SelectTrigger>
 	<SelectContent>
 		<SelectGroup>
@@ -30,7 +29,7 @@
 				<SelectLabel>{label}</SelectLabel>
 			{/if}
 			{#each items as item (item)}
-				<SelectItem class="w-full capitalize" bind:value={item}>{item}</SelectItem>
+				<SelectItem class="w-full capitalize" {item} />
 			{/each}
 		</SelectGroup>
 	</SelectContent>

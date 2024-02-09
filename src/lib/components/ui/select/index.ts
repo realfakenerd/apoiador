@@ -1,4 +1,3 @@
-import { Select as SelectPrimitive } from 'bits-ui';
 import Content from './select-content.svelte';
 import Group from './select-group.svelte';
 import Item from './select-item.svelte';
@@ -7,15 +6,11 @@ import Separator from './select-separator.svelte';
 import Trigger from './select-trigger.svelte';
 import Root from './select.svelte';
 
-const Input = SelectPrimitive.Input;
-const Value = SelectPrimitive.Value;
-
 const key = Symbol('select');
 
 export {
 	Content,
 	Group,
-	Input,
 	Item,
 	Label,
 	Root,
@@ -23,15 +18,12 @@ export {
 	Root as Select,
 	Content as SelectContent,
 	Group as SelectGroup,
-	Input as SelectInput,
 	Item as SelectItem,
 	Label as SelectLabel,
 	Separator as SelectSeparator,
 	Trigger as SelectTrigger,
-	Value as SelectValue,
 	Separator,
 	Trigger,
-	Value,
 	//
 	key
 };

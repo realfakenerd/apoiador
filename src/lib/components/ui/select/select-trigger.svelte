@@ -5,11 +5,13 @@
 	import { getContext, type Snippet } from 'svelte';
 	import { key } from './index';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { Readable } from 'svelte/store';
 
 	type Props = HTMLButtonAttributes;
 
 	const {
-		elements: { trigger }
+		elements: { trigger },
+		states: { selectedLabel }
 	} = getContext<Select>(key);
 
 	let {
@@ -31,7 +33,13 @@
 	)}
 	{...restProps}
 >
-	{@render children()}
+	{#if $selectedLabel}
+		<span class="capitalize">
+			{$selectedLabel}
+		</span>
+	{:else}
+		{@render children()}
+	{/if}
 	<div>
 		<Icon class="h-4 w-4 opacity-50" icon="mdi:arrow-expand-vertical" />
 	</div>

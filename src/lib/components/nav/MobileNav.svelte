@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import { Sheet, SheetContent, SheetTrigger } from '$lib/components/ui/sheet';
-	import { ViewVertical } from 'radix-icons-svelte';
+	import Icon from '@iconify/svelte';
 	import MobileLink from './MobileLink.svelte';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
@@ -16,7 +16,7 @@
 			variant="ghost"
 			class="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
 		>
-			<ViewVertical class="h-5 w-5" />
+			<Icon icon="mdi:menu" class="h-5 w-5" />
 			<span class="sr-only">Toggle Menu</span>
 		</Button>
 	</SheetTrigger>
