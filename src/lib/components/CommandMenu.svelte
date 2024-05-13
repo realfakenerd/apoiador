@@ -18,20 +18,6 @@
 
 	let open = $state(false);
 
-	$effect(() => {
-		function handleKeydown(e: KeyboardEvent) {
-			if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-				e.preventDefault();
-				open = true;
-			}
-		}
-		addEventListener('keydown', handleKeydown);
-
-		return () => {
-			removeEventListener('keydown', handleKeydown);
-		};
-	});
-
 	function runCommand(cmd: () => void) {
 		open = false;
 		cmd();
@@ -40,8 +26,17 @@
 	const mainNav = routes.mainNav.filter((item) => !item.external);
 	const sidebarNav = routes.sidebarNav;
 
-	let { ...restProps } = $props<{ restProps?: HTMLButtonElement }>();
+	let { ...restProps }: { restProps?: HTMLButtonElement } = $props();
 </script>
+
+<svelte:window
+	onkeydown={(e) => {
+		if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+			e.preventDefault();
+			open = true;
+		}
+	}}
+/>
 
 <Button
 	variant="outline"
@@ -57,7 +52,7 @@
 	</kbd>
 </Button>
 <CommandDialog bind:open>
-	<CommandInput placeholder="Type a command or search" />
+	<CommandInput placeholder="Pesquise por procedimentos ou condomínios..." />
 	<CommandList>
 		<CommandEmpty>No results found.</CommandEmpty>
 		<CommandGroup heading="Links">

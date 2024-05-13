@@ -20,15 +20,15 @@
 		type = 'text',
 		id = label,
 		placeholder = '',
-		value = '',
+		value = $bindable(''),
 		errorMessage = null,
 		oninput,
 		onkeyup,
 		...restProps
-	} = $props<Props>();
+	}: Props = $props();
 </script>
 
-<section class="grid w-full items-center gap-1.5">
+<section class="grid w-full items-center gap-3">
 	<Label class="capitalize" for={id}>{label}</Label>
 	<Input {oninput} {onkeyup} {type} {id} {placeholder} {...restProps} bind:value />
 	{#if errorMessage}
