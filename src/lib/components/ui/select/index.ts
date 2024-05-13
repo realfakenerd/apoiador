@@ -1,29 +1,34 @@
-import Content from './select-content.svelte';
-import Group from './select-group.svelte';
-import Item from './select-item.svelte';
-import Label from './select-label.svelte';
-import Separator from './select-separator.svelte';
-import Trigger from './select-trigger.svelte';
-import Root from './select.svelte';
+import { Select as SelectPrimitive } from "bits-ui";
 
-const key = Symbol('select');
+import Label from "./select-label.svelte";
+import Item from "./select-item.svelte";
+import Content from "./select-content.svelte";
+import Trigger from "./select-trigger.svelte";
+import Separator from "./select-separator.svelte";
+
+const Root = SelectPrimitive.Root;
+const Group = SelectPrimitive.Group;
+const Input = SelectPrimitive.Input;
+const Value = SelectPrimitive.Value;
 
 export {
-	Content,
-	Group,
-	Item,
-	Label,
 	Root,
+	Item,
+	Group,
+	Input,
+	Label,
+	Value,
+	Content,
+	Trigger,
+	Separator,
 	//
 	Root as Select,
-	Content as SelectContent,
-	Group as SelectGroup,
 	Item as SelectItem,
+	Group as SelectGroup,
+	Input as SelectInput,
 	Label as SelectLabel,
-	Separator as SelectSeparator,
+	Value as SelectValue,
+	Content as SelectContent,
 	Trigger as SelectTrigger,
-	Separator,
-	Trigger,
-	//
-	key
+	Separator as SelectSeparator,
 };

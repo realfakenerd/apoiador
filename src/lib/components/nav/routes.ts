@@ -47,11 +47,11 @@ export const routes: DocsConfig = {
 			]
 		},
 		{
-			title: 'Procedimentos do MXM',
+			title: 'Contratos',
 			items: [
 				{
-					title: 'Cadastrar Proposta',
-					href: '/procedimentos/cadastrar-proposta'
+					title: 'Contrato digital',
+					href: '/procedimentos/contrato-digital'
 				}
 			]
 		},

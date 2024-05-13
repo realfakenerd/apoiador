@@ -1,41 +1,36 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
-	import { melt, type Select } from '@melt-ui/svelte';
-	import { getContext, type Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
-	import { slide } from 'svelte/transition';
-	import { key } from '.';
+	import { Select as SelectPrimitive } from "bits-ui";
+	import { scale } from "svelte/transition";
+	import { cn, flyAndScale } from "$lib/utils.js";
 
-	type Props = HTMLAttributes<HTMLDivElement>;
+	type $$Props = SelectPrimitive.ContentProps;
 
-	const {
-		elements: { menu },
-		states: { open }
-	} = getContext<Select>(key);
-
-	let {
-		class: className,
-		children,
-		...restProps
-	} = $props<{
-		class?: Props['class'];
-		restProps?: Props;
-		children: Snippet;
-	}>();
+	let className: $$Props["class"] = undefined;
+	export let sideOffset: $$Props["sideOffset"] = 4;
+	export let inTransition: $$Props["inTransition"] = flyAndScale;
+	export let inTransitionConfig: $$Props["inTransitionConfig"] = undefined;
+	export let outTransition: $$Props["outTransition"] = scale;
+	export let outTransitionConfig: $$Props["outTransitionConfig"] = {
+		start: 0.95,
+		opacity: 0,
+		duration: 50,
+	};
+	export { className as class };
 </script>
 
-{#if $open}
-	<div
-		use:melt={$menu}
-		transition:slide={{ axis: 'y' }}
-		class={cn(
-			'relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md focus:outline-none',
-			className
-		)}
-		{...restProps}
-	>
-		<div class="w-full p-1">
-			{@render children()}
-		</div>
+<SelectPrimitive.Content
+	{inTransition}
+	{inTransitionConfig}
+	{outTransition}
+	{outTransitionConfig}
+	{sideOffset}
+	class={cn(
+		"relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md focus:outline-none",
+		className
+	)}
+	{...$$restProps}
+>
+	<div class="w-full p-1">
+		<slot />
 	</div>
-{/if}
+</SelectPrimitive.Content>

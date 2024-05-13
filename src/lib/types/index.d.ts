@@ -66,8 +66,6 @@ interface Post {
 	title: string;
 	/** blog post description */
 	description: string;
-	/** blog post slug for using on `<a/>` */
-	slug: string;
 	/** blog post publish date */
 	published: string;
 	/** blog post update date */

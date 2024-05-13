@@ -1,32 +1,14 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
-	import { createRadioGroup, melt } from '@melt-ui/svelte';
-	import { setContext, type Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
-	import { key } from './index';
+	import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
+	import { cn } from "$lib/utils.js";
 
-	type DivAttr = HTMLAttributes<HTMLDivElement>;
+	type $$Props = RadioGroupPrimitive.Props;
 
-	interface Props {
-		class?: DivAttr['class'];
-		restProps?: DivAttr;
-		children: Snippet;
-		defaultValue?: string;
-	}
-
-	let { class: className, children, defaultValue, ...restProps } = $props<Props>();
-
-	const ctx = createRadioGroup({
-		defaultValue
-	});
-
-	setContext(key, ctx);
-
-	const {
-		elements: { root }
-	} = ctx;
+	let className: $$Props["class"] = undefined;
+	export let value: $$Props["value"] = undefined;
+	export { className as class };
 </script>
 
-<div use:melt={$root} class={cn('grid gap-2', className)} {...restProps.restProps}>
-	{@render children()}
-</div>
+<RadioGroupPrimitive.Root bind:value class={cn("grid gap-2", className)} {...$$restProps}>
+	<slot />
+</RadioGroupPrimitive.Root>

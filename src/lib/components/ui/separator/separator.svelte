@@ -1,36 +1,22 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
-	import { createSeparator, melt, type CreateSeparatorProps } from '@melt-ui/svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import { Separator as SeparatorPrimitive } from "bits-ui";
+	import { cn } from "$lib/utils.js";
 
-	type Props = CreateSeparatorProps & HTMLAttributes<HTMLHRElement>;
+	type $$Props = SeparatorPrimitive.Props;
 
-	let {
-		orientation: _orientation = 'horizontal',
-		decorative: _decorative = false,
-		class: className,
-		...restProps
-	} = $props<{
-		orientation?: Props['orientation'];
-		decorative?: Props['decorative'];
-		class?: Props['class'];
-	}>();
-
-	const {
-		elements: { root },
-		options: { orientation }
-	} = createSeparator({
-		decorative: _decorative,
-		orientation: _orientation
-	});
+	let className: $$Props["class"] = undefined;
+	export let orientation: $$Props["orientation"] = "horizontal";
+	export let decorative: $$Props["decorative"] = undefined;
+	export { className as class };
 </script>
 
-<div
-	use:melt={$root}
+<SeparatorPrimitive.Root
 	class={cn(
-		'bg-border',
-		$orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
+		"shrink-0 bg-border",
+		orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
 		className
 	)}
-	{...restProps}
+	{orientation}
+	{decorative}
+	{...$$restProps}
 />

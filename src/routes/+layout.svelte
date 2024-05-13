@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import FirebaseApp from '$lib/firebase/components/FirebaseApp.svelte';
+	import { auth, firestore } from '$lib/firebase/index';
 	import { enableCache } from '@iconify/svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
 	import '../post.css';
-	import { userStore } from '$lib/firebase/store/auth.svelte';
-	import { auth, firestore } from '$lib/firebase/index';
-	import FirebaseApp from '$lib/firebase/components/FirebaseApp.svelte';
 
 	enableCache('local');
 	onNavigate((navigation) => {
@@ -30,7 +29,7 @@
 
 <FirebaseApp {firestore} {auth}>
 	<Navbar />
-	<main class="flex-1">
+	<main class="flex-1 bg-neutral-900 min-h-[100vh]">
 		<slot />
 	</main>
 </FirebaseApp>

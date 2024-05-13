@@ -1,34 +1,31 @@
 <script lang="ts">
-	import { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';
-	import { cn } from '$lib/utils';
-	import { getContext, type Snippet } from 'svelte';
-	import { key } from '.';
-	import { melt, type DropdownMenu } from '@melt-ui/svelte';
-	import type { MouseEventHandler } from 'svelte/elements';
-	import type { MeltEventHandler } from '@melt-ui/svelte/internal/types';
+	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { cn } from "$lib/utils.js";
 
-	const {
-		elements: { item }
-	} = getContext<DropdownMenu>(key);
+	type $$Props = DropdownMenuPrimitive.ItemProps & {
+		inset?: boolean;
+	};
+	type $$Events = DropdownMenuPrimitive.ItemEvents;
 
-	let {
-		class: className,
-		children,
-		onclick
-	} = $props<{
-		children: Snippet;
-		class?: string;
-		onclick?: MeltEventHandler<MouseEvent>;
-	}>();
+	let className: $$Props["class"] = undefined;
+	export let inset: $$Props["inset"] = undefined;
+	export { className as class };
 </script>
 
-<div
-	use:melt={$item}
+<DropdownMenuPrimitive.Item
 	class={cn(
-		'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+		"relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:opacity-50",
+		inset && "pl-8",
 		className
 	)}
-	on:m-click={onclick}
+	on:click
+	on:keydown
+	on:focusin
+	on:focusout
+	on:pointerdown
+	on:pointerleave
+	on:pointermove
+	{...$$restProps}
 >
-	{@render children()}
-</div>
+	<slot />
+</DropdownMenuPrimitive.Item>

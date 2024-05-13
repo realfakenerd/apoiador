@@ -2,6 +2,7 @@
 	import Radiofield from '$lib/components/Radiofield.svelte';
 	import Textfield from '$lib/components/Textfield.svelte';
 	import Section from '$lib/components/section/Section.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { read, utils, writeFile } from 'xlsx';
 	let files = $state<FileList>();
@@ -130,4 +131,6 @@
 		</CardHeader>
 		<CardContent>sss</CardContent>
 	</Card>
+
+	<Button>Criar Reclin</Button>
 </Section>
