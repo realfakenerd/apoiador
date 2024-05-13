@@ -53,11 +53,51 @@
 			id: 'condominio_endereco',
 			placeholder: 'Endereço',
 			label: 'Endereço'
+		},
+		{
+			id: 'condominio_bairro',
+			placeholder: 'Flamengo',
+			label: 'Bairro'
+		},
+		{
+			id: 'condominio_cidade',
+			placeholder: 'Rio de Janeiro',
+			label: 'Cidade'
+		},
+		{
+			id: 'condominio_cep',
+			placeholder: '22222-222',
+			label: 'CEP'
+		},
+		{
+			id: 'condominio_cnpj',
+			placeholder: '11.111.111/1111-11',
+			label: 'CNPJ'
+		},
+		{
+			id: 'condominio_unidades',
+			placeholder: '10',
+			label: 'Unidades'
+		},
+		{
+			id: 'condominio_empregados',
+			placeholder: '10',
+			label: 'Empregados'
+		},
+		{
+			id: 'condominio_adm_anterior',
+			placeholder: 'Crase Sigma',
+			label: 'Administrador Anterior'
+		},
+		{
+			id: 'condominio_pagamento_salario',
+			placeholder: '05',
+			label: 'Dia do pagamento do salário'
 		}
 	];
 
 	const [send, receive] = crossfade({
-		duration: (d) => Math.sqrt(d * 200),
+		duration: 250,
 		easing: cubicInOut
 	});
 </script>
@@ -94,14 +134,16 @@
 					href={`#${item}`}
 					variant="ghost"
 					class={cn(!isActive && 'hover:underline', 'relative justify-start hover:bg-transparent')}
-					>Dados do {item}
+				>
 					{#if isActive}
 						<div
 							in:send={{ key: 'active-tab' }}
 							out:receive={{ key: 'active-tab' }}
-							class="absolute inset-0 rounded-md bg-accent -z-10"
+							class="absolute inset-0 rounded-md bg-accent"
 						></div>
 					{/if}
+
+					<span class="relative">Dados do {item}</span>
 				</Button>
 			{/each}
 		</aside>
@@ -134,77 +176,46 @@
 						</div>
 					</RadioGroup>
 
-					{#each condominios_input as { id, placeholder, label, type } (id)}
+					{#each condominios_input.slice(0,4) as { id, placeholder, label, type } (id)}
 						{@render form_input({ id, placeholder, label, type })}
 					{/each}
-					<div class="grid w-full items-center gap-3">
-						<Label for="bairro">Bairro</Label>
-						<Input type="text" id="bairro" placeholder="Flamengo" />
-					</div>
-					<div class="grid w-full items-center gap-3">
-						<Label for="municipio">Município</Label>
-						<Input type="text" id="municipio" placeholder="Flamengo" />
-					</div>
+
 					<Select>
 						<SelectTrigger class="w-full self-end col-span-1">Selecione o estado</SelectTrigger>
 						<SelectContent>
 							<SelectGroup>
 								<SelectLabel>Estado</SelectLabel>
 								{#each ['rio de janeiro', 'são paulo'] as estado (estado)}
-									<SelectItem class="capitalize w-full" item={estado} label={estado} />
+									<SelectItem class="capitalize w-full" value={estado} label={estado} />
 								{/each}
 							</SelectGroup>
 						</SelectContent>
 					</Select>
-					<div class="grid w-full items-center gap-3">
-						<Label for="cep">CEP</Label>
-						<Input type="number" id="cep" placeholder="10200-30" />
-					</div>
 					<Select>
 						<SelectTrigger class="w-full self-end col-span-1">Selecione o tipo</SelectTrigger>
 						<SelectContent>
 							<SelectGroup>
 								<SelectLabel>Tipo</SelectLabel>
 								{#each ['misto', 'residencial', 'comercial'] as estado (estado)}
-									<SelectItem class="capitalize w-full" item={estado} label={estado} />
+									<SelectItem class="capitalize w-full" value={estado} label={estado} />
 								{/each}
 							</SelectGroup>
 						</SelectContent>
 					</Select>
-					<div class="grid w-full items-center gap-3">
-						<Label for="cnpj">CNPJ</Label>
-						<Input type="number" id="cnpj" placeholder="102003000001-40" />
-					</div>
-					<div class="grid w-full items-center gap-3">
-						<Label for="unidades">Unidades</Label>
-						<Input type="number" id="unidades" placeholder="01" />
-					</div>
-					<div class="grid w-full items-center gap-3">
-						<Label for="empregados">Empregados</Label>
-						<Input type="number" id="empregados" placeholder="01" />
-					</div>
-					<div class="grid w-full items-center gap-3">
-						<Label for="administradora-anterior">Administradora Anterior</Label>
-						<Input type="text" id="administradora-anterior" placeholder="Crase Sigma" />
-					</div>
-					<div class="grid w-full items-center gap-3">
-						<Label for="elevadores">Numero de elevadores</Label>
-						<Input type="number" id="elevadores" placeholder="01" />
-					</div>
-					<div class="grid w-full items-center gap-3">
-						<Label for="pagamento-salario">Dia do pagamento de salario</Label>
-						<Input type="number" id="pagamento-salario" placeholder="05" />
-					</div>
+
+					{#each condominios_input.slice(4) as { id, placeholder, label, type } (id)}{@render form_input({
+						id,
+						placeholder,
+						label,
+						type
+					})}{/each}
+					
 					<RadioGroup class="grid w-full items-center gap-3" value="nao">
 						<h2 class="text-sm font-medium leading-none">Ex-cliente</h2>
 
 						<div class="inline-flex items-center h-9 py-1 gap-4">
-							<div class="flex items-center gap-x-2">
-								<RadioGroupItem value="nao" />
-							</div>
-							<div class="flex items-center gap-x-2">
-								<RadioGroupItem value="sim" />
-							</div>
+							{@render radio_item({ value: 'nao', label: 'Não', id: 'nao' })}
+							{@render radio_item({ value: 'sim', label: 'Sim', id: 'sim' })}
 						</div>
 					</RadioGroup>
 				</Card.Content>

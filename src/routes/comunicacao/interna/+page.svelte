@@ -1,26 +1,23 @@
 <script lang="ts">
-	import {
-		Section,
-		SectionDescription,
-		SectionHeading,
-		SectionTitle
-	} from '$lib/components/section';
-	import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '$lib/components/ui/card';
+	import { Button } from '$lib/components/ui/button';
+	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import { Button } from '$lib/components/ui/button';
+	import { Separator } from '$lib/components/ui/separator';
 	import { formatDate } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 
-	let seuNome = $state(''),
-		ref = $state(),
-		paraQuem = $state(''),
-		documento = $state(''),
-		documentos = $state<string[]>([]);
 
-	const hoje = formatDate(new Date(), 'short');
+	let seuNome = $state('');
+	let ref = $state('');
+	let paraQuem = $state('');
+	let documento = $state('');
+	let documentos = $state<string[]>([]);
+
+	const hoje = formatDate(new Date(), 'pt-BR', { dateStyle: 'short' });
 
 	function addDocumento() {
+		if(!documento) return;
 		documentos.push(documento);
 		documento = '';
 	}
@@ -30,14 +27,24 @@
 	}
 </script>
 
-<Section class="print:hidden">
-	<form class="flex flex-col gap-6" on:submit|preventDefault={() => print()}>
-		<SectionHeading class="flex-col">
-			<SectionDescription>
-				Documento que serve para protocolar a movimentação dos documentos nos setores da empresa
-			</SectionDescription>
-			<SectionTitle>Comunicação Interna</SectionTitle>
-		</SectionHeading>
+
+<section class="p-10 pb-16 flex flex-col gap-6 print:hidden">
+	<header class="flex flex-col gap-0.5">
+		<h2 class="text-2xl">Comunicação Interna</h2>
+		<p class="text-muted-foreground">
+			Documento que serve para protocolar a movimentação dos documentos nos setores da empresa
+		</p>
+	</header>
+
+	<Separator />
+
+	<form
+		class="flex flex-col gap-6"
+		onsubmit={(e) => {
+			e.preventDefault();
+			print();
+		}}
+	>
 		<Card class="w-full">
 			<CardHeader>
 				<CardTitle class="text-lg" tag="h2">Dados do protocolo</CardTitle>
@@ -104,9 +111,9 @@
 			</CardContent>
 		</Card>
 	</form>
-</Section>
+</section>
 
-{#snippet impressao(ass = true)}
+{#snippet impressao({ass = true}: {ass: boolean})}
 	<div class="flex gap-6 border-2 flex-col">
 		<header class="inline-flex gap-6 border-b items-center p-3">
 			<div class="inline-flex gap-3 items-center flex-1">
@@ -138,7 +145,7 @@
 				<h1 class="ph1">Comunicação Interna</h1>
 			</div>
 			<h2>{seuNome}</h2>
-			<div class="w-4 border rotate-90" />
+			<div class="w-4 border rotate-90"></div>
 			<span class="inline-flex gap-1">
 				<p>Data:</p>
 				<p>{hoje}</p>
@@ -176,13 +183,13 @@
 	</div>
 {/snippet}
 
-<Section class="hidden print:block print:text-black">
-	{@render impressao()}
-</Section>
+<section class="hidden print:block print:text-black">
+	{@render impressao({ ass: true })}
+</section>
 <hr class="hidden print:block border-dotted" />
-<Section class="hidden print:block print:text-black">
-	{@render impressao(false)}
-</Section>
+<section class="hidden print:block print:text-black">
+	{@render impressao({ ass: false })}
+</section>
 <hr class="hidden print:block border-dotted" />
 
 <style>
