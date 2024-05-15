@@ -25,7 +25,26 @@
 </script>
 
 <script lang="ts">
-	let {title = '', description = '', source = '', component = '', radix = ''} = $props()
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		title?: string;
+		description?: string;
+		source?: string;
+		component?: string;
+		radix?: string;
+		children: Snippet<any>
+	}
+
+	let {
+		title = '',
+		description = '',
+		source = '',
+		component = '',
+		radix = '',
+		children
+	}: Props = $props();
 </script>
 
-<slot {title} {description} {source} {component} {radix} />
+{@render children({ title, description, source, component, radix })}
+<!-- <slot {title} {description} {source} {component} {radix} /> -->

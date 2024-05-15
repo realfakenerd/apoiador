@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Selectfield from '$lib/components/Selectfield.svelte';
 	import Textfield from '$lib/components/Textfield.svelte';
-	import {Section, SectionDescription, SectionHeading} from '$lib/components/section';
-	import {Card, CardHeader, CardContent, CardTitle} from '$lib/components/ui/card';
+	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Separator } from '$lib/components/ui/separator';
 
 	const tipoDeLogradouro = [
@@ -23,11 +22,12 @@
 	];
 </script>
 
-<Section>
-	<header>
-		<SectionDescription>Adicione um novo condomínio para a lista</SectionDescription>
-		<SectionHeading>Novo Condomínio</SectionHeading>
+<section class="p-10 pb-16 flex flex-col gap-6">
+	<header class="flex flex-col gap-0.5">
+		<h2 class="text-2xl">Novo condomínio</h2>
+		<p class="text-muted-foreground">Adicione um novo condomínio para a lista</p>
 	</header>
+	<Separator />
 	<form class="flex flex-col gap-y-6">
 		<Card>
 			<CardHeader>
@@ -55,7 +55,7 @@
 					<Textfield label="Email" type="email" id="emailSindico" />
 					<Textfield label="Pro Labore" type="number" id="prolabore" />
 				</div>
-				<Separator class="bg-primary my-4"/>
+				<Separator class="bg-primary my-4" />
 				<div class="grid md:grid-cols-4 place-items-center gap-4 w-full">
 					<Textfield label="CEP" type="text" id="cep" />
 					<Selectfield placeholder="Tipo de Logradouro" items={tipoDeLogradouro} />
@@ -68,4 +68,4 @@
 			</CardContent>
 		</Card>
 	</form>
-</Section>
+</section>

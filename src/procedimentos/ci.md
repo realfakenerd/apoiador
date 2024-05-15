@@ -6,7 +6,6 @@ updated: '12-01-2024'
 image: '/foto_de_papel.png'
 category:
   - ci
-  - tutorial
 ---
 
 CI ou "Comunicação Interna" é um protocolo de comunicação de entrega de documentos entre setores da empresa.

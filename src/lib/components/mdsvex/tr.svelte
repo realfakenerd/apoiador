@@ -1,9 +1,14 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
 
-	let { class: className = undefined, restProps } = $props<{ class?: string; restProps: any[] }>();
+	import type { Snippet } from 'svelte';
+	let {
+		class: className = undefined,
+		children,
+		...restProps
+	}: { class?: string; children: Snippet } = $props();
 </script>
 
 <tr class={cn('m-0 border-t p-0 even:bg-muted', className)} {...restProps}>
-	<slot />
+	{@render children()}
 </tr>

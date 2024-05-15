@@ -11,7 +11,7 @@ export const prerender = true;
  * @param default a Record with the keys being the function names and the values being functions with arguments and return types
  */
 interface ContentType {
-	metadata: Post & { slug: string };
+	metadata: Post;
 	default: {
 		[key: string]: (args: {
 			params: {
@@ -23,17 +23,17 @@ interface ContentType {
 
 
 export const load = (async () => {
-	let procedimentos: Post[] = [];
+	let procedimentos = [];
 	const paths = import.meta.glob<ContentType>(`/src/procedimentos/*.md`);
 	for (const path in paths) {
 		const file = await paths[path]();
 
 		const slug = path.split('/').at(-1)?.replace('.md', '');
+		console.log(slug);
+		
 
 		if (file && slug) {
-			const metadata = file.metadata as Post;
-			console.log(metadata);
-			
+			const metadata = file.metadata as Post;			
 			const post = { ...metadata, slug } satisfies Post & { slug: string };
 			post.published && procedimentos.push(post);
 		}

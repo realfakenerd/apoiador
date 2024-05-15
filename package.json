@@ -22,6 +22,7 @@
 		"@editorjs/quote": "^2.6.0",
 		"@editorjs/warning": "^1.4.0",
 		"@floating-ui/dom": "^1.6.5",
+		"@formkit/tempo": "^0.1.1",
 		"@iconify/svelte": "^3.1.6",
 		"@internationalized/date": "^3.5.3",
 		"@melt-ui/pp": "^0.3.2",

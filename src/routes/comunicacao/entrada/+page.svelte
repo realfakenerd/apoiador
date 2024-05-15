@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Button } from '$lib/components/ui/button';
+	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import { Calendar } from '$lib/components/ui/calendar';
 	import * as Card from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
@@ -130,21 +130,23 @@
 		<aside class="flex flex-col gap-4 text-sm font-semibold w-1/3 py-2 sticky top-24 h-full">
 			{#each items as item (item)}
 				{@const isActive = item === $page.url.hash.split('#')[1]}
-				<Button
+				<a
 					href={`#${item}`}
-					variant="ghost"
-					class={cn(!isActive && 'hover:underline', 'relative justify-start hover:bg-transparent')}
+					class={cn(buttonVariants({
+						variant: 'ghost',
+						size: 'default'
+					}), !isActive && 'hover:underline', 'relative justify-start hover:bg-transparent')}
 				>
 					{#if isActive}
 						<div
-							in:send={{ key: 'active-tab' }}
-							out:receive={{ key: 'active-tab' }}
+							in:receive={{ key: 'active-tab' }}
+							out:send={{ key: 'active-tab' }}
 							class="absolute inset-0 rounded-md bg-accent"
 						></div>
 					{/if}
 
 					<span class="relative">Dados do {item}</span>
-				</Button>
+				</a>
 			{/each}
 		</aside>
 

@@ -28,8 +28,8 @@ const buttonVariants = tv({
 	},
 });
 
-type Variant = VariantProps<typeof buttonVariants>["variant"];
-type Size = VariantProps<typeof buttonVariants>["size"];
+export type Variant = VariantProps<typeof buttonVariants>["variant"];
+export type Size = VariantProps<typeof buttonVariants>["size"];
 
 type Props = ButtonPrimitive.Props & {
 	variant?: Variant;

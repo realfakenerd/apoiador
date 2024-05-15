@@ -51,6 +51,9 @@ importers:
       '@floating-ui/dom':
         specifier: ^1.6.5
         version: 1.6.5
+      '@formkit/tempo':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@iconify/svelte':
         specifier: ^3.1.6
         version: 3.1.6(svelte@5.0.0-next.131)
@@ -831,6 +834,9 @@ packages:
 
   '@floating-ui/utils@0.2.2':
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
+
+  '@formkit/tempo@0.1.1':
+    resolution: {integrity: sha512-nepRwKnCIjukLkblqh339sSXYI6P3cqktF/T7ECj3vURW+Pd+YzTv/I/lwjRqPGmlQJG93LORodIAkvgoExIAg==}
 
   '@grpc/grpc-js@1.9.14':
     resolution: {integrity: sha512-nOpuzZ2G3IuMFN+UPPpKrC6NsLmWsTqSsm66IRfnBt1D4pwTqE27lmbpcPM+l2Ua4gE7PfjRHI6uedAy7hoXUw==}
@@ -5076,6 +5082,8 @@ snapshots:
       '@floating-ui/utils': 0.2.2
 
   '@floating-ui/utils@0.2.2': {}
+
+  '@formkit/tempo@0.1.1': {}
 
   '@grpc/grpc-js@1.9.14':
     dependencies:

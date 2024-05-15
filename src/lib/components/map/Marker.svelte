@@ -2,19 +2,14 @@
 	import { getContext } from 'svelte';
 	import { key, type MapContext } from '.';
 
-	let {
-		lat = 0,
-		lon = 0,
-		label = '',
-		open,
-		close
-	} = $props<{
+	interface Props {
 		lat: number;
 		lon: number;
 		label: string;
 		open: () => void;
 		close: () => void;
-	}>();
+	}
+	let { lat = 0, lon = 0, label = '', open, close }: Props = $props();
 
 	const { getLeaflet, getMap } = getContext<MapContext>(key);
 

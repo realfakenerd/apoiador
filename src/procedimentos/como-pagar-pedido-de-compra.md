@@ -8,7 +8,6 @@ category:
   - rp
   - pedido
   - compra
-  - tutorial
 ---
 
 Para fazer a requisição e gerar o titulo para pagamento, primeiramente deve-se

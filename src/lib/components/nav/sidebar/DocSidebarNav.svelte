@@ -2,8 +2,7 @@
 	import { cn } from '$lib/utils';
 	import DocsSidebarNavItems from './SidebarNavItem.svelte';
 
-
-	let {items = []} = $props<{items: SidebarNavItem[]}>()
+	let { items = [] }: { items: SidebarNavItem[] } = $props();
 </script>
 
 {#if items.length}

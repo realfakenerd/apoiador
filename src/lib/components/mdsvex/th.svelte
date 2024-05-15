@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
 
-	let { class: className = undefined, restProps } = $props<{ class?: string; restProps: any[] }>();
-
+	import type { Snippet } from 'svelte';
+	let {
+		class: className = undefined,
+		children,
+		...restProps
+	}: { class?: string; children: Snippet } = $props();
 </script>
 
 <th
@@ -12,5 +16,5 @@
 	)}
 	{...restProps}
 >
-	<slot />
+	{@render children()}
 </th>

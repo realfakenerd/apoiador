@@ -1,22 +1,18 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { cn } from '$lib/utils.js';
+	import type { Snippet } from 'svelte';
 
-	type $$Props = HTMLAttributes<HTMLDivElement>;
+	interface Props {
+		class?: string;
+		children: Snippet;
+	}
 
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let { class: className, children, ...restProps }: Props = $props();
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
-	class={cn("rounded-xl border bg-card text-card-foreground shadow", className)}
-	{...$$restProps}
-	on:click
-	on:focusin
-	on:focusout
-	on:mouseenter
-	on:mouseleave
+<section
+	class={cn('rounded-xl border bg-card text-card-foreground shadow', className)}
+	{...restProps}
 >
-	<slot />
-</div>
+	{@render children()}
+</section>

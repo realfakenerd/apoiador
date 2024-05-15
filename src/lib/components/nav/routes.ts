@@ -3,7 +3,7 @@ interface DocsConfig {
 	sidebarNav: SidebarNavItem[];
 }
 
-export const routes: DocsConfig = {
+export const routes = {
 	mainNav: [
 		{
 			title: 'Procedimentos',
@@ -69,4 +69,4 @@ export const routes: DocsConfig = {
 			]
 		}
 	]
-};
+} satisfies DocsConfig;

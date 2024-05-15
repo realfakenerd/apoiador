@@ -4,24 +4,20 @@
 	import type { Snippet } from 'svelte';
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
-	let {
-		class: className,
-		href,
-		open,
-		children,
-		restProps
-	} = $props<{
+	interface Props {
 		class?: string;
 		href?: string;
 		open?: boolean;
 		children: Snippet;
 		restProps?: HTMLAnchorAttributes;
-	}>();
+	}
+
+	let { class: className, href, open, children, restProps }: Props = $props();
 </script>
 
 <a
 	{href}
-	on:click={() => (open = false)}
+	onclick={() => (open = false)}
 	class={cn($page.url.pathname === href ? 'text-foreground' : 'text-foreground/60', className)}
 	{...restProps}
 >

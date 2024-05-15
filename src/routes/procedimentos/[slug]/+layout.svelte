@@ -1,6 +1,8 @@
 <script>
 	import { routes } from '$lib/components/nav';
 	import { SidebarNav } from '$lib/components/nav/sidebar';
+
+	let { children } = $props();
 </script>
 
 <div
@@ -13,5 +15,5 @@
 			<SidebarNav items={routes.sidebarNav} />
 		</div>
 	</aside>
-	<slot />
+	{@render children()}
 </div>

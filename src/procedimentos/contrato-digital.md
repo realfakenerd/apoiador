@@ -8,7 +8,6 @@ category:
   - rp
   - pedido
   - compra
-  - tutorial
 ---
 
 ## Como Fazer

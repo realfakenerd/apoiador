@@ -1,20 +1,17 @@
 <script lang="ts">
-	import key from './key';
 	import type Leafleft from 'leaflet';
 	import 'leaflet/dist/leaflet.css';
-	import { onMount, setContext, type Snippet } from 'svelte';
+	import { setContext, type Snippet } from 'svelte';
+	import key from './key';
 
-	let {
-		lat = 0,
-		lon = 0,
-		zoom = 0,
-		children
-	} = $props<{
+	interface Props {
 		lat: number;
 		lon: number;
 		zoom: number;
 		children: Snippet;
-	}>();
+	}
+
+	let { lat = 0, lon = 0, zoom = 0, children }: Props = $props();
 
 	let leaflet = $state<typeof Leafleft | null>(null);
 	let leafletMap = $state<Leafleft.Map | null>(null);
@@ -37,7 +34,7 @@
 	});
 </script>
 
-<div bind:this={mapEl} class="card p-0 card-filled max-w-lg w-full h-96" />
+<div bind:this={mapEl} class="card p-0 card-filled max-w-lg w-full h-96"></div>
 
 {#if leaflet && leafletMap}
 	{@render children()}

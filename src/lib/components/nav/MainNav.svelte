@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
-	import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
+	import {
+		DropdownMenu,
+		DropdownMenuContent,
+		DropdownMenuItem,
+		DropdownMenuTrigger
+	} from './dropdown';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
 </script>
@@ -42,27 +47,22 @@
 		{#each routes.mainNav as { href, title, items }}
 			{#if items}
 				<DropdownMenu>
-					<DropdownMenuTrigger class={cn(
-						'transition-colors hover:text-foreground/80',
-						$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
-					)}>
-							{title}
+					<DropdownMenuTrigger>
+						{title}
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
-						{#each items as {title, href}}
-							<a {href}>
-								<DropdownMenuItem class="cursor-pointer">
-									{title}
-								</DropdownMenuItem>
-							</a>
+						{#each items as { href, title }}
+							<DropdownMenuItem {href}>
+								{title}
+							</DropdownMenuItem>
 						{/each}
 					</DropdownMenuContent>
-				</DropdownMenu>														
+				</DropdownMenu>
 			{:else}
 				<a
 					{href}
 					class={cn(
-						'transition-colors hover:text-foreground/80',
+						'transition-colors hover:text-foreground/80 flex',
 						$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
 					)}
 				>

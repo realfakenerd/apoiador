@@ -7,11 +7,11 @@
 		DropdownMenuContent,
 		DropdownMenuItem,
 		DropdownMenuTrigger
-	} from './ui/dropdown-menu';
+	} from './nav/dropdown';
 </script>
 
 <DropdownMenu>
-	<DropdownMenuTrigger >
+	<DropdownMenuTrigger>
 		<Button variant="ghost" class="w-9 px-0">
 			<Icon
 				class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-roate-90 dark:scale-0"
@@ -24,7 +24,7 @@
 			<span class="sr-only">Toggle theme</span>
 		</Button>
 	</DropdownMenuTrigger>
-	<DropdownMenuContent align={{placement: 'bottom-end'}} class="max-w-32">
+	<DropdownMenuContent class="max-w-32">
 		<DropdownMenuItem class="inline-flex justify-between w-full" onclick={() => setMode('light')}>
 			<span>Light</span>
 			<Icon class="h-[1.2rem] w-[1.2rem]" icon="mdi:lightbulb-on" />

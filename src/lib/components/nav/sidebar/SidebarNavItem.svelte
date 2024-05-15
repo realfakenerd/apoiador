@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
 
-	let {items = []} = $props<{items: NavItem[]}>()
+	let { items = [] }: { items: NavItem[] } = $props();
 </script>
 
 {#if items.length}

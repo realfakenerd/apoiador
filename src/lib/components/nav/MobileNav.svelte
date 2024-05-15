@@ -1,25 +1,34 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
+	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import { Sheet, SheetContent, SheetTrigger } from '$lib/components/ui/sheet';
 	import Icon from '@iconify/svelte';
 	import MobileLink from './MobileLink.svelte';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
+	import { createDialog } from '@melt-ui/svelte';
+	import { cn } from '$lib/utils';
 
 	let open = false;
+
+	const {
+		elements: { trigger }
+	} = createDialog();
 </script>
 
+<button
+	class={cn(
+		buttonVariants({ variant: 'ghost', size: 'default' }),
+		'mr-2 px-0 text-base',
+		'hover:bg-transparent',
+		'focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden'
+	)}
+>
+	<Icon icon="mdi:menu" class="h-5 w-5" />
+	<span class="sr-only">Toggle Menu</span>
+</button>
+
 <Sheet bind:open>
-	<SheetTrigger asChild let:builder>
-		<Button
-			builders={[builder]}
-			variant="ghost"
-			class="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
-		>
-			<Icon icon="mdi:menu" class="h-5 w-5" />
-			<span class="sr-only">Toggle Menu</span>
-		</Button>
-	</SheetTrigger>
+	
 	<SheetContent side="left" class="pr-0">
 		<MobileLink href="/" class="flex items-center gap-2" bind:open>
 			<svg
