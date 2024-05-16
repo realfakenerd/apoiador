@@ -5,6 +5,7 @@
 	import {cubicInOut} from 'svelte/easing'
 	import { fly, slide } from 'svelte/transition';
 	import { cn } from '$lib/utils';
+	import { easeEmphasized } from '../transition';
 
 	interface Props {
 		class?: string;
@@ -21,7 +22,7 @@
 
 {#if $open}
 	<div
-		transition:slide={{ duration: 150, easing: cubicInOut, axis: 'y' }}
+		transition:slide={{ duration: 250, easing: easeEmphasized, axis: 'y' }}
 		class={cn(
 			'flex flex-col gap-1',
 			'transition-shadow shadow-lg shadow-background/30 z-50 min-w-[8rem] rounded-md bg-popover overflow-hidden text-popover-foreground',

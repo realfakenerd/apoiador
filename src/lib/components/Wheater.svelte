@@ -47,6 +47,7 @@
 
 		const res = await fetch('/api/previsao_do_tempo');
 		const data = (await res.json()) as OpenWeather;
+		
 		localStorage.setItem(today, JSON.stringify(data));
 		return data;
 	}

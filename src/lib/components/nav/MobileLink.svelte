@@ -8,11 +8,11 @@
 		class?: string;
 		href?: string;
 		open?: boolean;
-		children: Snippet;
 		restProps?: HTMLAnchorAttributes;
+		children: Snippet;
 	}
 
-	let { class: className, href, open, children, restProps }: Props = $props();
+	let { class: className, href, open = $bindable(), children, restProps }: Props = $props();
 </script>
 
 <a

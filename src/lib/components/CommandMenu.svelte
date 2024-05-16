@@ -1,48 +1,42 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { resetMode, setMode } from 'mode-watcher';
-	// import { Circle, File, Laptop, Moon, Sun } from 'radix-icons-svelte';
-	import Icon from '@iconify/svelte';
+	import { createDialog, melt } from '@melt-ui/svelte';
+	import { fade } from 'svelte/transition';
 	import { cn } from '../utils';
 	import { routes } from './nav/routes';
-	import { Button } from './ui/button';
-	import {
-		CommandDialog,
-		CommandEmpty,
-		CommandGroup,
-		CommandInput,
-		CommandItem,
-		CommandList,
-		CommandSeparator
-	} from './ui/command';
+	import { buttonVariants } from './ui/button';
+	import Textfield from './Textfield.svelte';
+	import Icon from '@iconify/svelte';
+	import { setMode } from 'mode-watcher';
 
-	let open = $state(false);
+	const {
+		elements: { trigger, portalled, overlay, content, title },
+		states: { open }
+	} = createDialog();
 
 	function runCommand(cmd: () => void) {
-		open = false;
+		open.set(false);
 		cmd();
 	}
 
 	const mainNav = routes.mainNav.filter((item) => !item.external);
 	const sidebarNav = routes.sidebarNav;
-
-	let { ...restProps }: { restProps?: HTMLButtonElement } = $props();
 </script>
 
 <svelte:window
 	onkeydown={(e) => {
 		if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
 			e.preventDefault();
-			open = true;
+			open.update((bool) => !bool);
 		}
 	}}
 />
 
-<Button
-	variant="outline"
-	class={cn('relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64')}
-	onclick={() => (open = true)}
-	{...restProps}
+<button
+	class={cn(
+		buttonVariants({ variant: 'outline' }),
+		'relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64'
+	)}
+	use:melt={$trigger}
 >
 	<span class="inline-flex">Pesquise... </span>
 	<kbd
@@ -50,8 +44,68 @@
 	>
 		<span class="text-xs">Ctrl</span>+ K
 	</kbd>
-</Button>
-<CommandDialog bind:open>
+</button>
+
+{#if $open}
+	<div use:melt={$portalled}>
+		<div
+			use:melt={$overlay}
+			class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+			transition:fade={{ duration: 150 }}
+		>
+			<!--  -->
+		</div>
+		<div
+			use:melt={$content}
+			class={cn(
+				'bg-popover text-popover-foreground',
+				'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+				'max-w-[450px] z-50 max-h-[85vh] w-[90vw] p-2',
+				'flex flex-col overflow-hidden rounded-md ring ring-foreground',
+			)}
+		>
+			<div class="flex items-center border-b px-3">
+				<input
+					type="search"
+					placeholder="Pesquise por procedimentos ou condomínios..."
+					class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+				/>
+			</div>
+
+			<section class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+				<ul class="overflow-hidden p-1 text-foreground">
+					<li class="px-2 py-1.5 text-xs font-medium text-muted-foreground">Links</li>
+					{#each mainNav as navItem, i (i)}
+						<a
+							href={navItem.href}
+							class="hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+						>
+							<Icon icon="mdi:file" class="mr-2 h-4 w-4" />
+							{navItem.title}
+						</a>
+					{/each}
+				</ul>
+				<hr />
+				<ul class="overflow-hidden p-1 text-foreground">
+					<button onclick={() => runCommand(() => setMode('light'))} class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+							<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-on" />
+							Light
+					</button>
+					<button onclick={() => runCommand(() => setMode('dark'))} class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+							<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-outline" />
+							Dark
+					</button>
+					<button onclick={() => runCommand(() => setMode('system'))} class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+							<Icon class="mr-2 h-4 w-4" icon="mdi:laptop" />
+							System
+					</button>
+				</ul>
+			</section>
+		</div>
+	</div>
+{/if}
+
+<!-- <CommandDialog bind:open>
 	<CommandInput placeholder="Pesquise por procedimentos ou condomínios..." />
 	<CommandList>
 		<CommandEmpty>No results found.</CommandEmpty>
@@ -103,4 +157,4 @@
 			</CommandItem>
 		</CommandGroup>
 	</CommandList>
-</CommandDialog>
+</CommandDialog> -->
