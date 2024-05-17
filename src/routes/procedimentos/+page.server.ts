@@ -2,7 +2,6 @@ import type { PageServerLoad } from './$types';
 
 export const prerender = true;
 
-
 /**
  * The `interface ContentType` is defining the structure of an object that represents a file
  * with frontmatter. It has the following properties
@@ -21,7 +20,6 @@ interface ContentType {
 	};
 }
 
-
 export const load = (async () => {
 	let procedimentos = [];
 	const paths = import.meta.glob<ContentType>(`/src/procedimentos/*.md`);
@@ -30,10 +28,9 @@ export const load = (async () => {
 
 		const slug = path.split('/').at(-1)?.replace('.md', '');
 		console.log(slug);
-		
 
 		if (file && slug) {
-			const metadata = file.metadata as Post;			
+			const metadata = file.metadata as Post;
 			const post = { ...metadata, slug } satisfies Post & { slug: string };
 			post.published && procedimentos.push(post);
 		}

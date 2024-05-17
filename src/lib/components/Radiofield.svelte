@@ -11,7 +11,7 @@
 	interface Props {
 		value: string;
 		label: string;
-		items: Item[]
+		items: Item[];
 	}
 
 	let { value, label, items = [] } = $props<Props>();
@@ -21,8 +21,8 @@
 	<h2 class="text-sm font-medium leading-none">{label}</h2>
 
 	<div class="inline-flex items-center h-9 py-1 gap-4">
-		{#each items as {value, id, label}, index (index)}
-			{@const _id = id??label}
+		{#each items as { value, id, label }, index (index)}
+			{@const _id = id ?? label}
 			<div class="flex items-center gap-x-2">
 				<RadioGroupItem {value} id={_id} />
 				<Label for={_id} class="capitalize">{label}</Label>

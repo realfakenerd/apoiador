@@ -21,7 +21,6 @@
 			const fileArrayBuffer = await file.arrayBuffer();
 			const xlsx = read(fileArrayBuffer);
 			console.log(utils.sheet_to_formulae(xlsx.Sheets[xlsx.SheetNames[0]]));
-			
 		}
 	}
 
@@ -44,7 +43,7 @@
 	});
 </script>
 
-<input type="file" bind:files>
+<input type="file" bind:files />
 <button onclick={createXLSX}>create</button>
 <Section>
 	<Card>

@@ -7,12 +7,11 @@
 	const auth = getFirebaseContext().auth!;
 	const user = userStore(auth);
 
-
-	let {children} = $props<{
-		children: Snippet<[{user: User; auth: Auth; signOut: () => Promise<void>}]>
-	}>()
+	let { children } = $props<{
+		children: Snippet<[{ user: User; auth: Auth; signOut: () => Promise<void> }]>;
+	}>();
 </script>
 
 {#if user}
-	{@render children({user, auth, signOut: () => signOut(auth)})}
+	{@render children({ user, auth, signOut: () => signOut(auth) })}
 {/if}

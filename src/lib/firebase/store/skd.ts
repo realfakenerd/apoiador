@@ -23,7 +23,4 @@ function setFirebaseContext(sdks: SDKs) {
 	setContext(key, sdks);
 }
 
-export {
-	getFirebaseContext,
-	setFirebaseContext
-}
+export { getFirebaseContext, setFirebaseContext };

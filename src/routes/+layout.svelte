@@ -17,7 +17,7 @@
 				await navigation.complete;
 			});
 		});
-	});	
+	});
 </script>
 
 <svelte:head>

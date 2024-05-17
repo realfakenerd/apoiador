@@ -1,11 +1,6 @@
 <script lang="ts">
 	import { Badge } from '$lib/components/ui/badge';
-	import {
-		Card,
-		CardContent,
-		CardHeader,
-		CardTitle
-	} from '$lib/components/ui/card';
+	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Separator } from '$lib/components/ui/separator';
 	import { cn } from '$lib/utils.js';
 	import { diffDays } from '@formkit/tempo';
@@ -45,7 +40,6 @@
 		defaultValue: 'todos',
 		onValueChange: changeFilter as any
 	});
-
 </script>
 
 <section class="p-10 pb-16 flex flex-col gap-6">

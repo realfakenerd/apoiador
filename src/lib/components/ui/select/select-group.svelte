@@ -15,6 +15,6 @@
 	}>();
 </script>
 
-<div use:melt={$group(_key??'')}>
+<div use:melt={$group(_key ?? '')}>
 	{@render children()}
 </div>

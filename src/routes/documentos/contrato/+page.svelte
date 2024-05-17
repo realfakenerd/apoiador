@@ -111,7 +111,9 @@
 					{#each pf.sub_clause as sc, j (j)}
 						{@const subClause = String(j + 1)}
 						<li class="inline-flex gap-5 items-center group hover:text-muted-foreground">
-							<Button variant="destructive" class="opacity-0 group-hover:opacity-100"><Icon icon="mdi:delete" /></Button>
+							<Button variant="destructive" class="opacity-0 group-hover:opacity-100"
+								><Icon icon="mdi:delete" /></Button
+							>
 							<p><span id="{clause}-{subClause}">{clause}.{subClause}</span> - {@html sc.text}</p>
 						</li>
 					{/each}

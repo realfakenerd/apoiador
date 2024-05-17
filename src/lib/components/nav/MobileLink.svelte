@@ -18,7 +18,11 @@
 <a
 	{href}
 	onclick={() => (open = false)}
-	class={cn($page.url.pathname === href ? 'text-foreground' : 'text-foreground/60', className)}
+	class={cn(
+		$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60',
+		'text-sm',
+		className
+	)}
 	{...restProps}
 >
 	{@render children()}

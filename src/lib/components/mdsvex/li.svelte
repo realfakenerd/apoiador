@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	
+
 	import type { Snippet } from 'svelte';
 	let {
 		class: className = undefined,

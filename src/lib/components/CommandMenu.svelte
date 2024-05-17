@@ -61,11 +61,11 @@
 				'bg-popover text-popover-foreground',
 				'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
 				'max-w-[450px] z-50 max-h-[85vh] w-[90vw] p-2',
-				'flex flex-col overflow-hidden rounded-md ring ring-foreground',
+				'flex flex-col overflow-hidden rounded-md ring ring-foreground'
 			)}
 		>
 			<div class="flex items-center border-b px-3">
-				<Icon class="mr-2 h-4 w-4 shrink-0 opacity-50" icon="mdi:search"/>
+				<Icon class="mr-2 h-4 w-4 shrink-0 opacity-50" icon="mdi:search" />
 				<input
 					type="search"
 					placeholder="Pesquise por procedimentos ou condomínios..."
@@ -89,17 +89,26 @@
 				</ul>
 				<hr />
 				<ul class="overflow-hidden p-1 text-foreground">
-					<button onclick={() => runCommand(() => setMode('light'))} class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
-							<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-on" />
-							Light
+					<button
+						onclick={() => runCommand(() => setMode('light'))}
+						class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+					>
+						<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-on" />
+						Light
 					</button>
-					<button onclick={() => runCommand(() => setMode('dark'))} class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
-							<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-outline" />
-							Dark
+					<button
+						onclick={() => runCommand(() => setMode('dark'))}
+						class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+					>
+						<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-outline" />
+						Dark
 					</button>
-					<button onclick={() => runCommand(() => setMode('system'))} class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
-							<Icon class="mr-2 h-4 w-4" icon="mdi:laptop" />
-							System
+					<button
+						onclick={() => runCommand(() => setMode('system'))}
+						class="w-full hover:bg-foreground/30 hover:text-foreground transition-colors relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+					>
+						<Icon class="mr-2 h-4 w-4" icon="mdi:laptop" />
+						System
 					</button>
 				</ul>
 			</section>

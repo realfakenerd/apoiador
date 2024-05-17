@@ -132,10 +132,14 @@
 				{@const isActive = item === $page.url.hash.split('#')[1]}
 				<a
 					href={`#${item}`}
-					class={cn(buttonVariants({
-						variant: 'ghost',
-						size: 'default'
-					}), !isActive && 'hover:underline', 'relative justify-start hover:bg-transparent')}
+					class={cn(
+						buttonVariants({
+							variant: 'ghost',
+							size: 'default'
+						}),
+						!isActive && 'hover:underline',
+						'relative justify-start hover:bg-transparent'
+					)}
 				>
 					{#if isActive}
 						<div
@@ -178,7 +182,7 @@
 						</div>
 					</RadioGroup>
 
-					{#each condominios_input.slice(0,4) as { id, placeholder, label, type } (id)}
+					{#each condominios_input.slice(0, 4) as { id, placeholder, label, type } (id)}
 						{@render form_input({ id, placeholder, label, type })}
 					{/each}
 
@@ -205,13 +209,15 @@
 						</SelectContent>
 					</Select>
 
-					{#each condominios_input.slice(4) as { id, placeholder, label, type } (id)}{@render form_input({
-						id,
-						placeholder,
-						label,
-						type
-					})}{/each}
-					
+					{#each condominios_input.slice(4) as { id, placeholder, label, type } (id)}{@render form_input(
+							{
+								id,
+								placeholder,
+								label,
+								type
+							}
+						)}{/each}
+
 					<RadioGroup class="grid w-full items-center gap-3" value="nao">
 						<h2 class="text-sm font-medium leading-none">Ex-cliente</h2>
 

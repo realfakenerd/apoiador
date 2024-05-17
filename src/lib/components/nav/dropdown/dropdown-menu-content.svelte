@@ -2,7 +2,7 @@
 	import { melt, type DropdownMenu } from '@melt-ui/svelte';
 	import { getContext, type Snippet } from 'svelte';
 	import { key } from './index';
-	import {cubicInOut} from 'svelte/easing'
+	import { cubicInOut } from 'svelte/easing';
 	import { fly, slide } from 'svelte/transition';
 	import { cn } from '$lib/utils';
 	import { easeEmphasized } from '../transition';

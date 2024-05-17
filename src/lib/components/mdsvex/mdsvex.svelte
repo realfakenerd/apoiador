@@ -33,7 +33,7 @@
 		source?: string;
 		component?: string;
 		radix?: string;
-		children: Snippet<any>
+		children: Snippet<any>;
 	}
 
 	let {

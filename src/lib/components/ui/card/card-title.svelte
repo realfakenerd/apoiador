@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import type { Snippet } from "svelte";
-	import type { HeadingLevel } from "./index.js";
+	import { cn } from '$lib/utils.js';
+	import type { Snippet } from 'svelte';
+	import type { HeadingLevel } from './index.js';
 
 	interface Props {
 		class?: string | undefined;
@@ -14,7 +14,7 @@
 
 <svelte:element
 	this={tag}
-	class={cn("font-semibold leading-none tracking-tight", className)}
+	class={cn('font-semibold leading-none tracking-tight', className)}
 	{...restProps}
 >
 	{@render children()}

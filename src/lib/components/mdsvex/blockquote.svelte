@@ -2,8 +2,11 @@
 	import { cn } from '$lib/utils';
 	import type { Snippet } from 'svelte';
 
-	let { class: className = undefined, children, ...restProps }: { class?: string; children: Snippet } =
-		$props();
+	let {
+		class: className = undefined,
+		children,
+		...restProps
+	}: { class?: string; children: Snippet } = $props();
 </script>
 
 <blockquote

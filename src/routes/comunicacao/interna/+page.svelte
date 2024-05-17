@@ -7,7 +7,6 @@
 	import { formatDate } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 
-
 	let seuNome = $state('');
 	let ref = $state('');
 	let paraQuem = $state('');
@@ -17,7 +16,7 @@
 	const hoje = formatDate(new Date(), 'pt-BR', { dateStyle: 'short' });
 
 	function addDocumento() {
-		if(!documento) return;
+		if (!documento) return;
 		documentos.push(documento);
 		documento = '';
 	}
@@ -26,7 +25,6 @@
 		documentos.splice(documentos.indexOf(String(index)));
 	}
 </script>
-
 
 <section class="p-10 pb-16 flex flex-col gap-6 print:hidden">
 	<header class="flex flex-col gap-0.5">

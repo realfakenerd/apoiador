@@ -34,7 +34,7 @@ export const routes: DocsConfig = {
 					href: '/documentos/contrato'
 				}
 			]
-		},
+		}
 	],
 	sidebarNav: [
 		{
