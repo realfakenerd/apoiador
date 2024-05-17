@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { Section, SectionHeading, SectionTitle } from '$lib/components/section';
 	import { Button } from '$lib/components/ui/button';
-	import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '$lib/components/ui/card';
+	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import Icon from '@iconify/svelte';
+	import {cn} from '$lib/utils'
 
 	// const condominios = collectionStore<{ nome: string }>(firestore, 'condominios', []);
 </script>
@@ -10,10 +11,10 @@
 <Section>
 	<SectionHeading class="justify-between items-center">
 		<SectionTitle>Condomínios</SectionTitle>
-		<Button href="/condominios/novo" class="flex gap-2">
+		<a href="/condominios/novo" class={cn("flex gap-2")}>
 			<Icon icon="mdi:plus" />
 			<span>Empresa</span>
-		</Button>
+		</a>
 	</SectionHeading>
 
 	<ul class="flex flex-wrap gap-4">
@@ -38,7 +39,7 @@
 					</div>
 				</CardContent>
 				<CardFooter class="w-full">
-					<Button href="#" class="w-full">Acessar</Button>
+					<a href="#" class="w-full">Acessar</a>
 				</CardFooter>
 			</Card>
 		</li>
@@ -63,7 +64,7 @@
 					</div>
 				</CardContent>
 				<CardFooter class="w-full">
-					<Button href="/condominios/maraba" class="w-full">Acessar</Button>
+					<a href="/condominios/maraba" class="w-full">Acessar</a>
 				</CardFooter>
 			</Card>
 		</li>

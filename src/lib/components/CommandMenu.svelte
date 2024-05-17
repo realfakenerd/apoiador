@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { fade } from 'svelte/transition';
-	import { cn } from '../utils';
+	import { cn, flyAndScale } from '../utils';
 	import { routes } from './nav/routes';
 	import { buttonVariants } from './ui/button';
 	import Textfield from './Textfield.svelte';
@@ -57,6 +57,7 @@
 		</div>
 		<div
 			use:melt={$content}
+			transition:flyAndScale={{duration: 250}}
 			class={cn(
 				'bg-popover text-popover-foreground',
 				'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',

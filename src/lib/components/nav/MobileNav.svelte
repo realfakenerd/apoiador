@@ -3,12 +3,12 @@
 	import { cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
+	import { timeline } from 'motion';
 	import { fade, slide } from 'svelte/transition';
 	import MobileLink from './MobileLink.svelte';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
 	import { easeEmphasized } from './transition';
-	import { timeline, type TimelineOptions } from 'motion';
 
 	const {
 		elements: { trigger, close, portalled, overlay, content, title },
@@ -23,9 +23,6 @@
 		timeline(
 			firstUl.map((el, i) => {
 				const duration = 0.075 + (i - 0.075) * 0.2;
-
-				console.log(duration);
-
 				return [el, { y: [-100, 0], opacity: [0, 1] }, { duration }];
 			}),
 			{

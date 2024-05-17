@@ -1,6 +1,7 @@
 {
 	"conventionalCommits.scopes": [
-		"app"
+		"app",
+		"build"
 	],
 	"IDX.aI.enableInlineCompletion": true,
 	"IDX.aI.enableCodebaseIndexing": true
