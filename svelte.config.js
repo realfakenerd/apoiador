@@ -9,7 +9,8 @@ const config = {
 	extensions: ['.svelte', '.md'],
 	kit: {
 		adapter: adapter({
-			split: true
+			split: true,
+			runtime: 'edge'
 		})
 	},
 	preprocess: sequence([mdsvex(mdsvexOptions), vitePreprocess(), preprocessMeltUI()])
