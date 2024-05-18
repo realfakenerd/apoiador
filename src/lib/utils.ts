@@ -1,8 +1,8 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-import { cubicOut } from 'svelte/easing';
+import { clsx, type ClassValue } from 'clsx';
 import type { TransitionConfig } from 'svelte/transition';
+import { twMerge } from 'tailwind-merge';
 import { tv } from 'tailwind-variants';
+import { easeEmphasized } from './components/nav/transition';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -33,57 +33,58 @@ export const buttonVariants = tv({
 	}
 });
 
-type FlyAndScaleParams = {
+interface FlyAndScaleParams {
 	y?: number;
 	x?: number;
+	easing?: (t: number) => number;
 	start?: number;
+	rotation?: number;
 	duration?: number;
+};
+
+function mapValueInRange(value: number, inputRange: [number, number], outputRange: [number, number]) {
+	const [minA, maxA] = inputRange;
+	const [minB, maxB] = outputRange;
+
+	const percentage = (value - minA) / (maxA - minA);
+	return percentage * (maxB - minB) + minB;
+}
+
+function buildCSSString(style: Record<string, number | string | undefined>) {
+	return Object.keys(style).reduce((str, key) => {
+		if (style[key] === undefined) return str;
+		return str + `${key}:${style[key]};`;
+	}, '');
 };
 
 export const flyAndScale = (
 	node: Element,
-	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
+	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150, easing: easeEmphasized }
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
 	const transform = style.transform === 'none' ? '' : style.transform;
 
-	const scaleConversion = (valueA: number, scaleA: [number, number], scaleB: [number, number]) => {
-		const [minA, maxA] = scaleA;
-		const [minB, maxB] = scaleB;
+	const css = (t: number) => {
+		const y = mapValueInRange(t, [0, 1], [params.y ?? -8, 0]);
+		const x = mapValueInRange(t, [0, 1], [params.x ?? 0, 0]);
+		const scale = mapValueInRange(t, [0, 1], [params.start ?? 0.95, 1]);
+		const rotation = params.rotation ?? 0;
 
-		const percentage = (valueA - minA) / (maxA - minA);
-		const valueB = percentage * (maxB - minB) + minB;
+		const style = {
+			transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale}) rotate(${rotation}deg)`,
+			opacity: t
+		}
 
-		console.log(valueB);
-		
-		return valueB;
-	};
-
-	const styleToString = (style: Record<string, number | string | undefined>): string => {
-		return Object.keys(style).reduce((str, key) => {
-			if (style[key] === undefined) return str;
-			return str + `${key}:${style[key]};`;
-		}, '');
-	};
+		return buildCSSString(style);
+	}
 
 	return {
 		duration: params.duration ?? 200,
 		delay: 0,
-		css: (t) => {
-			const y = scaleConversion(t, [0, 1], [params.y ?? 5, 0]);
-			const x = scaleConversion(t, [0, 1], [params.x ?? 0, 0]);
-			const scale = scaleConversion(t, [0, 1], [params.start ?? 0.95, 1]);
-
-			return styleToString({
-				transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-				opacity: t
-			});
-		},
-		easing: cubicOut
+		css,
+		easing: params.easing
 	};
 };
-
-type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 
 export function formatDate(
 	date: string | Date,

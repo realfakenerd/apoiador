@@ -1,12 +1,12 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
+	import { setMode } from 'mode-watcher';
 	import { fade } from 'svelte/transition';
 	import { cn, flyAndScale } from '../utils';
 	import { routes } from './nav/routes';
+	import { easeEmphasizedAccel, easeEmphasizedDecel } from './nav/transition';
 	import { buttonVariants } from './ui/button';
-	import Textfield from './Textfield.svelte';
-	import Icon from '@iconify/svelte';
-	import { setMode } from 'mode-watcher';
 
 	const {
 		elements: { trigger, portalled, overlay, content, title },
@@ -57,7 +57,8 @@
 		</div>
 		<div
 			use:melt={$content}
-			transition:flyAndScale={{duration: 250}}
+			in:flyAndScale={{ duration: 400, start: 0, easing: easeEmphasizedDecel }}
+			out:flyAndScale={{ duration: 200, easing: easeEmphasizedAccel }}
 			class={cn(
 				'bg-popover text-popover-foreground',
 				'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',

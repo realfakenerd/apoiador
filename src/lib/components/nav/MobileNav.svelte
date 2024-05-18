@@ -1,47 +1,18 @@
 <script lang="ts">
 	import { buttonVariants } from '$lib/components/ui/button';
-	import { cn } from '$lib/utils';
+	import { cn, flyAndScale } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { timeline } from 'motion';
 	import { fade, slide } from 'svelte/transition';
 	import MobileLink from './MobileLink.svelte';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
-	import { easeEmphasized } from './transition';
+	import { easeEmphasized, easeEmphasizedAccel, easeEmphasizedDecel } from './transition';
 
 	const {
 		elements: { trigger, close, portalled, overlay, content, title },
 		states: { open }
 	} = createDialog();
-
-	function animation(node: HTMLElement) {
-		const elementArray = Array.from(node.children);
-		const firstUl = Array.from(elementArray[0].children);
-		const secondUl = Array.from(elementArray[1].children);
-
-		timeline(
-			firstUl.map((el, i) => {
-				const duration = 0.075 + (i - 0.075) * 0.2;
-				return [el, { y: [-100, 0], opacity: [0, 1] }, { duration }];
-			}),
-			{
-				defaultOptions: {
-					easing: 'ease-out'
-				}
-			}
-		);
-		timeline(
-			secondUl.map((el) => [el, { y: [-100, 0], opacity: [0, 1] }]),
-			{
-				duration: 1,
-				delay: 1,
-				defaultOptions: {
-					easing: 'ease-out'
-				}
-			}
-		);
-	}
 </script>
 
 <button
@@ -69,7 +40,8 @@
 
 		<div
 			class="fixed w-3/4 p-6 inset-y-0 left-0 z-50 min-h-dvh bg-background flex flex-col overflow-hidden"
-			transition:slide={{ duration: 500, axis: 'x', easing: easeEmphasized }}
+			in:flyAndScale={{ duration: 400, x: -100, y: 0, start: 1, easing: easeEmphasized }}
+			out:flyAndScale={{ duration: 200, x: -100, y: 0, start: 1, easing: easeEmphasized }}
 			use:melt={$content}
 		>
 			<div class="inline-flex justify-between w-full">
@@ -110,7 +82,6 @@
 				</button>
 			</div>
 			<section
-				use:animation
 				class="my-4 h-[calc(100dvh-8rem)] pb-10 pl-6 overflow-y-auto w-full overflow-x-hidden"
 			>
 				<ul class="flex flex-col gap-y-3">

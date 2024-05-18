@@ -25,4 +25,7 @@
       };
     };
   };
+  idx.workspace.onCreate = {
+    npm-install = "npm add - g pnpm && pnpm i";
+  };
 }
