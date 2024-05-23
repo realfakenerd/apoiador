@@ -1,9 +1,10 @@
 import { fontFamily } from 'tailwindcss/defaultTheme';
+import containerQuery from '@tailwindcss/container-queries'
 import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-	plugins: [typography],
+	plugins: [typography, containerQuery],
 	darkMode: ['class'],
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	safelist: ['dark'],

@@ -8,15 +8,13 @@
 		SelectTrigger
 	} from './ui/select';
 
-	let {
-		items = [],
-		placeholder = '',
-		label = ''
-	} = $props<{
+	interface Props {
 		items?: string[];
 		placeholder?: string;
 		label?: string;
-	}>();
+	}
+
+	let { items = [], placeholder = '', label = '' }: Props = $props();
 </script>
 
 <Select>

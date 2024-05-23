@@ -2,6 +2,7 @@
 	import type { HTMLInputTypeAttribute } from 'svelte/elements';
 	import { Input } from './ui/input';
 	import { Label } from './ui/label';
+	import { createLabel, melt } from '@melt-ui/svelte';
 
 	interface Props {
 		id?: string;
@@ -26,10 +27,15 @@
 		onkeyup,
 		...restProps
 	}: Props = $props();
+
+
+	const {
+		elements: {root}
+	} = createLabel()
 </script>
 
 <section class="grid w-full items-center gap-3">
-	<Label class="capitalize" for={id}>{label}</Label>
+	<label use:melt={$root} class="capitalize text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for={id}>{label}</label>
 	<Input {oninput} {onkeyup} {type} {id} {placeholder} {...restProps} bind:value />
 	{#if errorMessage}
 		<p class="text-sm text-destructive">{errorMessage}</p>

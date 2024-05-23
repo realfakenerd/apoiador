@@ -49,6 +49,7 @@
 	];
 </script>
 
+
 <Section>
 	<SectionHeading class="justify-between items-center flex-col md:flex-row">
 		<SectionTitle>Dashboard</SectionTitle>
@@ -62,7 +63,7 @@
 			{#each links as l}
 				<Card
 					class={cn(
-						`min-w-[14rem] rounded-[.25rem] hover:rounded-xl transition-all first:rounded-tl-xl last:rounded-br-xl min-h-[72px] w-full hover:border-primary`
+						` min-w-[14rem] rounded-[.25rem] hover:rounded-xl transition-all first:rounded-tl-xl last:rounded-br-xl min-h-[72px] w-full hover:border-primary`
 					)}
 				>
 					<a href={l.link} target="_blank">
@@ -78,6 +79,8 @@
 		</CardContent>
 	</Card>
 </Section>
+
+
 
 <style>
 	@media screen and (max-width: 639px) {
@@ -101,7 +104,6 @@
 
 	@media screen and (min-width: 768px) {
 		.grid a:nth-child(4) {
-			background-color: red;
 			border-top-right-radius: 0.75rem;
 		}
 

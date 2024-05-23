@@ -14,7 +14,7 @@
 		items: Item[];
 	}
 
-	let { value, label, items = [] } = $props<Props>();
+	let { value, label, items = [] }: Props = $props();
 </script>
 
 <RadioGroup class="grid w-full items-center gap-1.5" {value}>

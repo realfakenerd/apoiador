@@ -3,17 +3,14 @@
 	import { cn } from '$lib/utils';
 	import { melt, type TableOfContentsElements, type TableOfContentsItem } from '@melt-ui/svelte';
 
-	let {
-		level = 1,
-		tree = [],
-		activeHeadingIdxs,
-		item
-	} = $props<{
+	interface Props {
 		level?: number;
 		activeHeadingIdxs?: number[];
 		tree?: TableOfContentsItem[];
 		item: TableOfContentsElements['item'];
-	}>();
+	}
+
+	let { level = 1, tree = [], activeHeadingIdxs, item }: Props = $props();
 </script>
 
 <ul class={cn('m-0 list-none', { 'pl-4': level !== 1 })}>

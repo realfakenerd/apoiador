@@ -3,11 +3,11 @@
 	import { cn, flyAndScale } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { fade, slide } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import MobileLink from './MobileLink.svelte';
 	import { routes } from './routes';
 	import { siteConfig } from './site';
-	import { easeEmphasized, easeEmphasizedAccel, easeEmphasizedDecel } from './transition';
+	import { easeEmphasized } from './transition';
 
 	const {
 		elements: { trigger, close, portalled, overlay, content, title },
