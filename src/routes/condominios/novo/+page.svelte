@@ -4,6 +4,10 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Separator } from '$lib/components/ui/separator';
 	import { buttonVariants, cn } from '$lib/utils';
+	import {collectionStore} from '$lib/firebase/services';
+	import {firestore} from '$lib/firebase'
+
+	collectionStore(firestore, 'condominios');
 
 	const tipoDeLogradouro = [
 		'Selecione...',
@@ -50,14 +54,13 @@
 		complemento: ''
 	});
 
-	function onsubmit(e: Event) {
+	async function onsubmit(e: Event) {
 		e.preventDefault();
 		console.log(condominio);
 	}
 
 	const items = ['condominio', 'contrato', 'sindico'];
 
-	$inspect(sindicoEndereco);
 </script>
 
 <section class="p-10 pb-16 flex flex-col gap-6">
@@ -67,7 +70,7 @@
 	</header>
 	<Separator />
 
-	<section class="flex flex-col md:flex-row" {onsubmit}>
+	<section class="flex flex-col md:flex-row">
 		<aside
 			class="hidden md:flex flex-col gap-4 text-sm font-semibold w-1/3 py-2 sticky top-24 h-full"
 		>
@@ -92,7 +95,7 @@
 				</a>
 			{/each}
 		</aside>
-		<form class="flex flex-col gap-y-6 w-full">
+		<form class="flex flex-col gap-y-6 w-full" {onsubmit}>
 			<Card class="@container">
 				<CardHeader>
 					<CardTitle>Dados do condomínio</CardTitle>
@@ -100,6 +103,8 @@
 				<CardContent class="grid @md:grid-cols-2 gap-4 w-full">
 					<Textfield bind:value={condominio.nome} label="Nome" />
 					<Textfield
+						required
+						maxlength={3}
 						bind:value={condominio.numUnidades}
 						label="Numero de Unidades"
 						id="numUnidades"
@@ -126,7 +131,7 @@
 					<CardTitle>Dados do sindico</CardTitle>
 				</CardHeader>
 				<CardContent class="@container flex flex-col gap-4 w-full">
-					<div class="grid @md:grid-cols-2 gap-4 w-full">
+					<div id="sindico" class="grid @md:grid-cols-2 gap-4 w-full">
 						<Textfield bind:value={sindico.nome} label="Nome" id="nomeSindico" />
 						<Textfield bind:value={sindico.cpf} label="CPF" id="cpf" />
 						<Textfield bind:value={sindico.telefone} label="telefone" type="tel" id="telefone" />
@@ -189,4 +194,3 @@
 		</form>
 	</section>
 </section>
-

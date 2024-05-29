@@ -83,6 +83,7 @@
 		"terser": "^5.31.0",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.5",
+		"valibot": "0.31.0-rc.4",
 		"vite": "^5.2.11",
 		"vite-plugin-compression": "^0.5.1",
 		"vite-plugin-lightningcss": "^0.0.5",

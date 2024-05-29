@@ -8,7 +8,6 @@
 	let component = $derived<typeof SvelteComponent<any, any, any>>(data.component);
 	let meta = $derived(data.meta);
 </script>
-
 <section class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 	<div class="mx-auto w-full min-w-0">
 		<header class="flex flex-col gap-0.5">

@@ -29,7 +29,7 @@
 
 <FirebaseApp {firestore} {auth}>
 	<Navbar />
-	<main class="flex-1 bg-neutral-900 min-h-[100vh]">
+	<main style="view-timeline-name: main;" class="flex-1 bg-neutral-900 min-h-[100vh]">
 		<slot />
 	</main>
 </FirebaseApp>

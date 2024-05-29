@@ -5,8 +5,8 @@
 </script>
 
 <header
-	style="view-timeline-name: navigation;"
-	class="supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm backdrop-blur print:hidden"
+	style="view-transition-name: navigation;"
+	class="supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/95 shadow-xl backdrop-blur print:hidden"
 >
 	<div class="container flex py-4 items-center gap-x-2 sm:gap-x-4">
 		<MainNav />

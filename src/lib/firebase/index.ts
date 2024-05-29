@@ -1,7 +1,9 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { userStore } from './store/auth.svelte';
+
+export * from './store';
+export * from './components';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyA5fm-YAENRqzrbFEtV55IjYyZk5HppDCI',

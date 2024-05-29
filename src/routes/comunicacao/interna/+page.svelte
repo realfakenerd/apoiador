@@ -1,8 +1,7 @@
 <script lang="ts">
+	import Textfield from '$lib/components/Textfield.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
 	import { Separator } from '$lib/components/ui/separator';
 	import { formatDate } from '$lib/utils';
 	import Icon from '@iconify/svelte';
@@ -50,40 +49,20 @@
 
 			<CardContent class="grid grid-cols-1 md:grid-cols-3 place-items-center gap-4 w-full">
 				<div class="grid w-full items-center gap-1.5">
-					<Label for="seuNome">Seu nome</Label>
-					<Input
-						required
-						type="text"
-						id="seuNome"
-						placeholder="José Silva Sauro"
-						bind:value={seuNome}
-					/>
+					<Textfield type="text" label="Seu nome" id="seuNome" required bind:value={seuNome} />
+					
 				</div>
 				<div class="grid w-full items-center gap-1.5">
-					<Label for="praQuem">Para quem</Label>
-					<Input
-						required
-						type="text"
-						id="praQuem"
-						placeholder="Joana Silva Sauro"
-						bind:value={paraQuem}
-					/>
+					<Textfield type="text" label="Para quem" id="paraQuem" required bind:value={paraQuem}/>
 				</div>
 				<div class="grid w-full items-center gap-1.5">
-					<Label for="ref">Ref</Label>
-					<Input
-						required
-						type="text"
-						id="ref"
-						placeholder="Condomínio Solar do Centro"
-						bind:value={ref}
-					/>
+					<Textfield type="text" label="Ref" id="ref" required bind:value={ref}/>
 				</div>
 
 				<div class="w-full md:col-span-3 flex flex-col gap-3">
 					<p class="text-md font-medium leading-none">Documentos enviados</p>
 					<div class="flex w-full flex-col sm:flex-row gap-4">
-						<Input placeholder="1 Contrato Assinado" type="text" bind:value={documento} />
+						<Textfield type="text" label="Documento" id="doc" required bind:value={documento}/>
 						<Button on:click={addDocumento}>Adicionar Documento</Button>
 					</div>
 

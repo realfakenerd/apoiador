@@ -3,13 +3,14 @@
 	import type { Snippet } from 'svelte';
 
 	interface Props {
-		class?: string | undefined;
-		children: Snippet;
+		id?: string;
+		class?: string;
+		children?: Snippet;
 	}
 
-	let { class: className, children, ...restProps }: Props = $props();
+	let { class: className = '', id = '', children, ...restProps }: Props = $props();
 </script>
 
-<main class={cn('p-6 pt-0', className)} {...restProps}>
-	{@render children()}
+<main {id} class={cn('p-6 pt-0', className)} {...restProps}>
+	{@render children?.()}
 </main>

@@ -10,6 +10,7 @@
 		children: Snippet;
 		variant?: Variant;
 		size?: Size;
+		type?: "button" | "submit" | "reset" | null | undefined;
 		onclick?: MouseEventHandler<HTMLButtonElement>;
 	}
 
@@ -17,6 +18,7 @@
 		class: className,
 		variant = 'default',
 		size = 'default',
+		type = 'button',
 		onclick,
 		children,
 		...restProps
@@ -25,7 +27,7 @@
 
 <button
 	class={cn(buttonVariants({ variant, size, className }))}
-	type="button"
+	{type}
 	{...restProps}
 	{onclick}
 >
