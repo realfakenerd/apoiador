@@ -4,10 +4,7 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Separator } from '$lib/components/ui/separator';
 	import { buttonVariants, cn } from '$lib/utils';
-	import {collectionStore} from '$lib/firebase/services';
-	import {firestore} from '$lib/firebase'
 
-	collectionStore(firestore, 'condominios');
 
 	const tipoDeLogradouro = [
 		'Selecione...',
@@ -60,7 +57,6 @@
 	}
 
 	const items = ['condominio', 'contrato', 'sindico'];
-
 </script>
 
 <section class="p-10 pb-16 flex flex-col gap-6">

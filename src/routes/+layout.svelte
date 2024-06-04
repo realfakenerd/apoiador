@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { onNavigate } from '$app/navigation';
+	import { goto, invalidate, onNavigate } from '$app/navigation';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import FirebaseApp from '$lib/firebase/components/FirebaseApp.svelte';
-	import { auth, firestore } from '$lib/firebase/index';
 	import { enableCache } from '@iconify/svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
@@ -18,6 +16,25 @@
 			});
 		});
 	});
+
+	let { data, children } = $props();
+	const { supabase, session } = data;
+
+	$effect(() => {
+		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
+			if (!newSession) {
+				setTimeout(() => {
+					goto('/', { invalidateAll: true });
+				});
+			}
+
+			if (newSession?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+
+		return () => data.subscription.unsubscribe();
+	});
 </script>
 
 <svelte:head>
@@ -27,9 +44,7 @@
 
 <ModeWatcher />
 
-<FirebaseApp {firestore} {auth}>
-	<Navbar />
-	<main style="view-timeline-name: main;" class="flex-1 bg-neutral-900 min-h-[100vh]">
-		<slot />
-	</main>
-</FirebaseApp>
+<Navbar {session}/>
+<main style="view-timeline-name: main;" class="flex-1 bg-neutral-900 min-h-[100vh]">
+	{@render children()}
+</main>

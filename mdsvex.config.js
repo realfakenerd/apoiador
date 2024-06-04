@@ -1,8 +1,7 @@
 import { resolve } from 'path';
-import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
 import remarkUnwrapImages from 'remark-unwrap-images';
 import { fileURLToPath } from 'url';
-import rehypeSlug from 'rehype-slug';
 
 export const codeBlockPrettierConfig = {
 	useTabs: false,

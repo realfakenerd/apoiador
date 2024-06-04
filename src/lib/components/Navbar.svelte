@@ -1,7 +1,11 @@
 <script lang="ts">
+	import type { Session } from '@supabase/supabase-js';
 	import CommandMenu from './CommandMenu.svelte';
 	import ModeToggle from './ModeToggle.svelte';
+	import UserMenu from './UserMenu.svelte';
 	import { MainNav, MobileNav } from './nav';
+
+	let { session }: { session?: Session | null } = $props();
 </script>
 
 <header
@@ -16,6 +20,7 @@
 				<CommandMenu />
 			</div>
 			<ModeToggle />
+			<UserMenu {session} />
 		</div>
 	</div>
 </header>

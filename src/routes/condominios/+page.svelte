@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { Section, SectionHeading, SectionTitle } from '$lib/components/section';
-	import { Button } from '$lib/components/ui/button';
+	import { Section } from '$lib/components/section';
 	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import Icon from '@iconify/svelte';
 	import { buttonVariants, cn } from '$lib/utils';
+	import Icon from '@iconify/svelte';
 
-	// const condominios = collectionStore<{ nome: string }>(firestore, 'condominios', []);
+
+	let {data} = $props();
+
+	console.log(data)
 </script>
 
 {#snippet condominioCard()}
@@ -29,7 +31,7 @@
 			</div>
 		</CardContent>
 		<CardFooter class="w-full">
-			<a href="/condominios/maraba" class={cn(buttonVariants({variant: 'default'}))}>Acessar</a>
+			<a href="/condominios/maraba" class={cn(buttonVariants({ variant: 'default' }))}>Acessar</a>
 		</CardFooter>
 	</Card>
 {/snippet}

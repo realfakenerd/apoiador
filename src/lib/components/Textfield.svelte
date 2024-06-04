@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
 	import { createLabel, melt } from '@melt-ui/svelte';
 	import type { HTMLInputTypeAttribute } from 'svelte/elements';
 
 	interface Props {
 		id?: string;
-		class?: string;
 		label: string;
 		required?: boolean;
 		type?: HTMLInputTypeAttribute;
@@ -13,6 +11,7 @@
 		oninput?: HTMLInputElement['oninput'];
 		onkeyup?: HTMLInputElement['onkeyup'];
 		maxlength?: number;
+		name?: string;
 		minlength?: number;
 		errorMessage?: string | null;
 	}
@@ -22,9 +21,9 @@
 		type = 'text',
 		id = label,
 		required = false,
-		class: className,
 		value = $bindable(''),
 		errorMessage = null,
+		name,
 		maxlength,
 		minlength,
 		oninput,
@@ -40,9 +39,9 @@
 	<section>
 		<input
 			class:value
-			class={cn(className)}
 			{id}
 			{type}
+			{name}
 			{oninput}
 			{onkeyup}
 			{required}
