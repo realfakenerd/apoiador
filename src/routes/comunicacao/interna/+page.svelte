@@ -16,6 +16,7 @@
 
 	function addDocumento() {
 		if (!documento) return;
+		console.log(documento)
 		documentos.push(documento);
 		documento = '';
 	}
@@ -63,7 +64,7 @@
 					<p class="text-md font-medium leading-none">Documentos enviados</p>
 					<div class="flex w-full flex-col sm:flex-row gap-4">
 						<Textfield type="text" label="Documento" id="doc" required bind:value={documento}/>
-						<Button on:click={addDocumento}>Adicionar Documento</Button>
+						<Button onclick={addDocumento}>Adicionar Documento</Button>
 					</div>
 
 					<div>
@@ -91,8 +92,8 @@
 </section>
 
 {#snippet impressao({ass = true}: {ass: boolean})}
-	<div class="flex gap-6 border-2 flex-col">
-		<header class="inline-flex gap-6 border-b items-center p-3">
+	<div class="flex gap-6 border-2 border-black flex-col">
+		<header class="inline-flex gap-6 border-b border-black items-center p-3">
 			<div class="inline-flex gap-3 items-center flex-1">
 				<svg
 					class="h-8 w-8"
@@ -122,7 +123,7 @@
 				<h1 class="ph1">Comunicação Interna</h1>
 			</div>
 			<h2>{seuNome}</h2>
-			<div class="w-4 border rotate-90"></div>
+			<div class="w-2 border border-black rotate-90"></div>
 			<span class="inline-flex gap-1">
 				<p>Data:</p>
 				<p>{hoje}</p>
@@ -163,11 +164,11 @@
 <section class="hidden print:block print:text-black">
 	{@render impressao({ ass: true })}
 </section>
-<hr class="hidden print:block border-dotted" />
+<hr class="hidden print:block my-10 border-dotted border-black" />
 <section class="hidden print:block print:text-black">
 	{@render impressao({ ass: false })}
 </section>
-<hr class="hidden print:block border-dotted" />
+<hr class="hidden print:block my-10 border-dotted border-black" />
 
 <style>
 	.ph1 {

@@ -1,31 +1,46 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import { createLabel, melt } from '@melt-ui/svelte';
 	import type { HTMLInputTypeAttribute } from 'svelte/elements';
 
+	type InputProps = HTMLInputElement;
+
 	interface Props {
-		id?: string;
+		id?: InputProps['id'];
+		name?: InputProps['name'];
 		label: string;
-		required?: boolean;
-		type?: HTMLInputTypeAttribute;
-		value?: HTMLInputElement['value'];
-		oninput?: HTMLInputElement['oninput'];
-		onkeyup?: HTMLInputElement['onkeyup'];
-		maxlength?: number;
-		name?: string;
-		minlength?: number;
+		title?: InputProps['title'];
+		required?: InputProps['required'];
+		maxlength?: InputProps['maxLength'];
+		minlength?: InputProps['maxLength'];
+		autocomplete?: InputProps['autocomplete'];
 		errorMessage?: string | null;
+		type?: HTMLInputTypeAttribute;
+		pattern?: InputProps['pattern'];
+		value?: InputProps['value'];
+		'leading-icon'?: string;
+		'trailing-icon'?: string;
+		ontrailing?: (event: Event) => void;
+		oninput?: InputProps['oninput'];
+		onkeyup?: InputProps['onkeyup'];
 	}
 
 	let {
 		label = '',
-		type = 'text',
 		id = label,
+		name = label.toLocaleLowerCase(),
+		type = 'text',
 		required = false,
+		pattern,
+		title,
+		'leading-icon': leadingIcon = '',
+		'trailing-icon': trailingIcon = '',
 		value = $bindable(''),
 		errorMessage = null,
-		name,
+		autocomplete = 'on',
 		maxlength,
 		minlength,
+		ontrailing,
 		oninput,
 		onkeyup
 	}: Props = $props();
@@ -36,7 +51,13 @@
 </script>
 
 <fieldset>
-	<section>
+	<section class:leading={leadingIcon}>
+		{#if leadingIcon}
+			<span class="leading-icon">
+				<Icon width="24px" icon={leadingIcon} />
+			</span>
+		{/if}
+
 		<input
 			class:value
 			{id}
@@ -44,12 +65,22 @@
 			{name}
 			{oninput}
 			{onkeyup}
+			{pattern}
 			{required}
+			{autocomplete}
 			{maxlength}
 			{minlength}
+			{title}
+			placeholder=""
 			bind:value
 		/>
 		<label use:melt={$root} for={id}>{label}</label>
+
+		{#if trailingIcon}
+			<button onclick={ontrailing} class="trailing">
+				<Icon width="24px" icon={trailingIcon} />
+			</button>
+		{/if}
 	</section>
 	{#if errorMessage}
 		<p class="text-sm text-destructive h-2">{errorMessage}</p>
@@ -69,14 +100,25 @@
 
 	section {
 		width: 100%;
+		height: 56px;
 		position: relative;
-		padding-block: 0.25rem;
 		transition: 150ms;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
 
 		@apply ring-1 ring-ring rounded-sm;
 
+		&:not(:has(span.leading-icon)) {
+			padding-inline: 1rem;
+		}
+
 		&:focus-within {
 			@apply ring-2;
+		}
+		
+		& label:is(:nth-child(3)) {
+			left: 2.8rem;
 		}
 
 		@media (hover: hover) {
@@ -87,26 +129,46 @@
 	}
 
 	section:focus-within label,
-	input:is(.value) + label {
-		transform: scale(0.8) translateY(0.7rem);
+	input.value + label {
+		transform: scale(0.8) translateY(-3rem);
 		opacity: 1;
 		z-index: 1;
-		padding-inline: 0.25rem;
+		padding-inline: 4px;
 		background: theme('colors.background');
 	}
 
 	label {
 		padding-inline: 0.25rem;
 		position: absolute;
-		left: 2%;
-		top: -50%;
+		left: 1rem;
+		top: 50%;
 		color: theme('colors.primary.foreground');
 		opacity: 0.9;
 		font-size: 0.875rem;
 		line-height: 1.25rem;
 		transform-origin: 0%;
-		transform: translateY(1.9rem);
+		transform: translateY(-50%);
 		transition: 250ms ease-in-out;
+	}
+
+	.leading-icon {
+		margin-inline-start: 1rem;
+	}
+
+	.trailing {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		padding-inline: 1rem;
+		transition: background-color 150ms;
+
+		@apply rounded-r-sm;
+
+		@media (hover: hover) {
+			&:hover {
+				@apply bg-primary;
+			}
+		}
 	}
 
 	input {
@@ -116,7 +178,7 @@
 		overflow: hidden;
 		margin: 0;
 		width: 100%;
-		padding-inline: 0.75rem;
+		padding-inline-end: 1rem;
 		padding-block: 0.25rem;
 		color: theme('colors.primary.foreground');
 		background: none;
@@ -129,7 +191,7 @@
 		}
 	}
 
-	input:is(.value) {
+	input.value {
 		&:valid,
 		&:valid + label {
 			color: theme('colors.green.500'/ 0.7);

@@ -1,16 +1,15 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import { resetMode, setMode } from 'mode-watcher';
-	import { Button } from './ui/button';
+	import type { User } from '@supabase/supabase-js';
 	import {
 		DropdownMenu,
 		DropdownMenuContent,
 		DropdownMenuItem,
 		DropdownMenuTrigger
 	} from './nav/dropdown';
-	import type { Session } from '@supabase/supabase-js';
+	import { Button } from './ui/button';
 
-	let { session }: { session?: Session | null } = $props();
+	let user: boolean = $state(false);
 </script>
 
 <DropdownMenu>
@@ -21,12 +20,15 @@
 		</Button>
 	</DropdownMenuTrigger>
 	<DropdownMenuContent class="max-w-32">
-		{#if !session}
+		{#if !user}
 			<DropdownMenuItem class="inline-flex justify-between w-full" href="/auth">
 				<span>Login</span>
 				<Icon class="h-[1.2rem] w-[1.2rem]" icon="mdi:login-variant" />
 			</DropdownMenuItem>
 		{:else}
+			<DropdownMenuItem href="/perfil" class="inline-flex justify-between w-full">
+				<span>Perfil</span>
+			</DropdownMenuItem>
 			<DropdownMenuItem class="inline-flex justify-between w-full">
 				<span>Logout</span>
 				<Icon class="h-[1.2rem] w-[1.2rem]" icon="mdi:logout-variant" />

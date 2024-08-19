@@ -3,17 +3,12 @@
 	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { buttonVariants, cn } from '$lib/utils';
 	import Icon from '@iconify/svelte';
-
-
-	let {data} = $props();
-
-	console.log(data)
 </script>
-
-{#snippet condominioCard()}
+<!-- 
+{#snippet condominioCard({ administradora_anterior, id, nome })}
 	<Card class="w-full">
 		<CardHeader class="flex-row items-center justify-between">
-			<CardTitle tag="h1">Solarium</CardTitle>
+			<CardTitle tag="h1">{nome}</CardTitle>
 			<Icon icon="mdi:office-building" />
 		</CardHeader>
 		<CardContent class="flex flex-col [&>div]:inline-flex [&>div]:gap-2 [&>div]:items-center">
@@ -27,14 +22,14 @@
 			</div>
 			<div>
 				<Icon class="text-primary" icon="mdi:briefcase" />
-				<p>Administradora - APSA</p>
+				<p>Administradora - {administradora_anterior}</p>
 			</div>
 		</CardContent>
 		<CardFooter class="w-full">
-			<a href="/condominios/maraba" class={cn(buttonVariants({ variant: 'default' }))}>Acessar</a>
+			<a href={`/condominios/${id}`} class={cn(buttonVariants({ variant: 'default' }))}>Acessar</a>
 		</CardFooter>
 	</Card>
-{/snippet}
+{/snippet} -->
 
 <Section>
 	<header class="flex flex-col md:flex-row gap-y-1 justify-between items-center w-full">
@@ -48,10 +43,9 @@
 		</a>
 	</header>
 
-	<ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-		{@render condominioCard()}
-		{@render condominioCard()}
-		{@render condominioCard()}
-		{@render condominioCard()}
-	</ul>
+	<!-- <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+		{#each condominios as { administradora_anterior, id, nome }}
+			{@render condominioCard({ administradora_anterior, id, nome })}
+		{/each}
+	</ul> -->
 </Section>

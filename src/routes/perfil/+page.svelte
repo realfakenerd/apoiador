@@ -1,135 +1,53 @@
 <script lang="ts">
-	import Radiofield from '$lib/components/Radiofield.svelte';
 	import Textfield from '$lib/components/Textfield.svelte';
-	import Section from '$lib/components/section/Section.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import { read, utils, writeFile } from 'xlsx';
-	let files = $state<FileList>();
-	// let pre = $state<Excel[]>([]);
+	import { buttonVariants } from '$lib/utils.js';
 
-	interface Excel {
-		AC: string;
-		CONDOMÍNIO: string;
-		Bairro: string;
-		ENDEREÇO: string;
+	let { data } = $props();
+
+	const { supabase, user } = data;
+
+	let email = $state(user?.email ?? '');
+	let phone = $state(user?.phone ?? '');
+	let display_name = $state<string>(user?.user_metadata.display_name ?? '');
+
+	async function logout() {
+		await supabase.auth.signOut();
 	}
 
-	async function readXLSX() {
-		const file = files?.item(0);
-		if (file) {
-			const fileArrayBuffer = await file.arrayBuffer();
-			const xlsx = read(fileArrayBuffer);
-			console.log(utils.sheet_to_formulae(xlsx.Sheets[xlsx.SheetNames[0]]));
+	async function updateData() {
+		const { data, error } = await supabase.auth.updateUser({
+			data: {
+				avatar_image:
+					'https://lh3.googleusercontent.com/a/ACg8ocLX4vDyJ_JrKGxcFk_nhw5A-ALsXLWeMTtvnOCHgS3J0444Zm2-AQ=s83-c-mo'
+			}
+		});
+
+		console.log(data);
+
+		if (error) {
+			console.warn(error);
 		}
 	}
-
-	function createXLSX() {
-		const ws = utils.json_to_sheet([
-			{ Name: 'Bill Clinton', Index: 42 },
-			{ Name: 'GeorgeW Bush', Index: 43 },
-			{ Name: 'Barack Obama', Index: 44 },
-			{ Name: 'Donald Trump', Index: 45 },
-			{ Name: 'Joseph Biden', Index: 46 }
-		]);
-		const wb = utils.book_new();
-		utils.book_append_sheet(wb, ws, 'Sheet1');
-		writeFile(wb, 'test.xlsx');
-		console.log(wb);
-	}
-
-	$effect(() => {
-		readXLSX();
-	});
 </script>
 
-<input type="file" bind:files />
-<button onclick={createXLSX}>create</button>
-<Section>
-	<Card>
-		<CardHeader>
-			<CardTitle>Alguma coisa</CardTitle>
-		</CardHeader>
-		<CardContent>
-			<Textfield label="Agência" />
-			<Textfield label="Conta" />
-			<Radiofield
-				label="Tipo de conta"
-				value="pool"
-				items={[
-					{ value: 'pool', label: 'Conta POOL', id: 'pool' },
-					{ value: 'propria', label: 'Conta PRÓPRIA', id: 'propria' }
-				]}
-			/>
-			<Textfield label="Consultor do condomínio" />
-			<Textfield label="Captador" />
-			<Radiofield
-				label="Tipo de captação"
-				value="ativa"
-				items={[
-					{ value: 'ativa', label: 'ativa' },
-					{ value: 'receptiva', label: 'receptiva' }
-				]}
-			/>
-			<Textfield label="Cliente Potencial" />
-			<Textfield label="Negociação" />
-			<Textfield label="Proposta" />
-		</CardContent>
-	</Card>
-
-	<Card>
-		<CardHeader>
-			<CardTitle>Dados do condomínio</CardTitle>
-		</CardHeader>
-		<CardContent>
-			<Textfield label="Nome do condomínio" />
-			<Radiofield
-				label="Ex-cliente"
-				value="nao"
-				items={[
-					{ value: 'sim', label: 'sim' },
-					{ value: 'nao', label: 'não' }
-				]}
-			/>
-			<Textfield label="Endereço" />
-			<Textfield label="Numero" />
-			<Textfield label="Complemento" />
-			<Textfield label="Bairro" />
-			<Textfield label="Município" />
-			<Textfield label="CEP" />
-			<Textfield label="UF" />
-			<Textfield label="CNPJ" />
-			<Radiofield
-				label="Característica"
-				value="edificio"
-				items={[
-					{ value: 'edificio', label: 'edifício' },
-					{ value: 'casas', label: 'Casas/Terreno' },
-					{ value: 'lojas', label: 'Lojas' }
-				]}
-			/>
-			<Radiofield
-				label="Tipo"
-				value="residencial"
-				items={[
-					{ value: 'residencial', label: 'residencial' },
-					{ value: 'comercial', label: 'comercial' },
-					{ value: 'misto', label: 'misto' }
-				]}
-			/>
-			<Textfield label="Unidades" />
-			<Textfield label="blocos" />
-			<Textfield label="elevadores" />
-			<Textfield label="empregados" />
-		</CardContent>
-	</Card>
-
-	<Card>
-		<CardHeader>
-			<CardTitle>Documentos entregues</CardTitle>
-		</CardHeader>
-		<CardContent>sss</CardContent>
-	</Card>
-
-	<Button>Criar Reclin</Button>
-</Section>
+<section class="p-10 flex items-center">
+	<form class="p-4 rounded-lg ring ring-border bg-background w-full flex flex-col gap-6">
+		<Textfield leading-icon="mdi:email" label="E-mail" bind:value={email} type="email" />
+		<Textfield leading-icon="mdi:phone" label="Telefone" bind:value={phone} type="tel" />
+		<Textfield leading-icon="mdi:person" label="Seu nome" bind:value={display_name} type="text" />
+		<Textfield
+			leading-icon="mdi:password"
+			required
+			label="Senha"
+			autocomplete="new-password"
+			minlength={6}
+			type="password"
+		/>
+		<button type="submit" onclick={updateData}>Update</button>
+		<button class={buttonVariants({ variant: 'destructive' })} onclick={logout}>Logout</button>
+		<button
+			class={buttonVariants({ variant: 'destructive' })}
+			onclick={() => supabase.auth.linkIdentity({ provider: 'google' })}>google</button
+		>
+	</form>
+</section>

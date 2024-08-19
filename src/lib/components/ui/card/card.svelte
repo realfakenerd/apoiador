@@ -11,7 +11,7 @@
 </script>
 
 <section
-	class={cn('rounded-xl border bg-card text-card-foreground shadow', className)}
+	class={cn('rounded-xl border bg-background text-foreground shadow', className)}
 	{...restProps}
 >
 	{@render children()}

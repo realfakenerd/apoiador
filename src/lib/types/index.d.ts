@@ -76,7 +76,6 @@ interface Post {
 	series?: string;
 	/** is published or not */
 	draft?: string;
-
 	/** image for thumb */
 	image?: string;
 }

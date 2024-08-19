@@ -19,7 +19,6 @@
 	}
 
 	const mainNav = routes.mainNav.filter((item) => !item.external);
-	const sidebarNav = routes.sidebarNav;
 </script>
 
 <svelte:window
@@ -117,57 +116,3 @@
 		</div>
 	</div>
 {/if}
-
-<!-- <CommandDialog bind:open>
-	<CommandInput placeholder="Pesquise por procedimentos ou condomínios..." />
-	<CommandList>
-		<CommandEmpty>No results found.</CommandEmpty>
-		<CommandGroup heading="Links">
-			{#each mainNav as navItem}
-				<CommandItem
-					value={navItem.title}
-					onSelect={() =>
-						runCommand(() => {
-							navItem.href && goto(navItem.href);
-						})}
-				>
-					<Icon class="mr-2 h-4 w-4" icon="mdi:file" />
-					{navItem.title}
-				</CommandItem>
-			{/each}
-		</CommandGroup>
-		{#each sidebarNav as group}
-			<CommandGroup heading={group.title}>
-				{#each group.items as navItem}
-					<CommandItem
-						value={navItem.title}
-						onSelect={() =>
-							runCommand(() => {
-								navItem.href && goto(navItem.href);
-							})}
-					>
-						<div class="mr-2 flex h-4 w-4 items-center justify-center">
-							<Icon class="h-3 w-3" icon="mdi:circle-outline" />
-						</div>
-						{navItem.title}
-					</CommandItem>
-				{/each}
-			</CommandGroup>
-		{/each}
-		<CommandSeparator />
-		<CommandGroup heading="Theme">
-			<CommandItem value="light" onSelect={() => runCommand(() => setMode('light'))}>
-				<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-on" />
-				Light
-			</CommandItem>
-			<CommandItem value="dark" onSelect={() => runCommand(() => setMode('dark'))}>
-				<Icon class="mr-2 h-4 w-4" icon="mdi:lightbulb-outline" />
-				Dark
-			</CommandItem>
-			<CommandItem value="system" onSelect={() => runCommand(() => resetMode())}>
-				<Icon class="mr-2 h-4 w-4" icon="mdi:laptop" />
-				System
-			</CommandItem>
-		</CommandGroup>
-	</CommandList>
-</CommandDialog> -->

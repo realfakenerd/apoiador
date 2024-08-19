@@ -40,9 +40,13 @@ interface FlyAndScaleParams {
 	start?: number;
 	rotation?: number;
 	duration?: number;
-};
+}
 
-function mapValueInRange(value: number, inputRange: [number, number], outputRange: [number, number]) {
+function mapValueInRange(
+	value: number,
+	inputRange: [number, number],
+	outputRange: [number, number]
+) {
 	const [minA, maxA] = inputRange;
 	const [minB, maxB] = outputRange;
 
@@ -55,7 +59,7 @@ function buildCSSString(style: Record<string, number | string | undefined>) {
 		if (style[key] === undefined) return str;
 		return str + `${key}:${style[key]};`;
 	}, '');
-};
+}
 
 export const flyAndScale = (
 	node: Element,
@@ -73,10 +77,10 @@ export const flyAndScale = (
 		const style = {
 			transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale}) rotate(${rotation}deg)`,
 			opacity: t
-		}
+		};
 
 		return buildCSSString(style);
-	}
+	};
 
 	return {
 		duration: params.duration ?? 200,
@@ -100,3 +104,71 @@ export function formatDate(
 	const dateFormatter = new Intl.DateTimeFormat(locales, options);
 	return dateFormatter.format(dateToFormat);
 }
+
+export function transformToNestedObject<T>(input: Record<string, any>) {
+	const output: Record<string, any> = {};
+
+	for (const key in input) {
+		const value = input[key];
+		const levels = key.split(':');
+		let currentLevel: Record<string, any> = output;
+
+		// Iterate through levels up to the second last
+		for (let i = 0; i < levels.length - 1; i++) {
+			const level = levels[i];
+			if (!currentLevel[level]) {
+				currentLevel[level] = {};
+			}
+			currentLevel = currentLevel[level];
+		}
+
+		// Assign value to the last level
+		const lastLevel = levels[levels.length - 1];
+		currentLevel[lastLevel] = value;
+	}
+
+	return output as T;
+}
+
+export const links = [
+	{
+		link: 'http://10.99.1.42/webponto/',
+		text: 'Web Ponto',
+		icon: 'mdi:clock'
+	},
+	{
+		link: 'http://apsant42/GHQUIOSQUEV41/Default.aspx',
+		text: 'Contracheque',
+		icon: 'mdi:cash'
+	},
+	{
+		link: 'http://apsant113/CFA/',
+		text: 'Consulta de Férias',
+		icon: 'mdi:party-popper'
+	},
+	{
+		link: 'https://tiapsa.on.spiceworks.com/portal/registrations',
+		text: 'Helpdesk',
+		icon: 'mdi:desktop-tower-monitor'
+	},
+	{
+		link: 'http://apsant40:27700/12535a81x1918q101do251281ev4/',
+		text: 'Casa 41',
+		icon: 'mdi:tools'
+	},
+	{
+		link: 'https://apsa.ead.voxeldigital.com.br/',
+		text: 'Apsa EAD',
+		icon: 'mdi:school-outline'
+	},
+	{
+		link: 'http://apsant113/sr/',
+		text: 'Sala de Reunião',
+		icon: 'mdi:account-group'
+	},
+	{
+		link: 'https://apsa-one.vercel.app/',
+		text: 'Site Apsa',
+		icon: 'mdi:web'
+	}
+];
